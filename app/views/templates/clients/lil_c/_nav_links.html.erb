@@ -1,6 +1,6 @@
-<%= link_to "HOME", lil_c_path, class: :nav_menu_link %>
-<%= link_to "ALBUM", (@lil_c_home ? non_link : lil_c_path(scroll_to_album: true)), class: "nav_menu_link album_link no_select" %>
-<%= link_to "SIGN UP", (@lil_c_home ? non_link : lil_c_path(scroll_to_sign_up: true)), class: "nav_menu_link sign_up_link no_select" %>
+<%= link_to "HOME", root_url, class: :nav_menu_link %>
+<%= link_to "ALBUM", (@lil_c_home ? non_link : root_url(scroll_to_album: true)), class: "nav_menu_link album_link no_select" %>
+<%= link_to "SIGN UP", (@lil_c_home ? non_link : root_url(scroll_to_sign_up: true)), class: "nav_menu_link sign_up_link no_select" %>
 
 <br/>
 

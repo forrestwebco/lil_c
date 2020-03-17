@@ -30,13 +30,13 @@
   <div class="header_bar">
     <div class="header_links_container hide_header_links_container">
       <div class="header_links">
-        <%= link_to "HOME", lil_c_path, class: "header_link spaced" %>
-        <%= link_to "ALBUM", (@lil_c_home ? non_link : lil_c_path(scroll_to_album: true)), class: "header_link spaced album_link" %>
-        <%= link_to "SIGN UP", (@lil_c_home ? non_link : lil_c_path(scroll_to_sign_up: true)), class: "header_link spaced sign_up_link" %>
+        <%= link_to "HOME", root_url, class: "header_link spaced" %>
+        <%= link_to "ALBUM", (@lil_c_home ? non_link : root_url(scroll_to_album: true)), class: "header_link spaced album_link" %>
+        <%= link_to "SIGN UP", (@lil_c_home ? non_link : root_url(scroll_to_sign_up: true)), class: "header_link spaced sign_up_link" %>
       </div>
     </div>
     <div class="header_links_container header_avatar_container">
-      <%= link_to lil_c_path do %>
+      <%= link_to root_url do %>
         <div class="avatar">
           <div class="header_link avatar_name">
             LIL' C.
