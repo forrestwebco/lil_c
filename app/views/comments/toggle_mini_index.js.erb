@@ -1,4 +1,0 @@
-if (!<%= @item.model_name.singular_route_key %>_<%= @item.id %>_comments_shown) {
-  $("#<%= @item.model_name.singular_route_key %>_comments_anchor_<%= @item.id %>").after("<%=j render 'comments/mini_index' %>");
-  var <%= @item.model_name.singular_route_key %>_<%= @item.id %>_comments_shown = true;
-}

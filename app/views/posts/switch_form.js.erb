@@ -1,9 +1,0 @@
-var switch_form = $("#switch_form");
-switch_form.after("<%=j render 'posts/switch_form' %>");
-switch_form.remove();
-
-$('.switch_content_form_button').toggleClass('switch_content_form_button_active', false);
-
-$('#<%= @content_type %>_button').toggleClass('switch_content_form_button_active', true);
-
-window.navigator.vibrate(1);

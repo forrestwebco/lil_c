@@ -1,6 +1,0 @@
-<% link_id = "proposal_menu_link_#{proposal.id}" %>
-
-<%= link_to ellipsis_dots.html_safe, open_proposal_menu_path(proposal.unique_token, showing: @proposal_shown),
-  remote: true, class: "mini_menu_ellipsis", id: link_id %>
-
-<%= render "app/link_sound.js", link_id: link_id, sound: :post_interface_sound %>

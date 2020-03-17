@@ -1,9 +1,0 @@
-<% if current_user and shared_item.already_requested_by current_user %>
-  <%= link_to "<i class=\"fa fa-book\"></i> Unrequest".html_safe, item_request_path(id: shared_item.request_by(current_user), shared_item_id: shared_item.id),
-    method: :delete, remote: true, class: "request_item_link standard_post_link", id: "request_item_link_#{shared_item.id}" %>
-<% else %>
-  <%= link_to "<i class=\"fa fa-book\"></i> Request".html_safe, show_item_request_form_path(shared_item_id: shared_item.id), remote: true, class: "request_item_link standard_post_link",
-    id: "request_item_link_#{shared_item.id}" %>
-<% end %>
-
-<%= render "app/link_sound.js", _class: true, link_id: "request_item_link", sound: :post_interface_sound %>

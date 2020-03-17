@@ -1,6 +1,0 @@
-$("#filter_field_item_of_<%= @field %>").remove();
-
-// removes selected filter field from options
-$('.shared_item_field_select option[value="' + "<%= @field.to_s %>" + '"]').toggle();
-
-window.navigator.vibrate(1);

@@ -1,6 +1,0 @@
-$("#survey_question_<%= @question.id %>_filter_field").remove();
-
-// unhides selected filter field from options
-$('.survey_question_field_select option[value="' + "<%= @question.id %>" + '"]').toggle();
-
-window.navigator.vibrate(1);

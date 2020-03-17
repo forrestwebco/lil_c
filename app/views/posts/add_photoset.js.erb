@@ -1,9 +1,0 @@
-var table = $("#mini_photoset_table_<%= @post.id %>");
-
-table.after("<%=j render "posts/inline_photoset", post: @post %>");
-table.remove();
-
-$("#post_interface_sound")[0].currentTime = 0;
-$("#post_interface_sound")[0].play();
-
-window.navigator.vibrate(10);

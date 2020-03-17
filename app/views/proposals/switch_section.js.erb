@@ -1,6 +1,0 @@
-$("#feed_container").remove();
-$("#feed_container_anchor").after("<%=j render 'proposals/feed_container', \
-  parents: (@group.present? ? 'groups' : nil) %>");
-
-$(".voting_section").toggleClass('proposal_section_active', false);
-$("#proposal_section_<%= @section %>").toggleClass('proposal_section_active', true);

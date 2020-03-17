@@ -1,6 +1,0 @@
-<% txt = shared_item.send(field).to_s.gsub("_", " ") %>
-
-<span id="shared_item_row_text_<%= shared_item.id %>">
-  <%= ((!@read_more and !@showing) ? snip_txt(txt) : txt) %>
-  <%= shared_item_read_more_link shared_item, field, @read_more if !@showing %>
-</span>

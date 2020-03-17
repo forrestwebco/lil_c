@@ -1,4 +1,0 @@
-var link = $("#survey_menu_link_<%= @survey.id %>");
-link.after("<%=j render "surveys/mini_menu", survey: @survey %>");
-link.after("<%=j render "surveys/close_menu_link", survey: @survey %>");
-link.remove();

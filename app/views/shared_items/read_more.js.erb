@@ -1,5 +1,0 @@
-var old_body_text = $("#shared_item_row_text_<%= @shared_item.id %>");
-old_body_text.after("<%=j render 'card_field_row_txt', shared_item: @shared_item, field: @field %>");
-old_body_text.remove();
-
-window.navigator.vibrate(1);

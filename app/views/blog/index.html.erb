@@ -1,7 +1,0 @@
-<% if current_user and current_user.eql? User.first %>
-  <%= render "form" %>
-<% end %>
-
-<% for post in @posts %>
-  <%= render "card", post: post %>
-<% end %>

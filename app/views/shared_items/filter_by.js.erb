@@ -1,9 +1,0 @@
-var items = $("#shared_items");
-
-var anchor = $("#shared_items_anchor");
-
-items.remove();
-
-anchor.before("<%=j render 'stacked' %>");
-
-window.navigator.vibrate(1);

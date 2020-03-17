@@ -1,9 +1,0 @@
-<% if (proposal.action.present? or proposal.revised_action.present?) and \
-  not (proposal.action.eql?("revision") and proposal.revised_action.to_s.empty?) %>
-	<strong>
-	  <% motion = proposal.action.eql?("revision") ? proposal.revised_action : proposal.action %>
-	  <%= link_to action_label(proposal), \
-      search_path(query: (proposal.action.eql?("revision") ? proposal.revised_action : proposal.action)),
-      class: :standard_post_link %>
-	</strong>
-<% end %>

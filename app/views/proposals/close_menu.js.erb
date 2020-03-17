@@ -1,6 +1,0 @@
-var link = $("#proposal_menu_link_<%= @proposal.id %>");
-
-$("#proposal_mini_menu_<%= @proposal.id %>").remove();
-
-link.after("<%=j render "proposals/open_menu_link", proposal: @proposal %>");
-link.remove();
