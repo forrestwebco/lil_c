@@ -1,0 +1,453 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+
+ *= require_self
+ *= require pushy-buttons.min.css
+ *= require rpg-awesome.min.css
+ *= require simple_calendar
+
+ *= require actiontext.css
+
+ // excludes templates css from rest of site
+ *= stub templates.css
+ *= stub blog.css
+ */
+
+ // top, right, bottom, left
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+$main_red: #ff6b66;
+
+$x_right_gap: 5px;
+$x_left_gap: 5px;
+
+@mixin card {
+  transition: all .4s ease-in-out;
+  position: relative;
+  padding: 15px 32.5px;
+  background: white;
+  max-width: 590px;
+  margin: 0 auto;
+  margin-bottom: 12.5px;
+  width: 94.5%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+@mixin corner_link {
+	font-size: 11px;
+	position: absolute;
+}
+
+@mixin standard_form_element {
+  width: 55%;
+  max-width: 275px;
+}
+
+html {
+  font-family: Helvetica;
+  background: rgb(255,234,234);
+  font-size: 13px;
+  //-webkit-user-select: none; /* Safari */
+  //-moz-user-select: none; /* Firefox */
+  //-ms-user-select: none; /* IE10+/Edge */
+  //user-select: none; /* Standard */ turned off, very annoying not be able to copy...
+}
+
+body {
+  margin: initial;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 14px;
+  color: rgb(40, 40, 40);
+  -webkit-tap-highlight-color: transparent;
+}
+
+textarea {
+  width: 95%;
+  height: 75px;
+}
+
+::-webkit-input-placeholder {
+	font-size: 12.5px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+	font-size: 12.5px;
+}
+
+.card {
+	@include card;
+}
+
+.old_item_card {
+  @include card;
+  background: grey;
+}
+
+.dark_card {
+  @include card;
+  background: rgb(10, 10, 10);
+  color: white;
+}
+
+.danger_card {
+  @include card;
+  background: red;
+}
+
+.top_right_lower_link {
+	@include corner_link;
+	right: $x_right_gap;
+	top: 7.5px;
+}
+
+.top_left_lower_link {
+	@include corner_link;
+	left: $x_left_gap;
+	top: 7.5px;
+}
+
+.top_right_link {
+	@include corner_link;
+	right: $x_right_gap;
+	top: 5px;
+}
+
+.top_left_link {
+	@include corner_link;
+	left: $x_left_gap;
+	top: 5px;
+}
+
+.bottom_right_link {
+	@include corner_link;
+	right: $x_right_gap;
+	bottom: 5px;
+}
+
+.bottom_left_link {
+	@include corner_link;
+	left: $x_left_gap;
+	bottom: 5px;
+}
+
+.card_corner_cut_out {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background: white;
+	height: 30px;
+	width: 32px;
+}
+
+.caution_link {
+  color: yellow;
+}
+
+.danger_link {
+  color: red;
+}
+
+.mini_menu_ellipsis {
+	@include corner_link;
+	right: 7.5px;
+	top: 9.5px;
+  font-size: 9px;
+}
+
+.justified_body_text {
+  text-align: justify;
+}
+
+.standard_body {
+  padding: 12.5px 0px;
+  width: 97.5%;
+}
+
+.standard_image {
+  width: 97.5%;
+}
+
+.standard_logo_header {
+  font-size: 50px;
+  font-weight: bolder;
+  padding-bottom: 10px;
+}
+
+.standard_form_button {
+  @include standard_form_element;
+  height: 35px;
+  background: rgb(250, 250, 250);
+  color: rgb(70, 70, 70);
+  border-color: rgb(205, 205, 205);
+  border-radius: 3px;
+}
+
+.standard_text_field {
+  @include standard_form_element;
+  margin-bottom: 7.5px;
+  display: block;
+}
+
+.standard_text_area {
+  background: white;
+  color: black;
+  width: 97.5%;
+}
+
+.standard_page_header {
+  text-align: center;
+}
+
+.dark_text_field {
+  @include standard_form_element;
+  margin-bottom: 7.5px;
+  display: block;
+  background: rgb(25, 25, 25);
+  color: white;
+  border-width: 1px;
+}
+
+.dark_text_area {
+  background: rgb(25, 25, 25);
+  color: white;
+}
+
+.dark_form_button {
+  @include standard_form_element;
+  height: 35px;
+  background: rgb(25, 25, 25);
+  color: rgb(175, 175, 175);
+  border-color: rgb(10, 10, 10);
+}
+
+.filter_field_focused {
+  border-color: red;
+}
+
+.time_ago_link {
+	@include corner_link;
+  top: 24px;
+  left: 45px;
+  color: rgb(125, 125, 125);
+  font-weight: normal;
+}
+
+.anon_time_ago_link {
+  top: 18px;
+  left: 33px;
+}
+
+.discrete_title {
+  color: gray;
+  font-size: 11px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.top_spacer {
+  margin-top: 50px;
+}
+
+#spacing_header {
+	padding-bottom: 32.5px;
+}
+
+.vertical_spacer {
+  padding-bottom: 50px;
+}
+
+.vertical_padding {
+  padding: 17.5px 0px;
+}
+
+#footer_spacing_container {
+	padding-bottom: 50px;
+}
+
+#color_cascade {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.color_cascade_bar {
+  width: 100%;
+  height: 500px;
+}
+
+#last_in_line {
+  font-size: 17.5px;
+}
+
+.white_link {
+  color: white;
+}
+
+.black_link {
+  color: black;
+}
+
+.dark_link, .dark_txt {
+  color: rgb(175, 175, 175);
+}
+
+.small_dark_link {
+  color: rgb(175, 175, 175);
+  font-size: 12px;
+}
+
+.dark_red_link {
+  color: rgb(158,49,28);
+}
+
+.header_icon_link {
+  color: white;
+  font-size: 30px;
+}
+
+.sparkles {
+  width: 100px;
+  height: 100px;
+}
+
+.dot_sparkle {
+  position: relative;
+  width: 1.5px;
+  height: 1.5px;
+  background: white;
+}
+
+.star_sparkle {
+  position: relative;
+  width: 10px;
+  height: 10px;
+}
+
+.star_sparkle_top {
+  position: absolute;
+  width: 1px;
+  height: 3px;
+  bottom: 5px;
+  left: 4.5px;
+  background: white;
+}
+
+.star_sparkle_bottom {
+  position: absolute;
+  width: 1px;
+  height: 3px;
+  top: 5px;
+  left: 4.5px;
+  background: white;
+}
+
+.star_sparkle_left {
+  position: absolute;
+  width: 3px;
+  height: 1px;
+  top: 4.5px;
+  right: 5px;
+  background: white;
+}
+
+.star_sparkle_right {
+  position: absolute;
+  width: 3px;
+  height: 1px;
+  top: 4.5px;
+  left: 5px;
+  background: white;
+}
+
+.close_modal_link {
+	position: absolute;
+  top: 5px;
+  right: 7.5px;
+  font-size: 20px;
+}
+
+.blur {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+//  pointer-events: none;
+  cursor: default;
+}
+
+.post_blurred {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+.plus_fade_box {
+  box-shadow: 2.25px 2.25px 5.25px orange;
+}
+
+$card_vertical_space: 27.5px;
+
+.card_vertical_spacer {
+  padding-top: $card_vertical_space;
+  padding-bottom: $card_vertical_space;
+}
+
+$profile_card_vertical_space: 35px;
+
+.profile_card_vertical_spacer {
+  padding-top: $profile_card_vertical_space;
+  padding-bottom: $profile_card_vertical_space;
+}
+
+$shared_item_card_vertical_space: 32.5px;
+
+.shared_item_card_vertical_spacer {
+  padding-top: $shared_item_card_vertical_space;
+  padding-bottom: $card_vertical_space;
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  .standard_page_header {
+    font-size: 20px;
+  }
+  .card {
+    padding: 15px 7.5px;
+    width: 92.5%;
+  }
+  .card_vertical_spacer {
+    padding-top: $card_vertical_space;
+    padding-bottom: $card_vertical_space;
+  }
+  .profile_card_vertical_spacer {
+    padding-top: $profile_card_vertical_space;
+    padding-bottom: $profile_card_vertical_space;
+  }
+  .shared_item_card_vertical_spacer {
+    padding-top: $shared_item_card_vertical_space;
+    padding-bottom: $card_vertical_space;
+  }
+}

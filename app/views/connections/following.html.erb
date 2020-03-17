@@ -1,0 +1,23 @@
+<div class="card take_survey_card_border">
+  <h2 class="standard_page_header" align="center">
+    <i class="fa fa-users"></i> Following
+  </h2>
+  <%= render "app/right_pane" %>
+</div>
+
+<% for user in @following %>
+  <%= render "users/card", user: user %>
+<% end %>
+
+<% if @following.empty? %>
+  <div class="card">
+    <p align="center">
+      <% if current_user and current_user.eql? @user %>
+        You haven't started following anyone yet.
+        <%= link_to "Click here", search_path(query: "users") %> to find other users to follow.
+      <% else %>
+        This user isn't following anyone yet.
+      <% end %>
+    </p>
+  </div>
+<% end %>

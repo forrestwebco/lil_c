@@ -1,0 +1,27 @@
+<% if defined?(user) and user.present? %>
+  <% link_path = show_user_path(user.unique_token); token = user.unique_token; user = user %>
+<% else %>
+  <% link_path = search_path(query: token) %>
+<% end %>
+
+<!-- adds token to itself to have more chars to work with -->
+<% chars = (token + token).slice(0..24).split("") %>
+<% pattern = avatar_pattern chars %>
+<% clean_token = token.gsub(/[^0-9a-z]/i, '') %>
+<% unique_name = rand_string %>
+
+<%= link_to link_path, title: (user.present? ? user.name : token), class: "#{defined?(position) ? position : nil}", id: "#{defined?(id) ? id : nil}" do %>
+  <div class="circles_avatar_container<%= defined?(inline) ? ' inline_circles_avatar_container' : '' %>">
+    <% z = 25; z.times do |num| %>
+      <% char = chars[num] %>
+      <% id_append = num.to_s; id_append << ("_" + token) if defined?(token) %>
+      <div class="circles_avatar_section" id="circles_avatar_section_<%= num.to_s + '_' + clean_token + '_' + unique_name %>"
+        style="background:rgb(<%= awesome_colors(chars[0], chars)[:string] %>); box-shadow:0 0 7.5px rgb(<%= awesome_colors(char, chars)[:string] %>); z-index:<%= z + 10 %>; width:<%= (num + 1) * 5 %>%; height:<%= (num + 1) * 5 %>%;">
+      </div>
+	  <% z -= 1; end %>
+  </div>
+
+  <script>
+    <%= render "users/circles_avatar_fader.js", token: (token if defined?(token)) %>
+  </script>
+<% end %>

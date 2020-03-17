@@ -1,0 +1,22 @@
+function set_sort_by_links() {
+  var set_sort_by_to_up_link = $("#set_sort_by_to_up_link");
+  var set_sort_by_to_down_link = $("#set_sort_by_to_down_link");
+  var set_sort_by_links = $(".sort_by_link");
+
+  // saves original href to be appended to on select box change
+  var original_up_href = set_sort_by_to_up_link.attr('href');
+  var original_down_href = set_sort_by_to_down_link.attr('href');
+
+  $("#set_sort_by_links_select").change(function() {
+    // saves value selected from select box
+    var selected_value = this.value;
+    // updates add filter link with href including selected value
+    set_sort_by_to_up_link.attr('href', original_up_href + "&field=" + selected_value);
+    set_sort_by_to_down_link.attr('href', original_down_href + "&field=" + selected_value);
+
+    set_sort_by_links.toggleClass('disabled_link', false);
+
+    window.navigator.vibrate(1);
+  });
+}
+set_sort_by_links();

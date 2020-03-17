@@ -1,0 +1,9 @@
+<%= render "surveys/card", survey: @survey %>
+
+<%= render "comments/index", comments: @comments %>
+
+<div class="surveys_card" align="center">
+  <p>
+    <%= link_to '<i class="fa fa-home"></i> See all surveys'.html_safe, surveys_path %>
+  </p>
+</div>

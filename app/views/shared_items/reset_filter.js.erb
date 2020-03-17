@@ -1,0 +1,19 @@
+var filter_form = $("#shared_items_filter_form");
+var filter_form_anchor = $("#shared_items_filter_form_anchor");
+
+filter_form_anchor.after("<%=j render 'filter_form' %>");
+filter_form.remove();
+
+// resets results as well
+var results = $("#shared_items");
+var anchor = $("#shared_items_anchor");
+results.remove();
+anchor.before("<%=j render 'stacked' %>");
+
+// ---------------------- _set_filter_field.js and _set_sort_by_links.js --------------------------------------------
+
+<%= render 'set_filter_field.js' %>
+<%= render 'set_sort_by_links.js' %>
+
+// runs on every reset
+window.navigator.vibrate(1);

@@ -1,0 +1,9 @@
+<%= render "messages/card", message: @message %>
+
+<% if @message.group %>
+  <div class="card">
+    <div align="center">
+      <%= link_to "Back to chat (#{@message.group.name})", @message.group %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<h2 class="standard_page_header">Requests <i class="fa fa-users"></i></h2>
+
+<%= render "groups/card", group: @group %>
+
+<% for request in @requests %>
+  <%= render "connections/card", connection: request %>
+<% end %>
+
+<% if @requests.empty? %>
+  <div class="card">
+    <div align="center">
+      There are zero pending requests.
+    </div>
+  </div>
+<% end %>

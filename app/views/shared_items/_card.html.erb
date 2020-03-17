@@ -1,0 +1,176 @@
+<div class="card shared_item_card_vertical_spacer" id="shared_item_card_<%= shared_item.id %>" align="left">
+  <%= render "users/avatar_card_link", user: shared_item.user %>
+
+  <span class="posted_label">
+    <%= link_to shared_item.user.name, shared_item.user, class: :posted_link %>
+    shared to the <%= link_to 'Lending Library <i class="fa fa-book"></i>'.html_safe, show_item_library_path, class: :posted_link %>
+  </span>
+
+  <%= render "app/time_ago", item: shared_item, position: :time_ago_link %>
+
+  <%= render "shared_items/open_menu_link", shared_item: shared_item if own_item? shared_item or admin? %>
+
+  <div align="center">
+    <p class="shared_item_card_header">
+      <%= link_to shared_item.name, shared_item_path(shared_item), class: :shared_item_name %>
+      <% if shared_item.pictures.present? and not @showing %>
+        <%= image_tag shared_item.pictures.first.image_url, class: :shared_item_feed_img %>
+      <% end %>
+    </p>
+
+    <% if shared_item.pictures.present? and @showing %>
+      <p>
+        <%= link_to show_shared_item_path(shared_item.unique_token) do %>
+          <%= image_tag shared_item.pictures.first.image_url, class: :standard_shared_item_image %>
+        <% end %>
+        <% if shared_item.pictures.present? %>
+          <table id="shared_item_mini_photoset_table_<%= shared_item.id %>">
+            <tr>
+              <% for picture in shared_item.pictures[1..-1] %>
+                <td>
+                  <%= link_to add_shared_item_photoset_path(shared_item), remote: true, title: "Click here to enlarge.", class: :survey_interactive_link do %>
+                    <%= image_tag picture.image_url, class: :my_groups_group_icon %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+        <% end %>
+      </p>
+    <% end %>
+
+    <% if shared_item.video_url %>
+      <%= link_to show_shared_item_path(shared_item.unique_token) do %>
+        <p>
+          <%= video_tag shared_item.video_url.to_s, autoplay: true, loop: true, muted: "muted", class: :standard_post_video, id: "shared_item_video_#{shared_item.id}" %>
+        </p>
+        <script>
+          var video = $('#<%= "shared_item_video_#{shared_item.id}" %>').get(0);
+          if (video.paused) {
+            video.play();
+          }
+        </script>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="shared_item_card_fields_container">
+    <% for field in (@showing ? shared_item_fields : shared_item_fields_feed_summary) %>
+      <% if !shared_item.send(field).blank? and !field.eql? :name %>
+        <div class="shared_item_card_fields_row" align="left">
+          <div class="shared_item_card_field">
+            <b>
+              <% if field.eql? :item_category_id %>
+                Category (domain)
+              <% elsif field.eql? :days_to_borrow %>
+                Max duration of use
+              <% elsif field.eql? :holder_id %>
+                Holder
+              <% elsif field.eql? :body %>
+                Description
+              <% else %>
+                <%= field.to_s.gsub("_", " ").capitalize %>
+              <% end %>
+            </b>
+          </div>
+          <div class="shared_item_card_field">
+            <% if field.eql? :item_category_id %>
+              <%= ItemCategory.find(shared_item.send(field)).name %>
+            <% elsif field.eql? :days_to_borrow %>
+              <%= shared_item_max_duration_time shared_item %>
+            <% elsif field.eql? :holder_id %>
+              <%= display_holder shared_item %>
+            <% else %>
+              <%= render "shared_items/card_field_row_txt", shared_item: shared_item, field: field %>
+            <% end %>
+          </div>
+        </div>
+      <% elsif field.eql? :holder_id %>
+        <div class="shared_item_card_fields_row" align="left">
+          <div class="shared_item_card_field">
+            <b>
+              Holder
+            </b>
+          </div>
+          <div class="shared_item_card_field">
+            <%= display_holder shared_item %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="shared_item_card_fields_row" align="left">
+      <div class="shared_item_card_field">
+        <b>
+          In stock
+        </b>
+      </div>
+      <div class="shared_item_card_field">
+        <%= shared_item_in_stock shared_item %>
+      </div>
+    </div>
+  </div>
+
+  <% if own_item? shared_item and shared_item.unaccpeted_requests? and not shared_item.current_borrower %>
+    <p align="center">
+      <%= link_to "Requests #{shared_item.item_requests.size}", item_requests_path(shared_item_id: shared_item.id) %>
+    </p>
+  <% end %>
+
+  <% if own_item? shared_item and shared_item.current_borrower %>
+    <p align="center">
+      <%= link_to "<i class=\"fa fa-check-circle-o\"></i> Confirm item has been returned".html_safe, confirm_item_return_path(shared_item) %>
+    </p>
+  <% end %>
+
+  <%= render "item_requests/form", shared_item: shared_item %>
+
+  <div id="shared_item_comments_anchor_<%= shared_item.id %>"></div>
+
+  <% if current_user %> <!-- could re enable anon later -->
+    <table class="bottom_left_link">
+      <tr>
+        <td>
+          <span id="like_shared_item_link_anchor_<%= shared_item.id %>"></span>
+          <%= render "likes/link", item: shared_item %>
+        </td>
+        <td>
+          ·
+        </td>
+        <td>
+          <%= link_to "<i class=\"fa fa-comment-o\"></i> Comment#{shared_item.comments.size.zero? ? '' : 's'}#{ ' ' \
+            + shared_item.comments.size.to_s unless shared_item.comments.size.zero? }".html_safe,
+            (@shared_item_shown ? show_shared_item_path(shared_item.unique_token) : toggle_comments_path(id: shared_item.id, shared_item: true)),
+            remote: true, class: "shared_item_card_link standard_post_link", id: "show_shared_item_comments_#{shared_item.id}" %>
+        </td>
+        <% unless own_item? shared_item or shared_item.current_borrower %>
+          <td>
+            ·
+          </td>
+          <td>
+            <span id="request_item_link_anchor_<%= shared_item.id %>"></span>
+            <%= render "item_requests/link", shared_item: shared_item %>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  <% end %>
+
+  <% unless @showing %>
+    <script>
+      function show_shared_item_modal_<%= shared_item.id %>() {
+        var card = $("#shared_item_card_<%= shared_item.id %>");
+
+        card.click(function(e) {
+          if (!($(e.target).closest('a').length || $(e.target).closest('form').length)) {
+            $.ajax({
+      			  type: "GET",
+      			  url: "/show_shared_item_modal/<%= shared_item.id %>"
+      		  });
+          }
+        });
+      }
+      show_shared_item_modal_<%= shared_item.id %>();
+    </script>
+  <% end %>
+</div>

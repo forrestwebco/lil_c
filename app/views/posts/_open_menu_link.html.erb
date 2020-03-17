@@ -1,0 +1,6 @@
+<% link_id = "post_menu_link_#{post.id}" %>
+
+<%= link_to ellipsis_dots.html_safe, open_post_menu_path(post.id),
+  remote: true, class: :mini_menu_ellipsis, id: link_id %>
+
+<%= render "app/link_sound.js", link_id: link_id, sound: :post_interface_sound %>

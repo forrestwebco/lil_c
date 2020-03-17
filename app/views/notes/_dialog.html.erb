@@ -1,0 +1,9 @@
+<div class="note_dialog" id="note_dialog" align="center" hidden>
+  <p class="note_dialog_text" id="note_dialog_text">
+    <% if note.is_a? Note %>
+      <%= note.message %>
+    <% else %>
+      <%= note %>
+    <% end %>
+  </p>
+</div>

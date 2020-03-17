@@ -1,0 +1,7 @@
+$("#question_<%= @question_num %>_row_<%= @row_num %>_field").remove()
+
+var row_num = <%= @row_num.to_i %> - 1;
+
+$("#remove_question_<%= @question_num %>_row_" + row_num + "_field_link").toggleClass('hidden_and_disabled_link', false);
+
+window.navigator.vibrate(1);

@@ -1,0 +1,10 @@
+<div class="survey_results_filter_item">
+  <button type="submit" name="commit" class="survey_filter_form_link survey_filter_form_button_hidden" id="survey_filter_form_button_hidden">
+    <b>Filter <i class="fa fa-search"></i></b>
+  </button>
+  <%= link_to non_link, class: "survey_filter_form_button survey_filter_form_button_faded survey_filter_form_link", id: :survey_filter_form_button do %>
+    <div class="survey_filter_form_button_txt">
+      Filter
+    </div> <%= image_tag "filter.gif", class: :survey_filter_form_button_img %>
+  <% end %>
+</div>

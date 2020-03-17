@@ -1,0 +1,11 @@
+<% if @post.group.present? and invited? or current_user %>
+  <%= render "app/lineage", line: { group: @post.group, post: @post } %>
+<% end %>
+
+<%= render "posts/card", post: @post %>
+
+<%= render "posts/liked_and_viewed_by" %>
+
+<% if invited? or current_user %>
+  <%= render "comments/index", comments: @comments %>
+<% end %>

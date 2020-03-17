@@ -1,0 +1,20 @@
+<script>
+  <%= render "app/fader.js", target: "card_text", target_id: "" %>
+</script>
+
+<div class="vertical_spacer"></div>
+
+<div class="dark_card">
+  <div align="center" id="card_text">
+    <p>
+      Forrest Wilkins - Web Developer
+    </p>
+  </div>
+</div>
+
+
+<%= audio_tag "music/high_tech_city.mp3", id: "resume_music" %>
+<script>
+  $("#resume_music")[0].currentTime = 0;
+  $("#resume_music")[0].play();
+</script>

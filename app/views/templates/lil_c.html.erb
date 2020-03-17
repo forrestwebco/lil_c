@@ -1,0 +1,58 @@
+<div class="section light_section">
+  <div class="card">
+    <div class="card_col">
+      <%= image_tag "clients/lil_c/2.png", class: :portrait %>
+    </div>
+
+    <div class="card_col_spacer"></div>
+
+    <div class="card_col">
+      <%= link_to "https://www.youtube.com/watch?v=RgWQ_Gt9ClM", target: :_blank do %>
+        <div class="quote">
+          <span class="double_quote">"</span>'They be hating on me but I got to let it be the motivation' felt that! 💪🏽💪🏽💪🏽🔥🔥🔥 hardest spitter in NC STAMPED!<span class="double_quote">"</span>
+          <div class="quote_giver"><i>- Javontae Davis, Davis Auto Detailing LLC</i></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="section album_section">
+  <div class="album_section_bg"></div>
+  <div class="card" align="center">
+    <div class="card_col album_section_card_col album_section_card_txt_col">
+      <%= render "templates/clients/lil_c/album_section_txt" %>
+    </div>
+
+    <div class="card_col_spacer"></div>
+
+    <div class="card_col album_section_card_col">
+      <%= link_to "https://hypeddit.com/link/d5bxdp", target: :_blank do %>
+        <%= image_tag "clients/lil_c/album.jpg", class: :album_cover %>
+      <% end %>
+    </div>
+
+    <div class="card_col album_section_card_col hidden_for_desktop">
+      <%= render "templates/clients/lil_c/album_section_txt" %>
+    </div>
+  </div>
+</div>
+
+<div class="section sign_up_section">
+  <div class="sign_up_section_bg"></div>
+  <div class="card" align="center">
+    <%= link_to lil_c_sign_up_path, class: :no_select do %>
+      <div class="sign_up">
+        <div class="sign_up_txt">
+          JOIN THE MAILING LIST
+        </div>
+        <div class="sign_up_txt">
+          FOR EXCLUSIVE CONTENT AND UPDATES
+        </div>
+        <div class="sign_up_button">
+          SIGN UP NOW
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

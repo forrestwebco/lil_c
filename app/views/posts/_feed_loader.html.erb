@@ -1,0 +1,14 @@
+<div id="main_feed_container_anchor" align="center">
+  <div class="feed_loader_loading_label" id="loader_loading_label" align="left">
+    Loading<%= render "app/ellipsis" %>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    $.ajax({
+      type: "GET",
+      url: "/load_index"
+    });
+  }, 1);
+</script>

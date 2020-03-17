@@ -1,0 +1,37 @@
+<!-- proposals -->
+
+<table class="proposal_link_table" id="link_table_<%= proposal.id %>">
+	<tr>
+		<% unless proposal.ratified %>
+			<% unless proposal.requires_revision %>
+				<td>
+					<% _class = up_voted?(proposal) ? :voted_on : nil %>
+					<% for_path = _class.nil? ? new_up_vote_path(proposal.unique_token) : "/#" %>
+					<% if _class and recently_up_voted? proposal %>
+					  <script>
+              <%= render "app/fader.js", target: "up_vote_proposal_", target_id: proposal.id.to_s %>
+					  </script>
+					<% end %>
+					<%= link_to "For#{(' ' + proposal.up_votes.size.to_s) unless proposal.up_votes.size.zero?}",
+					  for_path, remote: true, class: _class, id: "up_vote_proposal_#{proposal.id}" %>
+				</td>
+				<td>·</td>
+				<td>
+					<% _class = down_voted?(proposal) ? :voted_on : nil %>
+					<%= link_to "Against#{(' ' + proposal.down_votes.size.to_s) unless proposal.down_votes.size.zero?}",
+					  new_down_vote_path(proposal.unique_token), remote: true,
+					  class: _class, id: "down_vote_proposal_#{proposal.id}" %>
+				</td>
+			<% else %>
+				<td>
+					<%= render "proposals/revision_link", proposal: proposal %>
+				</td>
+			<% end %>
+			<td>·</td>
+		<% end %>
+		<td>
+		  <div id="proposal_comments_link_anchor_<%= proposal.id %>"></div>
+			<%= render "comments/table_link", proposal: proposal %>
+		</td>
+	</tr>
+</table>

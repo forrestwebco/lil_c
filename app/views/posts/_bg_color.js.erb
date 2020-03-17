@@ -1,0 +1,5 @@
+function post_bg_color_<%= post.id %>() {
+  $("#post_card_<%= post.id %>").css("background", "<%= settings(post.user)[:post_bg_color] %>");
+}
+
+post_bg_color_<%= post.id %>();

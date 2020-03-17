@@ -1,0 +1,7 @@
+<%= render "likes/card", like: @like %>
+
+<% for comment in @comments %>
+  <%= render "comments/card", comment: comment %>
+<% end %>
+
+<%= render "comments/form" %>

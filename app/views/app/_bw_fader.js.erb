@@ -1,0 +1,34 @@
+
+
+function bw_fader_<%= target + "_" + target_id.to_s %>() {
+  var pad = 0;
+  var fat_pad = false;
+  var pad_min = 15; // when it should go back up
+  var  pad_max = 25; // when  pad should go back down
+  var change_rate = <%= defined?(slow) ? 0.2 : (defined?(fast) ? 1 : 0.5) %>; // added/subbed each round
+  var change_speed = <%= defined?(slow) ? 0.1 : (defined?(fast) ? 5 : 2.5) %>; // interval speed, higher == slower
+  
+  setInterval(function() {
+		  // flips colors direction of change
+		  if (pad <= pad_min) {
+			  fat_pad = false;
+		  } else if (pad >= pad_max) {
+			  fat_pad = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_pad) {
+			  pad -= change_rate;
+		  } else {
+			  pad += change_rate;
+		  }
+	  // actually applies change
+	  var target = $("#<%= target + (target_id.present? ? '_' + target_id.to_s : '') %>");
+	  target.css("<%= defined?(background) ? 'background' : 'color' %>", "rgb(" + pad + ")");
+  }, change_speed);
+}
+
+if (!bw_fader_<%= target + "_" + target_id.to_s %>_started) {
+  bw_fader_<%= target + "_" + target_id.to_s %>();
+  var bw_fader_<%= target + "_" + target_id.to_s %>_started = true;
+}
+

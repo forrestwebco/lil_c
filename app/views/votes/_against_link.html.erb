@@ -1,0 +1,12 @@
+<% link_id = "block_proposal_link_#{item.id}" %>
+<% link_class = ((defined?(bottom_left) and bottom_left) ? :bottom_left_link : :standard_post_link) %>
+
+<% unless down_voted? item %>
+  <%= link_to "Block#{(' ' + item.down_votes.size.to_s) unless item.down_votes.size.zero?}",
+    new_down_vote_path(item.unique_token), remote: true, class: link_class, id: link_id %>
+<% else %>
+  <%= link_to "Unblock #{item.down_votes.size.to_s}", unblock_path(token: item.unique_token), method: :delete,
+    remote: true, class: link_class, id: link_id %>
+<% end %>
+
+<%= render "app/link_sound.js", link_id: link_id, sound: :post_interface_sound %>

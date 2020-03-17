@@ -1,0 +1,30 @@
+<div class="switch_content_form_buttons" align="center">
+  <%= link_to switch_content_form_path(:post), remote: true do %>
+    <div class="switch_content_form_button switch_content_form_button_first switch_content_form_button_active" id="post_button">
+      <div class="switch_content_form_button_txt">
+        Status
+      </div>
+    </div>
+  <% end %>
+  <%= link_to switch_content_form_path(:shared_item), remote: true do %>
+    <div class="switch_content_form_button" id="shared_item_button">
+      <div class="switch_content_form_button_txt">
+        Item
+      </div>
+    </div>
+  <% end %>
+  <%= link_to switch_content_form_path(:survey), remote: true do %>
+    <div class="switch_content_form_button" id="survey_button">
+      <div class="switch_content_form_button_txt">
+        Survey
+      </div>
+    </div>
+  <% end %>
+  <%= link_to switch_content_form_path(:proposal), remote: true do %>
+    <div class="switch_content_form_button switch_content_form_button_last" id="proposal_button">
+      <div class="switch_content_form_button_txt">
+        Motion
+      </div>
+    </div>
+  <% end %>
+</div>

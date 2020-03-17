@@ -1,0 +1,24 @@
+var link = $("#<%= "like_#{@item.model_name.singular_route_key}_link_#{@item.id}" %>");
+var anchor = $("#<%= "like_#{@item.model_name.singular_route_key}_link_anchor_#{@item.id}" %>");
+
+link.remove();
+anchor.after("<%=j render "likes/link", item: @item,
+  bottom_left: (!@item.is_a?(Post) and !@item.is_a?(Proposal) and !@item.is_a?(Vote) and !@item.is_a?(SharedItem) and !@item.is_a?(Survey)) %>");
+
+<% if @post or @shared_item or @survey %>
+  flash_border();
+  setTimeout(flash_border, 1000);
+  function flash_border() {
+    $(
+      <% if @post %>
+        "#post_card_<%= @post.id %>"
+      <% elsif @shared_item %>
+        "#shared_item_card_<%= @shared_item.id %>"
+      <% elsif @survey %>
+        "#survey_card_<%= @survey.id %>"
+      <% end %>
+    ).toggleClass("border_flash_<%= get_like_type_str %>");
+  }
+<% end %>
+
+window.navigator.vibrate(1);

@@ -1,0 +1,53 @@
+<div class="menu_container">
+  <%= link_to non_link, class: :menu_link do %>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  <% end %>
+  <div id="nav_links" class="nav_links" hidden>
+    <%= render "templates/nav_links" %>
+  </div>
+</div>
+
+<script>
+  function template_nav_menu() {
+    var circle_menu = $(".menu_container");
+    var circle_link = $(".menu_link");
+    // padding for nav_links, positioning
+    var nav_links = $("#nav_links");
+    // fix for nav_links
+    var toggle = false;
+    // toggles if circle_link clicked
+    circle_link.click(function() {
+      toggle_menu();
+    });
+    // closes circle_menu if user clicks outside of it
+    $(document).click(function(e) {
+      // if the target of the click isn't the container nor a descendant of the container
+      if (!circle_menu.is(e.target) && circle_menu.has(e.target).length === 0 && toggle) {
+        toggle_menu();
+      }
+    });
+    // closes circle_menu if esc pressed
+    $(document).keydown(function(e) {
+      if (e.key == 'Escape' && toggle) {
+        toggle_menu();
+      }
+    });
+    function toggle_menu() {
+      toggle = !toggle;
+      circle_menu.toggleClass("menu_open");
+      // nav_links render on delay
+      if (nav_links.is(':hidden')) {
+        setTimeout(toggle_nav_links, 400);
+      } else {
+        nav_links.fadeOut();
+      }
+      // haptic
+      window.navigator.vibrate(1);
+    }
+    function toggle_nav_links() {
+      if (toggle) {
+        nav_links.fadeIn();
+      }
+    }
+  } template_nav_menu();
+</script>

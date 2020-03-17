@@ -1,0 +1,7 @@
+<!-- proposals -->
+
+<% parents = (defined?(parents) and parents.present?) ? "groups" : "proposals" %>
+
+<div id="feed_container">
+	<%= render "#{parents}/feed" %>
+</div>

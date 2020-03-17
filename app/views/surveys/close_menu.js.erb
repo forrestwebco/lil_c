@@ -1,0 +1,4 @@
+var link = $("#survey_menu_link_<%= @survey.id %>");
+$("#survey_mini_menu_<%= @survey.id %>").remove();
+link.after("<%=j render "surveys/open_menu_link", survey: @survey %>");
+link.remove();

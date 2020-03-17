@@ -1,0 +1,16 @@
+function check_folder_<%= @folder.id %>_messages() {
+  setInterval(function() {
+	  if ($("#instant_messages_anchor").length) {
+		  $.ajax({
+			  type: "GET",
+			  url: "/messages/instant_messages",
+			  data: $.param({folder_id: "<%= @folder.id %>"})
+		  });
+	  }
+  }, 1000);
+}
+
+if (!check_folder_<%= @folder.id %>_messages_started) {
+  check_folder_<%= @folder.id %>_messages();
+  var check_folder_<%= @folder.id %>_messages_started = true;
+}

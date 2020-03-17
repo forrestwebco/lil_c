@@ -1,0 +1,30 @@
+<% t = (defined?(time) ? time : item.created_at) %>
+
+<% _time_ago = time_ago(time_ago_in_words(t)) %>
+
+<% link_class = get_time_ago_link_class item, (defined?(position) ? position : nil) %>
+
+<% _time_ago = time_label + _time_ago if defined?(time_label) %>
+
+<% link_path = if anrcho? and item.is_a?(Group) %>
+  <% show_group_path item.unique_token %>
+<% elsif item.is_a?(Portal) and item.cluster %>
+  <% show_cluster_path item.unique_token %>
+<% elsif item.is_a?(Portal) %>
+  <% show_portal_path item.unique_token %>
+<% elsif item.is_a?(View) %>
+  <% view_path item.id %>
+<% elsif item.is_a?(Proposal) %>
+  <% show_proposal_path item.unique_token %>
+<% elsif item.is_a?(Vote) %>
+  <% show_vote_path item.unique_token %>
+<% else %>
+  <% item.is_a?(Post) ? show_post_path(item.unique_token.nil? ? item.id : item.unique_token) : item %>
+<% end %>
+
+<!-- Accounts for anrcho groups and uses token link instead -->
+<%= link_to link_path, :class => link_class do %>
+  <span style="<%= defined?(surveys_link) ? 'color:rgb(118, 118, 118);' : (defined?(white_link) ? 'color:white;' : '') %>">
+    <%= _time_ago %>
+  </span>
+<% end %>

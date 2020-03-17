@@ -1,0 +1,7 @@
+<div id="comments_index_container">
+  <% for comment in comments %>
+    <%= render "comments/card", comment: comment %>
+  <% end %>
+</div>
+
+<%= render "comments/form" %>

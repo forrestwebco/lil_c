@@ -1,0 +1,23 @@
+<% if cookies["question_#{@question_num}_selection_num"].present? %>
+
+  var anchor = $("#question_<%= @question_num %>_<%= @type %>_fields_anchor");
+
+  <% if @other %>
+    anchor.after("<%=j render 'other', question_num: @question_num %>");
+
+    $("#question_<%= @question_num %>_add_other_link").toggleClass("surveys_link", false);
+    $("#question_<%= @question_num %>_add_other_link").toggleClass("disabled_link");
+  <% else %>
+    <% cookies["question_#{@question_num}_selection_num"] = cookies["question_#{@question_num}_selection_num"].to_i + 1 %>
+
+    var selection_num = <%= cookies["question_#{@question_num}_selection_num"].to_i %>;
+
+    anchor.before("<%=j render @type, question_num: @question_num %>");
+
+    for (i=1; i < selection_num; i++) {
+      $("#remove_question_<%= @question_num %>_selection_" + i + "_field_link").toggleClass('hidden_and_disabled_link', true);
+    }
+  <% end %>
+<% end %>
+
+window.navigator.vibrate(1);

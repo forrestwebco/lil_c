@@ -1,0 +1,6 @@
+var table = $("#shared_item_mini_photoset_table_<%= @shared_item.id %>");
+
+table.after("<%=j render 'shared_items/inline_photoset', shared_item: @shared_item %>");
+table.remove();
+
+window.navigator.vibrate(1);

@@ -1,0 +1,72 @@
+<!-- proposals -->
+
+<% if proposal.title.present? %>
+  <%= link_to show_proposal_path(proposal.unique_token) do %>
+		<p class="proposal_title_text"><%= proposal.title %></p>
+  <% end %>
+<% end %>
+
+<% if proposal.image_url %>
+  <p>
+    <% if @proposal_shown %>
+      <%= image_tag proposal.image_url, class: :standard_post_image %>
+    <% else %>
+      <%= link_to show_proposal_path(proposal.unique_token) do %>
+        <%= image_tag proposal.image_url, class: :standard_post_image %>
+      <% end %>
+    <% end %>
+  </p>
+<% elsif proposal.pictures.present? %>
+  <p>
+    <% unless @proposal_shown or proposal.pictures.size < 3 %>
+      <%= link_to show_proposal_path(proposal.unique_token) do %>
+        <%= image_tag proposal.pictures.first.image_url, class: :standard_post_image %>
+      <% end %>
+      <% if proposal.pictures.to_a[1..-1].present? %>
+        <table id="mini_photoset_table_<%= proposal.id %>">
+          <tr>
+            <% for picture in proposal.pictures.to_a[1..-1] %>
+              <td>
+                <%= link_to add_proposal_photoset_path(proposal.unique_token), remote: true, title: "Click here to enlarge." do %>
+                  <%= image_tag picture.image_url, class: :my_groups_group_icon %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        </table>
+      <% end %>
+    <% else %>
+      <% proposal.pictures.each do |picture| %>
+        <%= link_to show_proposal_path(proposal.unique_token) do %>
+          <%= image_tag picture.image_url, class: :standard_post_image %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </p>
+<% end %>
+
+<p class="standard_body <%= 'justified_body_text' if proposal.body.size > 150 %>">
+  <%= render "app/body", item: proposal %>
+</p>
+
+<% if proposal.action.present? %>
+  <!-- make sure revised action is used if proposal is a revision -->
+  <% case proposal.action.eql?('revision') ? proposal.revised_action : proposal.action %>
+  <% when 'grant_title' %>
+    <p>
+      <b>Title to grant:</b> <%= eval(proposal.misc_data)[:title] %>
+    </p>
+  <% when 'update_name' %>
+    <p>
+      <b>Name:</b> <%= proposal.misc_data %>
+    </p>
+  <% end %>
+<% end %>
+
+<% if testing_score? %>
+  <p>Score = <%= proposal.score %><p>
+  <p>
+    <% weights = proposal.score(nil, nil, :get_weights) %>
+    Score weights: <%= weights %>
+  </p>
+<% end %>

@@ -1,0 +1,12 @@
+<!-- pages -->
+
+<%= render "pages/toggle_scroll_to_top_link.js" %>
+
+<%= link_to non_link, id: :scroll_to_top_link, class: "scroll_to_top_link",
+  onclick: "window.scrollTo({top: 0, behavior: 'smooth'});" do %>
+  <div id="scroll_to_top_link_container" class="scroll_to_top_link_container">
+    <span class="scroll_to_top_link_icon">
+      <i class="fa fa-angle-up"></i>
+    </span>
+  </div>
+<% end %>

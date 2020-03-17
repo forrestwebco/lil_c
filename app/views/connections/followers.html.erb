@@ -1,0 +1,22 @@
+<div class="card take_survey_card_border">
+  <h2 class="standard_page_header" align="center">
+    <i class="fa fa-users"></i> Followers
+  </h2>
+  <%= render "app/right_pane" %>
+</div>
+
+<% for user in @followers %>
+  <%= render "users/card", user: user %>
+<% end %>
+
+<% if @followers.empty? %>
+  <div class="card">
+    <p align="center">
+      <% if current_user and current_user.eql? @user %>
+        You don't have any followers yet.
+      <% else %>
+        This user doesn't have any followers yet.
+      <% end %>
+    </p>
+  </div>
+<% end %>

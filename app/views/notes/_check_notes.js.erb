@@ -1,0 +1,13 @@
+function check_notes() {
+  setInterval(function() {
+	  $.ajax({
+		  type: "GET",
+		  url: "/notes/instant_notes"
+	  });
+  }, 2500);
+}
+
+if (!check_notes_started) {
+  check_notes();
+  var check_notes_started = true;
+}

@@ -1,0 +1,20 @@
+<div class="color_block_container">
+  <div class="color_block">
+    <div class="color_block_fan_right">
+      <%= link_to my_apps_path do %>
+        <div class="color_block_spinner"></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="interact_label" align="center">
+    <%= link_to "Interact", bands_path, class: :white_link, style: "color:pink;" %>
+  </div>
+</div>
+
+<script>
+  var block_fan_right = $(".color_block_fan_right");
+  block_fan_right.click(function(){
+    block_fan_right.toggleClass("color_block_fan_right_out");
+    window.navigator.vibrate(1);
+  });
+</script>

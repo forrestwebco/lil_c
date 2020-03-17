@@ -1,0 +1,205 @@
+// Place all the styles related to the survey_results controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// top, right, bottom, left
+
+@mixin card {
+  transition: all .4s ease-in-out;
+  position: relative;
+  padding: 15px 7.5px;
+  background: white;
+  max-width: 550px;
+  margin: 0 auto;
+  margin-bottom: 12.5px;
+  width: 94.5%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+}
+
+.results_card {
+  @include card;
+  max-width: 1750px;
+  overflow: hidden;
+}
+
+::placeholder {
+  color: rgb(150, 150, 150);
+}
+
+.question_grid_filter {
+  display: block;
+}
+
+.survey_filter_form_button {
+  transition: all 1s ease-in-out;
+  display: block;
+  height: 15px;
+  background: white;
+  padding: 2.5px;
+  margin: 4.5px 0px 0px 6px; // top is first, left is last
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.survey_filter_form_button_txt {
+  float: left;
+  margin-top: -0.1px;
+  color: rgb(70, 70, 70);
+}
+
+.survey_filter_form_button_img {
+  display: block;
+  float: left;
+  width: 17.5px;
+  margin-top: -1.5px;
+}
+
+.survey_filter_form_button_hidden {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+}
+
+.survey_results_filter_form {
+  width: 98%;
+  font-size: 13px;
+  color: black;
+  overflow: hidden;
+  background: rgb(250, 250, 250);
+  padding: 5px;
+  margin-bottom: 12.5px;
+}
+
+.survey_results_filter_item {
+  display: block;
+  float: left;
+  position: relative;
+  padding: 5px;
+  margin-right: 2.5px;
+  margin-bottom: 2.5px;
+  background: rgb(240, 240, 240);
+}
+
+.filter_item_padding {
+  padding-top: 15px;
+}
+
+.remove_filter_item_link {
+  position: absolute;
+  top: 0px;
+  right: 2px;
+  font-size: 11px;
+  color: rgb(80, 80, 80);
+}
+
+.results_filter_form_section {
+  overflow: hidden;
+  width: 100%;
+}
+
+.filter_form_container {
+  float: left;
+  width: 30%;
+}
+
+.results_container {
+  float: left;
+  width: 70%;
+}
+
+.stacked_result {
+  background: rgb(250, 250, 250);
+  margin-bottom: 30px;
+}
+
+.stacked_result_questions_container {
+  background: rgb(250, 250, 250);
+  display: flex;
+}
+
+.stacked_result_question {
+  background: rgb(240, 240, 240);
+  margin: 0.25%; // top, right, bottom, left
+  padding: 2.5px 2.5px 2.5px 5px;
+  width: 39%;
+  font-size: 13px;
+  text-align: left;
+}
+
+.stacked_result_answer {
+  width: 60%;
+}
+
+.stacked_result_question_even {
+  background: white;
+}
+
+.survey_results_table {
+  width: 100%;
+  display: block;
+  font-size: 13px;
+  color: black;
+  padding-bottom: 12.5px;
+  background: rgb(250, 250, 250);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.survey_results_tr {
+  background: rgb(240, 240, 240);
+  height: 50px;
+}
+
+.survey_results_th {
+  max-width: 175px;
+  white-space: normal;
+  font-weight: normal;
+}
+
+.survey_results_td {
+  color: black;
+  max-width: 250px;
+  white-space: normal;
+  text-align: center; /* center checkbox horizontally */
+  vertical-align: middle;
+}
+
+.sort_results_tr {
+  background: rgb(240, 240, 240);
+}
+
+.filter_item_open_ended {
+  width: 97.5%;
+}
+
+.filter_item_checkbox {
+  width: 98%;
+}
+
+.results_filter_text_area {
+  background: rgb(240, 240, 240);
+  color: black;
+  width: 98%;
+  outline: 0;
+  border-width: 0 0 0.5px;
+  border-color: rgb(220, 220, 220);
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  .results_container {
+    width: 100%;
+  }
+  .filter_form_container {
+    width: 100%;
+  }
+  .showing_results_label {
+    width: 60%;
+  }
+}

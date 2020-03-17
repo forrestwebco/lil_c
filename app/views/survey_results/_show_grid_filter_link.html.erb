@@ -1,0 +1,6 @@
+<div>
+  <%= link_to "· " + snip_survey_txt(grid_question.body), show_survey_question_grid_filter_path(question_id: grid_question.id),
+    remote: true, class: "survey_filter_form_link", id: "show_grid_question_#{grid_question.id}_filter_link" %>
+</div>
+
+<%= render "app/link_sound.js", _class: true, link_id: :survey_filter_form_link, sound: :post_interface_sound %>

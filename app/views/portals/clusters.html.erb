@@ -1,0 +1,17 @@
+<h2 class="standard_page_header">Listing all existing clusters <i class="fa fa-opera"></i></h2>
+
+<div class="card">
+  <%= render "portals/form" %>
+</div>
+
+<% for cluster in @clusters %>
+  <%= render "portals/cluster_card", cluster: cluster %>
+<% end %>
+
+<% if @clusters.empty? %>
+  <div class="card" align="center">
+    <p>
+      No clusters are currently in existence.
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+var anchor = $("#question_<%= @question_num %>_body_field_anchor");
+var link = $("#question_<%= @question_num %>_make_as_grid_link");
+var add_other_link = $("#question_<%= @question_num %>_add_other_link");
+var other_field = $("#question_<%= @question_num %>_selection_other_field");
+
+anchor.after("<%=j render 'row' %>");
+
+link.toggleClass("disabled_link", true);
+add_other_link.toggleClass("disabled_link", true);
+
+if (other_field.length) {
+  other_field.remove();
+}
+
+window.navigator.vibrate(1);

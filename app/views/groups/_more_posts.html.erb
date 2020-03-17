@@ -1,0 +1,9 @@
+<% for post in items %>
+  <% if post.is_a? Post %>
+    <%= render "posts/card", post: post %>
+  <% elsif post.is_a? Proposal %>
+    <%= render "proposals/card", proposal: post %>
+  <% end %>
+<% end %>
+
+<div id="load_more_posts_anchor"></div>

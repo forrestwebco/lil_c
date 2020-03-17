@@ -1,0 +1,28 @@
+<%= link_to '<i class="fa fa-times"></i>'.html_safe, non_link, remote: true, class: :close_modal_link %>
+
+<script>
+  function close_modal() {
+    var close_modal_link = $(".close_modal_link");
+
+    close_modal_link.click(function() {
+      $(".shared_item_modal").remove();
+    });
+
+  } close_modal();
+
+  // close if escape key press
+  $(document).keydown(function(e){
+    if (e.key == 'Escape') {
+      $(".shared_item_modal").remove();
+    }
+  });
+  
+  // back button only closes modal instead of going back
+  window.history.pushState(null, "", window.location.href);        
+  window.onpopstate = function() {
+    window.history.pushState(null, "", window.location.href);
+  };
+  window.onpopstate = function() {
+    $(".shared_item_modal").remove();
+  }
+</script>

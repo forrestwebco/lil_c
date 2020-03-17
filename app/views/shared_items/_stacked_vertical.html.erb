@@ -1,0 +1,67 @@
+<div class="shared_item_card_fields_row shared_item_index_field_row" align="left">
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+    <b>
+      Date
+    </b>
+  </div>
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+    <%= shared_item.created_at.strftime("%d %b. %Y, %H:%M:%S") %>
+  </div>
+</div>
+
+<div class="shared_item_card_fields_row shared_item_index_field_row" align="left">
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+    In stock
+  </div>
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+    <%= shared_item_in_stock shared_item %>
+  </div>
+</div>
+
+<% for field in shared_item_fields_summary %>
+  <% if not shared_item.send(field).blank? %>
+    <div class="shared_item_card_fields_row shared_item_index_field_row" align="left">
+      <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+        <% if field.eql? :item_category_id %>
+          Category (domain)
+        <% elsif field.eql? :body %>
+          Description
+        <% elsif field.eql? :days_to_borrow %>
+          Max duration of use
+        <% elsif field.eql? :holder_id %>
+          Holder
+        <% else %>
+          <%= field.to_s.gsub("_", " ").capitalize %>
+        <% end %>
+      </div>
+      <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+        <% if field.eql? :item_category_id %>
+          <%= ItemCategory.find(shared_item.send(field)).name %>
+        <% elsif field.eql? :days_to_borrow %>
+          <%= shared_item_max_duration_time shared_item %>
+        <% elsif field.eql? :holder_id %>
+          <%= display_holder shared_item %>
+        <% else %>
+          <%= shared_item.send(field).to_s.gsub("_", " ") %>
+        <% end %>
+        <%= image_tag shared_item.pictures.first.image, class: :stacked_shared_item_img if shared_item.pictures.present? and field.eql? :name %>
+      </div>
+    </div>
+  <% elsif field.eql? :holder_id %>
+    <div class="shared_item_card_fields_row shared_item_index_field_row" align="left">
+      <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+        Holder
+      </div>
+      <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+        <%= display_holder shared_item %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="shared_item_card_fields_row shared_item_index_field_row" align="left">
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>">
+    <%= link_to 'Edit <i class="fa fa-pencil"></i>'.html_safe, edit_shared_item_path(shared_item), class: :stacked_shared_item_edit_link %>
+  </div>
+  <div class="shared_item_card_field <%= 'stacked_result_question_even' if shared_item_num.even? %>"></div>
+</div>

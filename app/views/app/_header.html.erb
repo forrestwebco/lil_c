@@ -1,0 +1,37 @@
+<% if @show_banner %>
+  <div class="take_survey_banner" align="center">
+    <%= image_tag "dsa/banner_img.png", class: :take_survey_banner_img %>
+    <% unless user_agent.browser.eql? 'Safari' or user_agent.platform.eql? 'iPhone' or user_agent.platform.eql? 'iPad' %>
+      <div class="take_survey_color_bands color_band_blur" id="color_bands">
+        <% 10.times do |i| %>
+          <div class="color_band" id="color_band_<%= i %>"></div>
+          <%= render "arts/band_fader.js", target: "color_band", target_id: i, bright_reds: true %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless @arts or @taking_survey %>
+  <% unless @no_vertical_spacer %>
+    <div class="vertical_spacer"></div>
+  <% end %>
+
+  <%= render "arts/circle_menu" unless social_maya? %>
+
+  <% if invited? %>
+    <%= render "search/slide_menu" %>
+    <%= link_to '<i class="fa fa-home fa-lg"></i>'.html_safe, home_path,
+      class: :return_home_link, title: "Return home" unless @you_are_home %>
+
+    <% if current_user %>
+      <%= render "notes/slide_menu" %>
+      <%= render "messages/nav_link" %>
+    <% end %>
+    <%= render "users/current_avatar" %>
+  <% end %>
+<% end %>
+
+<i id="universal_anchor"></i>
+
+<%= render "app/notices" %>

@@ -1,0 +1,5 @@
+var old_body_text = $("#question_<%= @question.id %>_body");
+old_body_text.after("<%=j render 'question_body', survey: @survey, question: @question %>");
+old_body_text.remove();
+
+window.navigator.vibrate(1);

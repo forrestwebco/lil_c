@@ -1,0 +1,14 @@
+<script>
+  var filter_form_button = $(".survey_filter_form_button");
+  var survey_filter_form_button_hidden = $(".survey_filter_form_button_hidden");
+
+  survey_filter_form_button_hidden.click(function() {
+    plus_fade();
+    setTimeout(plus_fade, 1000);
+    window.navigator.vibrate(1);
+  });
+
+  function plus_fade() {
+    filter_form_button.toggleClass("plus_fade_box");
+  }
+</script>

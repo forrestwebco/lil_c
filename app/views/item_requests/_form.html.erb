@@ -1,0 +1,15 @@
+<div class="item_request_form" id="item_request_form_<%= shared_item.id %>" align="center" hidden>
+  <%= form_for(ItemRequest.new, remote: true) do |f| %>
+    <%= f.hidden_field :shared_item_id, value: shared_item.id %>
+
+    <%= f.text_field :body, placeholder: "Specify use case (optional)", class: :standard_text_field %>
+    <div>
+      <%= f.select :chosen_days_to_borrow, options_for_select(shared_item.days_to_borrow_options) %>
+    </div>
+
+    <button type="submit" name="commit" class="standard_form_button item_request_button">
+      <b>Request <i class="fa fa-pencil"></i></b>
+    </button>
+  <% end %>
+  <br/>
+</div>

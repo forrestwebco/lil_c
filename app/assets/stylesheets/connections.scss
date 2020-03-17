@@ -1,0 +1,66 @@
+// Place all the styles related to the connections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+.invite_only_img {
+  position: relative;
+  max-width: 557.5px;
+  margin: 0 auto;
+  margin-bottom: 7.5px;
+  width: 97.5%;
+}
+
+.folder_card_link {
+  padding: 5px 0px;
+}
+
+.folder_recipients_text_field {
+  width: 95%;
+  max-width: 275px;
+  display: block;
+  margin-bottom: 7.5px;
+}
+
+.invite_message {
+  width: 60%;
+}
+
+#invite_link_field {
+  width: 97.5%;
+}
+
+#invite_link_label {
+  padding-left: 5px;
+}
+
+.invite_only_header {
+  text-align: center;
+  font-size: 50px;
+  margin: 12.5px 0px;
+  letter-spacing: 15px;
+}
+
+#invited_message_header {
+  font-size: 50px;
+  letter-spacing: 15px;
+  margin: 12.5px 0px;
+}
+
+#generate_invite_button {
+  width: 95%;
+  max-width: 255px;
+  height: 35px;
+  background: white;
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  #invite_only_header {
+    font-size: 20px;
+  }
+  #invited_message_header {
+    font-size: 17.5px;
+  }
+}

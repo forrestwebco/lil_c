@@ -1,0 +1,22 @@
+<%= link_to fa_icon("home", "Home"), home_path, class: "standard_nav_menu_link#{' active_nav_link' if @you_are_home}",
+  title: "Home consists of posts and groups, in reverse chronological order." if invited? or anrcho? %>
+
+<%= link_to fa_icon("bell", "Notes#{': ' + currently_unseen_notes.size.to_s \
+  unless currently_unseen_notes.size.zero?}"), notes_path, class: "standard_nav_menu_link#{' active_nav_link' if @showing_notes}",
+  title: "See what's happening..." if current_user or anrcho? %>
+
+<% unless current_user %>
+	<%= link_to fa_icon("sign-in", "Log in"), sessions_new_path, class: "standard_nav_menu_link" %>
+<% else %>
+  <%= link_to fa_icon("envelope", "Inbox#{': ' + current_user.inbox_unseen.to_s \
+    unless current_user.inbox_unseen.zero?}"), inbox_path, class: "standard_nav_menu_link#{' active_nav_link' if @showing_inbox}" %>
+
+  <%= link_to fa_icon("user", "Profile"), show_user_path(current_user.unique_token),
+    class: "standard_nav_menu_link#{' active_nav_link' if @showing_user_profile}" %>
+
+  <%= link_to fa_icon("book", "Lending Library"), show_item_library_path, class: "standard_nav_menu_link#{' active_nav_link' if @showing_item_library}" %>
+
+  <%= link_to fa_icon("check-square-o", "Surveys"), surveys_path, class: "standard_nav_menu_link#{' active_nav_link' if @surveys_index}" %>
+
+  <%= link_to fa_icon("hand-o-up", "Motions"), proposals_path, class: "standard_nav_menu_link#{' active_nav_link' if @showing_motions}" %>
+<% end %>

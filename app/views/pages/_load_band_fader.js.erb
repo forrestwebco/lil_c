@@ -1,0 +1,50 @@
+function load_band_fader() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = [1, 1, 1]; // when it should go back up
+  var color_max = [255, 255, 255]; // when color should go back down
+  var change_rate = 12.5 // added/subbed each round
+  var change_speed = 50; // interval speed, higher == slower
+
+  // initializes rgb array
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+  
+  var id = 0;
+  var direction = true;
+
+  setInterval(function() {
+	  var section = $("#load_band_section_" + id);
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min[i]) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max[i]) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  
+	  section.css("background", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  
+	  // cycles through sections
+	  if (direction) {
+	    id += 1;
+	  } else {
+	    id -= 1;
+	  }
+    // cycles back and forth, changing direction
+	  if (id >= 49 || id <= 0) {
+		  direction = !direction;
+	  }
+  }, change_speed);
+}
+
+load_band_fader();

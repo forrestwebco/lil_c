@@ -1,0 +1,28 @@
+<div class="last_message_views" align="right" id="actively_typing">
+  <%= link_to member.user.name, member.user,
+    class: :small_dark_link %> <span id="actively_typing_text">is typing...</span> <i class="fa fa-keyboard-o"></i>
+</div>
+
+<script>
+  var text = $("#actively_typing_text");
+  var i = 0;
+  setInterval(function() {
+    switch(i) {
+      case 0:
+        text.text('is typing');
+        break;
+      case 1:
+        text.text('is typing.');
+        break;
+      case 2:
+        text.text('is typing..');
+        break;
+      case 3:
+        text.text('is typing...');
+    }
+    i += 1;
+    if (i > 3) {
+      i = 0;
+    }
+  }, 500);
+</script>

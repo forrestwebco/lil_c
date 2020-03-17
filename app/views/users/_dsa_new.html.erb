@@ -1,0 +1,28 @@
+<div class="dsa_card" align="center">
+  <h2 class="surveys_page_header">
+    Raleigh DSA New User <i class="fa fa-user"></i>
+  </h2>
+</div>
+
+<div class="dsa_card" align="center">
+  <%= form_for(@user) do |f| %>
+  	<%= link_to "Already signed up?", sessions_new_path, class: "top_right_link", id: :already %>
+
+    <p>
+      <%= f.text_field :name, placeholder: "Nickname", class: :surveys_text_field, id: :signup_field_1 %>
+      <%= f.password_field :password, placeholder: "Password", class: :surveys_text_field, id: :signup_field_2 %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm password",
+        class: :surveys_text_field, id: :signup_field_3 %>
+    </p>
+    <p>
+      <button type="submit" name="commit" class="surveys_form_button" id="signup_field_4">
+        <b>Sign up <i class="fa fa-pencil"></i></b>
+      </button>
+    </p>
+    <br/>
+
+	  <div id="remember_me_check_box">
+		  Remember me <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+	  </div>
+  <% end %>
+</div>

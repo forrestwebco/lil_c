@@ -1,0 +1,83 @@
+<div class="surveys_card take_survey_card" align="left">
+  <% if question.title.present? %>
+    <div class="question_title_banner">
+      <%= question.title %>
+    </div>
+    <div class="survey_question_txt">
+      <%= render "app/body", body: question.body_without_title %>
+    </div>
+  <% else %>
+    <p class="survey_question_txt">
+      <b><%= render "app/body", item: question %></b>
+    </p>
+  <% end %>
+
+  <!-- set up for grid question table -->
+  <% if question.grid %>
+    <table class="survey_results_table">
+      <th></th>
+      <% for column in question.columns %>
+        <th class="survey_results_th">
+          <%= column.body %>
+        </th>
+      <% end %>
+      <% row_num=1; for row in question.rows %>
+        <tr class="survey_results_tr">
+          <td class="survey_results_td <%= 'stacked_result_question_even' if row_num.odd? %>">
+            <%= row.body %>
+          </td>
+          <% col_num=1; for column in question.columns %>
+            <td class="survey_results_td <%= 'stacked_result_question_even' if row_num.odd? %>">
+              <% if question.question_type.eql? 'checkbox' %>
+                <%= check_box_tag "question_#{question_num}_row_#{row_num}_selection_#{col_num}", true, nil, class: :selection_option %>
+              <% else %>
+                <%= radio_button_tag "question_#{question_num}_row_#{row_num}_selection", col_num, nil, class: :selection_option %>
+              <% end %>
+            </td>
+          <% col_num+=1; end %>
+        </tr>
+      <% row_num+=1; end %>
+    </table>
+  <!-- set up for non grid questions -->
+  <% else %>
+    <% case question.question_type %>
+    <% when 'checkbox' %>
+      <% selection_num=1; for selection in question.survey_selections %>
+        <% if selection.body.present? %>
+          <p align="left">
+            <%= check_box_tag "question_#{question_num}_selection_#{selection_num}", true, nil,
+              id: "question_#{question_num.to_s + (selection.other ? '_other' : '')}_option" %>
+            <%= selection.other ? "Other..." : selection.body %>
+            <%= text_field_tag "question_#{question_num}_selection_#{selection_num}_other",
+              nil, placeholder: "Specify here...", class: :surveys_other_text_area, id: "question_#{question_num}_other_field" if selection.other %>
+          </p>
+        <% end %>
+      <% selection_num+=1; end %>
+    <% when 'radio_button' %>
+      <% selection_num=1; for selection in question.survey_selections %>
+        <% if selection.body.present? %>
+          <p align="left">
+            <%= radio_button_tag "question_#{question_num}_selection", selection_num, nil, id: "question_#{question_num.to_s + (selection.other ? '_other' : '')}_option" %>
+            <%= selection.other ? "Other..." : selection.body %>
+            <%= text_field_tag "question_#{question_num}_selection_#{selection_num}_other",
+              nil, placeholder: "Specify here...", class: :surveys_other_text_area, id: "question_#{question_num}_other_field" if selection.other %>
+          </p>
+        <% end %>
+      <% selection_num+=1; end %>
+    <% else %>
+      <p>
+        <% if question.question_type.eql? 'open_ended_paragraph' %>
+          <%= text_area_tag "answer_#{question_num}", nil, placeholder: "Write your answer here...", class: :surveys_text_area %>
+        <% else %>
+          <%= text_field_tag "answer_#{question_num}", nil, placeholder: "Write your answer here...", class: :surveys_text_field %>
+        <% end %>
+      </p>
+    <% end %>
+
+    <script>
+      $("#question_<%= question_num %>_other_option").change(function() {
+        $("#question_<%= question_num %>_other_field").focus();
+      });
+    </script>
+  <% end %>
+</div>

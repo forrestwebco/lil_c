@@ -1,0 +1,13 @@
+var question = $("#question_<%= @question_num %>");
+
+// saves text area text input so far, to not lose state
+var question_body_text = $("#question_<%= @question_num %>_body").val();
+
+question.after("<%=j render 'question' %>");
+
+question.remove();
+
+// sets text of new texta area with one just entered
+$("#question_<%= @question_num %>_body").val(question_body_text);
+
+window.navigator.vibrate(1);

@@ -1,0 +1,8 @@
+<% if rand > 0.75 and current_user %>
+  <% temp_token = rand_string %>
+  <%= link_to non_link do %>
+    <div class="random_pixel" id="random_pixel_<%= temp_token %>"
+      style="background:rgb(<%= random_color :as_str %>);top:<%= rand 1..100 %>%;left:<%= rand 1..100 %>%;">
+    </div>
+  <% end %>
+<% end %>

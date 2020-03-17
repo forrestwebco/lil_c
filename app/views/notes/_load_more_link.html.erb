@@ -1,0 +1,21 @@
+<% if @notes_size > @notes.size %>
+  <div id="load_more_notes_anchor"></div>
+  <div class="dark_card" align="center" id="load_more_notes_link">
+    <p>
+      <%= link_to "Load more notes...", load_more_notes_path, remote: true, class: :white_link %>
+    </p>
+  </div>
+
+  <%= audio_tag "effects/bumerang.wav", id: "more_content_sound" %>
+
+  <script>
+    var link = $("#load_more_notes_link");
+    link.click(function(){
+      link.toggle();
+      $("#load_bar").toggle();
+      // sound for the click
+      $("#post_interface_sound")[0].currentTime = 0;
+      $("#post_interface_sound")[0].play();
+    })
+  </script>
+<% end %>

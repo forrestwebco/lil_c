@@ -1,0 +1,66 @@
+function load_bar_fader() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = [1, 1, 1]; // when it should go back up
+  var color_max = [255, 255, 255]; // when color should go back down
+  var change_rate = 10; // added/subbed each round
+  var change_speed = 100; // interval speed, higher == slower
+  
+  // bits to be visualized
+  var bits = <%=j @char_bits.to_json %>;
+  // counter for bits
+  var b_num = 0;
+
+  // initializes rgb array
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+  
+  var id = 0;
+  var direction = true;
+
+  setInterval(function() {
+	  var section = $("#load_bar_section_" + id);
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min[i]) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max[i]) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  
+	  section.text(bits[b_num].toString());
+	  <% if raleigh_dsa? %>
+	  	section.css("color", "rgb(" + rgb[0] + ", " + 0 + ", " + 0 + ")");
+		<% else %>
+	  	section.css("color", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  <% end %>
+	  
+	  // cycles through bits
+	  b_num += 1;
+	  if (b_num >= bits.length) {
+		  b_num = 0;
+	  }
+	  
+	  // cycles through sections
+	  if (direction) {
+	    id += 1;
+	  } else {
+	    id -= 1;
+	  }
+    // cycles back and forth, changing direction
+	  if (id >= 15 || id <= 0) {
+		  direction = !direction;
+	  }
+  }, change_speed);
+}
+
+load_bar_fader();

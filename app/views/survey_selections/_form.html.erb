@@ -1,0 +1,17 @@
+<div class="surveys_card" align="center">
+  <%= form_for(@selection) do |f| %>
+    <% if @editing %>
+      <p>
+        Currently editing selection of question for <%= link_to @survey.title, survey_path(@survey) %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= f.text_area :body, placeholder: "Write your selection here...", class: :surveys_text_area %>
+    </p>
+
+    <button type="submit" name="commit" class="surveys_form_button">
+      <b><%= @editing ? "Save" : "Create" %> <i class="fa fa-pencil"></i></b>
+    </button>
+  <% end %>
+</div>

@@ -1,0 +1,63 @@
+<div class="card user_edit_form_card">
+  <%= form_for @user, url: user_path(@user), method: :patch, :html => { :multipart => true, "data-ajax" => false } do |f| %>
+	  <div align="center">
+      <% if this_user_current? @user or dev? %>
+        <p>
+          <%= f.text_field :name, placeholder: "Name", class: "standard_text_field", id: :user_field_2 %>
+        </p>
+
+  		  <%= f.text_area :body, placeholder: "Describe yourself", class: "standard_text_area", id: :user_field_3 %>
+
+        <p>
+          <%= f.text_field :email, placeholder: "Email", class: "standard_text_field", id: :user_field_2 %>
+          <%= f.text_field :phone_number, placeholder: "Phone number", class: "standard_text_field", id: :user_field_2 %>
+        </p>
+
+  		  <p>
+          <%= render "users/edit_form_profile_pic", user: @user %>
+          Avatar: <%= f.file_field :image, id: :user_field_4 %>
+  	    </p>
+
+        <% if @user.old_profile_pictures.present? %>
+          <%= render "users/old_profile_pics", old_profile_pics: @user.old_profile_pictures %>
+          <%= render "users/toggle_old_profile_pics_link", user: @user %>
+        <% end %>
+      <% end %>
+
+      <% if dev? %>
+        <p>
+          Featured: <%= f.check_box :featured, { checked: @user.featured } %>
+        </p>
+        <p>
+          Dev: <%= f.check_box :dev, { checked: @user.dev } %>
+        </p>
+      <% end %>
+
+      <% if admin? %>
+        <p>
+          Admin: <%= f.check_box :admin, { checked: @user.admin } %>
+        </p>
+        <p>
+          Mod: <%= f.check_box :mod, { checked: @user.mod } %>
+        </p>
+      <% end %>
+
+	    <p>
+		    <%= f.submit "Update Profile / Account", class: "standard_form_button", id: :user_field_5 %>
+	    </p>
+	  </div>
+  <% end %>
+</div>
+
+<% if this_user_current? @user or dev? %>
+  <%= render "users/edit_password" %>
+  <%= render "danger_area" %>
+<% end %>
+
+<% if !this_user_current? @user and admin? %>
+  <div class="card" align="center">
+    <p>
+      <%= link_to 'Back to admin <i class="fa fa-cog"></i>'.html_safe, dsa_admin_path %>
+    </p>
+  </div>
+<% end %>

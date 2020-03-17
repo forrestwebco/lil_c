@@ -1,0 +1,26 @@
+<div class="love_message_card love_message_card_glow" id="love_distance" align="center">
+  <p class="love_txt">
+    <%= love_distance %> miles! ★
+  </p>
+</div>
+
+<script>
+  var static_ellipsis = $("#static_ellipsis");
+  var ellipsis = $("#ellipsis");
+  var distance = $("#love_distance");
+
+  ellipsis.toggle();
+  static_ellipsis.fadeIn();
+  $("#love_modal").animate({ scrollTop: $(document).height() }, 500);
+
+  distance.click(function() {
+    distance.fadeOut();
+    valentines.fadeOut();
+    carousel.fadeOut();
+    get_distance.fadeOut();
+
+    // grand finale
+    color_bands.fadeIn();
+    heart.toggleClass('love_message_card_glow', false); // toggle off
+  });
+</script>

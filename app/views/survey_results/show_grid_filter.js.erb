@@ -1,0 +1,5 @@
+$("#filter_options").after("<%=j render 'grid_question_filter', question: @question %>");
+
+$("#show_grid_question_<%= @question.id %>_filter_link").remove();
+
+window.navigator.vibrate(1);

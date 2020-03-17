@@ -1,0 +1,4 @@
+<% _time_ago = time_ago(time_ago_in_words(item.created_at)) %>
+<%= link_to show_proposal_path(item.unique_token), class: :top_right_link do %>
+  <strong><%= _time_ago %></strong>
+<% end %>

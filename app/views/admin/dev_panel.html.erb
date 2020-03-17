@@ -1,0 +1,33 @@
+<div class="surveys_card take_survey_card_border">
+  <h2 class="surveys_page_header" align="center">
+    Dev Panel <i class="fa fa-code"></i>
+  </h2>
+  <%= render "app/right_pane" %>
+</div>
+
+<div class="card">
+  <div align="center">
+    <p><b>Dev totals:</b>
+      <%= Connection.invites.size %> invites,
+      <%= Connection.invites.where(redeemed: true).size %> redeemed invites,
+      <%= link_to "#{Portal.loners.size} portals open", portals_path %>,
+      <%= link_to "#{Portal.clusters.size} clusters", clusters_path %>,
+    </p>
+    <p><b>User totals:</b>
+      <%= link_to "#{User.all.size} users", users_path %>,
+      <%= Post.all.size %> posts,
+      <%= link_to "#{Comment.all.size} comments", comments_path %>,
+      <%= Message.all.size %> messages,
+      <%= Connection.folders.size %> conversations,
+      <%= link_to "#{Note.all.size} notifications", dev_notes_path %>,
+      <%= link_to "#{View.all.unique_views.size} unique views", views_path %>,
+      <%= link_to "#{Group.all.size} groups", groups_path %>
+    </p>
+    <p><b>Anrcho totals:</b>
+      <%= link_to "#{Proposal.all.size} motions", proposals_path %>,
+      <%= Vote.all.size %> votes
+    </p>
+    <%= link_to 'Reinitialize all user settings <i class="fa fa-cog"></i>'.html_safe,
+      update_all_user_settings_path, method: :put %>
+  </div>
+</div>

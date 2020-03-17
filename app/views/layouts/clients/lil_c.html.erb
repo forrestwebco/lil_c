@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lil' C. Corleone</title>
+
+    <%= stylesheet_link_tag    'clients/lil_c', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_pack_tag 'application' %>
+
+    <%= csrf_meta_tags %>
+
+    <%= favicon_link_tag "favicons/lil_c.ico" %>
+
+    <!-- For Google -->
+    <meta name="keywords" content="rap, music, merch"/>
+    <meta name="author" content="Forrest Wilkins"/>
+    <meta name="application-name" content="Lil' C. Corleone" />
+
+    <!-- For Facebook -->
+    <meta property="og:title" content="Lil' C. Corleone" />
+    <meta property="og:type" content="music" />
+    <meta property="og:image" content="https://forrestwebco.com/images/clients/lil_c/album.jpg" />
+    <meta property="og:url" content="http://lilccorleone.com/" />
+
+	  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#000000">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#000000">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
+  </head>
+  <body>
+    <%= render "templates/clients/lil_c/header" %>
+    <%= yield %>
+    <%= render "templates/clients/lil_c/footer" %>
+  </body>
+</html>

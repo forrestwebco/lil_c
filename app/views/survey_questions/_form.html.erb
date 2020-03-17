@@ -1,0 +1,24 @@
+<div class="surveys_card" align="center">
+  <%= form_for(@question) do |f| %>
+    <% if @editing %>
+      <p>
+        Currently editing question for <%= link_to @survey.title, survey_path(@survey) %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= f.text_area :body, placeholder: "Write your question here...", class: :surveys_text_area %>
+    </p>
+
+    <% if @question.open_ended? %>
+      <p>
+        Currently <%= @question.open_question_type %>
+        <%= f.select :question_type, options_for_select([['Short answer or paragraph?', nil], ['Short answer', 'open_ended'], ['Paragraph', 'open_ended_paragraph']]) %>
+      </p>
+    <% end %>
+
+    <button type="submit" name="commit" class="surveys_form_button">
+      <b><%= @editing ? "Save" : "Create" %> <i class="fa fa-pencil"></i></b>
+    </button>
+  <% end %>
+</div>

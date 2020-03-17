@@ -1,0 +1,15 @@
+<%= render "shared_items/card", shared_item: @shared_item %>
+
+<%= render "comments/index", comments: @comments %>
+
+<div class="card" align="center">
+  <p>
+    <%= link_to '<i class="fa fa-book"></i> See Lending Library'.html_safe, show_item_library_path %>
+    <% if admin? %>
+      <%= middle_dot %>
+      <%= link_to '<i class="fa fa-list"></i> See Library Index'.html_safe, item_library_filter_and_sort_index_path %>
+    <% end %>
+  </p>
+</div>
+
+<%= render "app/link_sound.js", _class: true, link_id: :survey_interactive_link, sound: :post_interface_sound %>

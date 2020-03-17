@@ -1,0 +1,29 @@
+<div class="card take_survey_card_border">
+  <h2 class="standard_page_header" align="center">
+    <i class="fa fa-bell-o"></i> Notifications
+  </h2>
+  <%= render "app/side_panes" %>
+</div>
+
+<% for note in @notes %>
+  <% unless note.seen %>
+    <script>
+      <%= render "app/fader.js", target: "note_card", target_id: note.id.to_s, background: true %>
+    </script>
+  <% end %>
+  <%= render "notes/card", note: note %>
+<% end %>
+
+<%= render "load_more_link" %>
+
+<%= render "pages/load_bar", items: [], all_items: [] %>
+
+<% if @notes.empty? %>
+  <div class="card">
+    <p align="center">
+      You have zero notifications.
+    </p>
+  </div>
+<% end %>
+
+<% currently_unseen_notes.update_all seen: true %>

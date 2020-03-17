@@ -1,0 +1,22 @@
+<% if all_items.present? and all_items.size > page_size or @user or @group or @dev_panel_shown %>
+  <div align="center" id="load_bar" <%= (@user or @group and not @you_are_home) ? "hidden" : nil %>>
+    <%= link_to non_link do %>
+      <div class="load_bar_containor">
+        <% 16.times do |num| %>
+          <% rgb = random_color %>
+          <div class="load_bar_section" id="load_bar_section_<%= num %>"></div>
+        <% end %>
+      </div>
+    <% end %>
+
+	  <script>
+		  <%= render "pages/load_bar_fader.js" %>
+	  </script>
+  </div>
+<% end %>
+
+<%= audio_tag "interface/interface_9.mp3", id: "more_content_sound" %>
+
+<% unless @sandbox or @invite_only_page%>
+  <div id="footer_spacing"></div>
+<% end %>

@@ -1,0 +1,63 @@
+<% if @group.present? %>
+  <%= render "app/lineage", line: { group: @group, proposal: @proposal } %>
+<% end %>
+
+<% if @proposal.requires_revision? %>
+  <div class="card" align="center">
+    <p>
+      This motion's been blocked and requires revision.
+    </p>
+  </div>
+<% end %>
+
+<%= render "proposals/card", proposal: @proposal %>
+
+<%= render "posts/liked_and_viewed_by" %>
+
+<%= render "proposals/sub_section_links", proposal: @proposal %>
+
+<i id="voter_links_container_anchor"></i>
+<%= render "proposals/voter_links" %>
+
+<% if @show_proposal_sub_type.eql? :revisions %>
+	<% for revision in @revisions %>
+		<%= render "proposals/card", proposal: revision %>
+	<% end %>
+	<% unless @proposal.revised %>
+	  <%= render "proposals/new_revision" %>
+	<% end %>
+<% elsif @show_proposal_sub_type.eql? :comments %>
+  <% if @votes.empty? and not own_item? @proposal %>
+    <%= standard_card do %>
+      <p class="dark_txt">
+        Be the first to vote on this motion by clicking Support or Block above.
+      </p>
+    <% end %>
+  <% end %>
+	<% for comment in @comments %>
+		<%= render "comments/card", comment: comment %>
+	<% end %>
+	<%= render "comments/form" %>
+<% else %>
+  <%= render "votes/confirm_humanity" %>
+  <% if current_user and @votes.where(user_id: current_user.id, body: nil, verified: nil).present? %>
+    <% blank_vote = @votes.find_by_user_id(current_user.id) %>
+    <div class="card" id="update_vote_card" align="center">
+      <p>
+        Would you like to update your vote to include some text? This allows for votes to be later reviewed and verified by a peer.
+      </p>
+      <%= render "votes/form", vote: blank_vote %>
+    </div>
+  <% end %>
+  <%= render "votes/feed", votes: @votes %>
+<% end %>
+
+<% if dev? %>
+  <div class="card" align="center">
+    <p>
+      <%= link_to 'Delete proposal (Destroys proposal/motion permanently)', destroy_proposal_path(@proposal.unique_token),
+        method: :delete, title: "Deletes this proposal/motion permanently, forever, gone.",
+        data: { confirm: "Are you sure you want to delete this proposal/motion permanently and forever?" } %>
+    </p>
+  </div>
+<% end %>

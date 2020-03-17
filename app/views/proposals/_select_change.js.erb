@@ -1,0 +1,34 @@
+$("#new_proposal_form").change(function(e) {
+	var option_selected = $(e.target).find("option:selected");
+	if (typeof option_selected.val() === 'string') {
+		var anchor = $("#action_fields_anchor");
+		// unless it's the social structure check_box
+		if (option_selected.val() != 'direct' && option_selected.val() != 'consensus' && option_selected.val() != 'autocratic') {
+			$("#action_fields").remove();
+		}
+		switch (option_selected.val()) {
+			case 'add_hashtags':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'add_hashtags' %>");
+				break;
+			case 'meetup':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'meetup' %>");
+				break;
+			case 'grant_title':
+        anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'grant_title' %>");
+			  break;
+			case 'update_name':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'update_name' %>");
+				break;
+			case 'update_description':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'update_description' %>");
+				break;
+			case 'update_social_structure':
+				anchor.after("<%=j render 'proposals/action_fields', f_builder: f_builder, field: 'update_social_structure' %>");
+				break;
+		}
+		// sound and haptic feedback
+		$("#post_interface_sound")[0].currentTime = 0;
+		$("#post_interface_sound")[0].play();
+		window.navigator.vibrate(1);
+	}
+});

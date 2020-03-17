@@ -1,0 +1,45 @@
+<div class="surveys_card" align="center">
+  <h2 class="surveys_page_header">
+    <i class="fa fa-list"></i> Raleigh DSA Survey Results
+  </h2>
+</div>
+
+<div class="results_card" align="center">
+  <div class="survey_card_corner_cut_out"></div>
+  <%= link_to @survey, class: "group_avatar_link surveys_image_link" do %>
+    <% if @survey.image.url %>
+      <%= image_tag @survey.image_url, class: :group_avatar_image %>
+    <% else %>
+      <%= fa_icon "users fa-2x group_placeholder_icon" %>
+    <% end %>
+  <% end %>
+
+  <%= link_to "Edit", edit_survey_path(@survey), class: "top_right_link" %>
+
+  <p class="showing_results_label">
+    Showing current results for <%= link_to @survey.title, @survey %>
+  </p>
+
+  <% if @survey.survey_results.present? %>
+    <div class="filter_form_container">
+      <%= render 'filter_form' %>
+      <div id="results_filter_form_anchor"></div>
+    </div>
+    <div class="results_container">
+      <%= render 'stacked_results' %>
+      <div id="results_anchor"></div>
+    </div>
+  <% else %>
+    <p>
+      There aren't any results for this survey yet.
+    </p>
+  <% end %>
+</div>
+
+<div class="surveys_card" align="center">
+  <p>
+    <%= link_to '<i class="fa fa-home"></i> See all surveys'.html_safe, surveys_path %>
+    <%= middle_dot %>
+    <%= link_to '<i class="fa fa-group"></i> Take survey'.html_safe, take_survey_path(@survey.unique_token) %>
+  </p>
+</div>

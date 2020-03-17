@@ -1,0 +1,19 @@
+<div class="vertical_spacer"></div>
+
+<div class="avatar_container">
+  <%= link_to root_url do %>
+    <%= image_tag "me.jpg", class: :avatar_img %>
+  <% end %>
+  <%= link_to "Forrest Wilkins", root_url, class: "avatar_name header_link" %>
+  <div class="avatar_title link_soft">
+    Software Development
+  </div>
+</div>
+
+<div class="nav_bar">
+  <%= link_to "About", root_url, class: "nav_bar_link header_link #{@fwc_home ? 'link_active' : ''}" %>
+  <%= link_to "Blog", blog_path, class: "nav_bar_link header_link #{@blog ? 'link_active' : ''}" %>
+  <%= link_to "forrestwilkins@protonmail.com", "mailto:forrestwilkins@protonmail.com", class: "nav_bar_link link_soft header_link" %>
+</div>
+
+<%= render "templates/nav_menu" %>

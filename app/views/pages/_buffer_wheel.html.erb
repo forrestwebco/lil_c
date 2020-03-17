@@ -1,0 +1,20 @@
+<% if all_items.present? and all_items.size > page_size %>
+  <div align="center" id="buffer_wheel">
+	  <script>
+		  <%= render "pages/glimmer.js" %>
+	  </script>
+
+    <div class="buffer_wheel_grid_containor">
+      <%= link_to non_link do %>
+        <% 16.times do |num| %>
+          <% rgb = random_color %>
+          <div class="buffer_pixel" id="loading_grid_pixel_<%= num %>"></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= audio_tag "interface/interface_9.mp3", id: "more_content_sound" %>
+
+<div id="footer_spacing"></div>

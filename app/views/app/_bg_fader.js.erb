@@ -1,0 +1,64 @@
+function background_fader() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = 1; // when it should go back up
+  var color_max = 255; // when color should go back down
+  var change_rate = 0.25; // added/subbed each round
+  var change_speed = 15; // interval speed, higher==slower
+
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+
+  setInterval(function() {
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  // actually applies change
+	  var color = "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")";
+	  var target1 = $("html");
+	  var target2 = $("#standard_nav_menu");
+	  var target3 = $("#menu_link_container");
+	  var target4 = $("#scroll_to_top_link_container");
+	  var target5 = $(".card_corner_cut_out");
+	  var target6 = $(".group_card_corner_cut_out");
+	  var target7 = $(".load_bar_section");
+	  var target8 = $(".buffer_pixel");
+    var target9 = $(".notes_slide_menu_container");
+    var target9 = $(".search_slide_menu_container");
+	  target1.css("background", color);
+	  target2.css("background", color);
+	  target3.css("background", color);
+	  target4.css("background", color);
+	  target5.each(function() {
+	    $(this).css("background", color);
+	  });
+	  target6.each(function() {
+	    $(this).css("background", color);
+	  });
+	  target7.each(function() {
+	    $(this).css("background", color);
+	  });
+	  target8.each(function() {
+	    $(this).css("background", color);
+	  });
+	  //target9.css("background", color);
+  }, change_speed);
+}
+
+if (!background_fader_started) {
+  background_fader();
+  var background_fader_started = true;
+}

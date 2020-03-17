@@ -1,0 +1,14 @@
+<div id="question_<%= question_num %>_selection_other_field">
+  <%= hidden_field_tag "question_#{question_num}_editing", true if @editing %>
+
+  <div class="selection_row_label">
+    Last selection
+    <%= link_to '· <i class="fa fa-times"></i>'.html_safe, remove_selection_field_path(question_num: question_num, other: true, editing: @editing),
+      remote: true, class: "dark_link survey_form_link", id: "remove_question_#{question_num}_selection_other_link" %>
+  </div>
+
+  <%= text_area_tag "question_#{question_num}_other", "Other...",
+    placeholder: "Other...", class: "surveys_text_area other_selection_text_area" %>
+
+  <%= render "app/link_sound.js", _class: true, link_id: :survey_form_link, sound: :post_interface_sound %>
+</div>

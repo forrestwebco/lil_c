@@ -1,0 +1,31 @@
+<!-- app -->
+
+<% if is_a_yt_link? word %>
+	<% word = word.slice 0...word.index("&") if word.include? "&" %>
+	<% word.sub! "watch?v=", "embed/" if word.include? "watch?v=" %>
+	<% word.sub! "youtu.be", "www.youtube.com/embed" if word.include? "youtu.be" %>
+	<iframe width="90%" height="315" src="<%= word %>" frameborder="0" allowfullscreen>
+	</iframe></br>
+<% is_a_link? word %>
+  <!-- if word is a link to an image file, renders image as standard image -->
+	<% if word.include? ".jpg" or word.include? ".png" or word.include? ".gif" %>
+		<div align="center"><%= image_tag word, class: :standard_image %></div>
+	<% else %>
+		<% unless word.size > 25 %>
+			<%= link_to word + " ", word, target: :_blank,
+			  style: (@folder ? "color:white;" : nil) %>
+		<% else %>
+			<%= link_to word[0..25] + "... ", word, target: :_blank,
+			  style: (@folder ? "color:white;" : nil) %>
+		<% end %>
+	<% end %>
+<% elsif user_mentioned word %>
+  <%= link_to user_mentioned(word).name, user_mentioned(word),
+			  style: (@folder ? "color:white;" : nil) %>
+<% else %>
+	<% if word.size < 30 %>
+		<%= (word + " ").html_safe %>
+	<% else %>
+		<%= word[0..25] + "... " %>
+	<% end %>
+<% end %>

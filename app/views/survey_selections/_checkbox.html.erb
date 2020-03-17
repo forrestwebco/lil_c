@@ -1,0 +1,35 @@
+<% selection_num = cookies["question_#{@question_num}_selection_num"] %>
+
+<div id="question_<%= @question_num %>_selection_<%= selection_num %>_field">
+  <%= hidden_field_tag "question_#{@question_num}_type", 'checkbox' %>
+  <%= hidden_field_tag "question_#{@question_num}_editing", true if @editing %>
+
+  <div class="selection_row_label">Selection <%= selection_num %>
+    <%= render 'survey_selections/remove_link', selection_num: selection_num %>
+  </div>
+  <%= text_area_tag "question_#{question_num}_selection_#{selection_num}", nil,
+    placeholder: "Write your checkbox selection here... (Selection #{selection_num})", class: :surveys_text_area %>
+
+  <% if selection_num.eql? 1 %>
+    <% selection_num = cookies["question_#{@question_num}_selection_num"] = cookies["question_#{@question_num}_selection_num"].to_i + 1 %>
+
+    <div class="selection_row_label">Selection <%= selection_num %></div>
+    <%= text_area_tag "question_#{question_num}_selection_#{selection_num}", nil,
+      placeholder: "Write your checkbox selection here... (Selection #{selection_num})", class: :surveys_text_area %>
+
+    <div id="question_<%= @question_num %>_checkbox_fields_anchor"></div>
+
+    <p class="dark_txt">
+      <%= link_to '<i class="fa fa-plus"></i> Add another selection'.html_safe, add_survey_question_selection_path(question_num: question_num,
+        type: 'checkbox'), remote: true, class: "survey_form_link", id: :add_another_question_link %>
+      ·
+      <%= link_to '<i class="fa fa-pencil-square-o"></i> Add "Other"'.html_safe, add_survey_question_selection_path(question_num: question_num,
+        type: 'checkbox', other: true), remote: true, class: "survey_form_link", id: "question_#{question_num}_add_other_link" %>
+      ·
+      <%= link_to '<i class="fa fa-th"></i> Make as grid'.html_safe, new_survey_question_grid_path(question_num),
+        remote: true, class: "survey_form_link", id: "question_#{question_num}_make_as_grid_link" %>
+    </p>
+  <% end %>
+
+  <%= render "app/link_sound.js", _class: true, link_id: :survey_form_link, sound: :post_interface_sound %>
+</div>

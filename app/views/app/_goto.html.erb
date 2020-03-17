@@ -1,0 +1,16 @@
+<% if params[:goto].present? %>
+  <script>
+    $("<%= params[:goto] %>").
+
+    $(document).ready(function() {
+      setTimeout(scroll_to_obj, 500);
+    });
+
+    function scroll_to_obj() {
+      var obj = $("<%= params[:goto] %>");
+      $('html, body').animate({
+        scrollTop: ($(obj).offset().top - 55)
+      }, 500);
+    }
+  </script>
+<% end %>

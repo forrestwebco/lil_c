@@ -1,0 +1,27 @@
+<% row_num = cookies["question_#{@question_num}_row_num"] %>
+
+<div id="question_<%= @question_num %>_row_<%= row_num %>_field">
+  <%= hidden_field_tag "question_#{@question_num}_editing", true if @editing %>
+  <div class="selection_row_label">Row <%= row_num %>
+    <%= render 'remove_link', row_num: row_num %>
+  </div>
+  <%= text_area_tag "question_#{@question_num}_row_#{row_num}", nil, placeholder: "Write your selection row here... (Row #{row_num})", class: :surveys_text_area %>
+
+  <% if row_num.eql? 1 %>
+    <%= hidden_field_tag "question_#{@question_num}_grid", 'true' %>
+    <% row_num = cookies["question_#{@question_num}_row_num"] = cookies["question_#{@question_num}_row_num"].to_i + 1 %>
+
+    <div class="selection_row_label">Row <%= row_num %></div>
+    <%= text_area_tag "question_#{@question_num}_row_#{row_num}", nil,
+      placeholder: "Write your selection row here... (Row #{row_num})", class: :surveys_text_area %>
+
+    <div id="question_<%= @question_num %>_row_fields_anchor"></div>
+
+    <p>
+      <%= link_to '<i class="fa fa-plus"></i> Add another row'.html_safe, add_survey_question_row_path(@question_num),
+        remote: true, class: "survey_form_link surveys_link" %>
+    </p>
+  <% end %>
+
+  <%= render "app/link_sound.js", _class: true, link_id: :survey_form_link, sound: :post_interface_sound %>
+</div>

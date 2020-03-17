@@ -1,0 +1,25 @@
+// Place all the styles related to the sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// top, right, bottom, left
+
+.fire_gif {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 15%;
+}
+
+.girl_gif {
+  position: absolute;
+  right: 15px;
+  top: 2.5px;
+  width: 15%;
+}
+
+#remember_me_check_box {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 13px;
+}

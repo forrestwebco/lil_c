@@ -1,0 +1,50 @@
+<%= render "users/profile_card", user: @user %>
+
+<% if @user.following.present? or @user.followers.present? or @user.my_groups.present? and false %> <!-- turned off for now -->
+  <%= link_to connections_index_path do %>
+    <div class="card" align="center">
+      <p style="width:80%;">
+        Following (<%= @user.following.size %>), followers (<%= @user.followers.size %>), posts (<%= @posts.size %>), shared items (<%= @shared_items.size %>), surveys (<%= @surveys.size %>), and groups (<%= @user.my_groups.size %>)
+      </p>
+    </div>
+  <% end %>
+<% end %>
+
+<% if this_user_current? %>
+  <div class="card" id="post_form_card">
+    <%= render "posts/form" %>
+  </div>
+<% end %>
+
+<% for item in @items %>
+  <% if item.is_a? Proposal %>
+    <%= render "proposals/card", proposal: item %>
+  <% elsif item.is_a? SharedItem %>
+    <%= render "shared_items/card", shared_item: item %>
+  <% elsif item.is_a? Survey %>
+    <%= render "surveys/card", survey: item %>
+  <% else %>
+    <%= render "posts/card", post: item %>
+  <% end %>
+<% end %>
+
+<%= render "load_more_link", user: @user %>
+
+<%= render "pages/load_bar", items: [], all_items: [] %>
+
+<% if @items.empty? %>
+  <div class="card">
+    <p align="center">
+      <% if @user.eql? current_user %>
+        You haven't posted anything yet.
+      <% else %>
+        <%= @user.name + " hasn't posted anything yet." %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
+<% if sound_turned_on? %> <!-- turned off sound for now -->
+  <%= audio_tag "effects/magic.wav", id: "zen_sound" %>
+  <%= audio_tag "effects/bip.mp3", id: "post_interface_sound" %>
+<% end %>

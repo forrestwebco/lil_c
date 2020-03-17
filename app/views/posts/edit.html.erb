@@ -1,0 +1,5 @@
+<div class="card">
+  <%= render 'form' %>
+</div>
+
+<%= render 'posts/delete_link' if own_item? @post or dev? %>

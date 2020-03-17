@@ -1,0 +1,18 @@
+<% if @you_are_home %>
+  <div style="min-height:10px;"></div>
+<% end %>
+
+<div class="<%= 'load_circle' if defined?(token) %>" <%= 'hidden' if defined?(token) %>>
+  <div class="load_circle_containor" id="load_circle_containor">
+    <% z = 25; z.times do |num| %>
+      <% id_append = num.to_s; id_append << ("_" + token) if defined?(token) %>
+      <div class="load_circle_section" id="load_circle_section_<%= id_append %>"
+        style="background:black; z-index:<%= z + 10 %>; width:<%= (num + 1) * 5 %>%; height:<%= (num + 1) * 5 %>%;"></div>
+      <% z -= 1 %>
+    <% end %>
+  </div>
+
+  <script>
+    <%= render "pages/load_circle_fader.js", token: (token if defined?(token)) %>
+  </script>
+</div>

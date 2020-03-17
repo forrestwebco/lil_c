@@ -1,0 +1,150 @@
+<% if defined? reds and reds %>
+  <% @reds = true %>
+<% elsif defined? light_reds and light_reds %>
+  <% @light_reds = true %>
+<% elsif defined? bright_reds and bright_reds %>
+  <% @bright_reds = true %>
+<% elsif defined? tans and tans %>
+  <% @tans = true %>
+<% end %>
+
+<script>
+  $(function() {
+    function bands_fader_<%= target + "_" + target_id.to_s + ((defined?(reds) and reds) ? '_reds' : '') %>() {
+      var target = $("#<%= target + (target_id.present? ? '_' + target_id.to_s : '') %>");
+
+      target.click(function() {
+        target.toggleClass("color_band_flipping");
+        window.navigator.vibrate(1);
+      });
+
+      // vars for color morphing
+      var rgb = [0, 0, 0]; // the targets color values
+      var fat_rgb = [false, false, false]; // ensures pos/neg
+      var color_min =
+        <% if @tans %>
+          [239, 230, 214]
+        <% elsif @light_reds %>
+          [250, 220, 220]
+        <% elsif @bright_reds %>
+          [150, 0, 0]
+        <% else %>
+          [0, 0, 0]
+        <% end %>; // when it should go back up
+      var color_max =
+        <% if @reds or @bright_reds %>
+          [255, 0, 0]
+        <% elsif @light_reds %>
+          [255, 234, 234]
+        <% elsif @tans %>
+          [253, 252, 250]
+        <% else %>
+          [255, 255, 255]
+        <% end %>; // when color should go back down
+
+      // vars for opacity
+      var opacity = 0.5;
+      var fat_opacity = false
+      opacity_min = 0.1;
+      opacity_max = 1;
+
+      // vars for color_bands Dance of Light!
+      var height = 0, y_pos = 0; // vars for color_band animation
+      var fat_height = false, fat_y_pos = false;
+      var height_min = 20, height_max = 50, y_pos_min = 0, y_pos_max = 100;
+
+      // rates of change and speed of animation over time and between cycles
+      var change_speed = 12.5; // global speed
+      var change_rate =
+        <% if @tans or @light_reds %>
+          0.01
+        <% else %>
+          0.75
+        <% end %>; // rate of change for colors and opacity
+      var a_change_rate = 0.1, h_change_rate = y_change_rate = <%= (defined?(slow) and slow) ? 0.05 : 0.075 %>;
+
+      // initialises color values randomly
+      for (var i=0; i < rgb.length; i++) {
+        if (i < 3) {
+    	    rgb[i] = Math.floor(Math.random() * color_max[i]) + color_min[i];
+        }
+      } opacity = (Math.random() * opacity_max).toFixed(2) + opacity_min;
+
+      height = Math.round(Math.random() * height_max);
+      y_pos = Math.round(Math.random() * y_pos_max);
+
+      fat_opacity = Math.random() >= 0.5;
+      fat_height = Math.random() >= 0.5;
+      fat_y_pos = Math.random() >= 0.5;
+
+      setInterval(function() {
+  	    // morphs all of rgb back and forth
+  	    for (var i=0; i < rgb.length; i++) {
+  		    // flips colors direction of change
+  		    if (rgb[i] <= color_min[i]) {
+  			    fat_rgb[i] = false;
+  		    } else if (rgb[i] >= color_max[i]) {
+  			    fat_rgb[i] = true;
+  		    }
+  		    // fattens or shrinks primaries
+  		    if (fat_rgb[i]) {
+  			    rgb[i] -= change_rate;
+  		    } else {
+  			    rgb[i] += change_rate;
+  		    }
+  	    }
+
+  	    // morphs opacity
+  	    if (opacity <= opacity_min) {
+  		    fat_opacity = false;
+  	    } else if (opacity >= opacity_max) {
+  		    fat_opacity = true;
+  	    }
+  	    // fattens or shrinks opacity
+  	    if (fat_opacity) {
+  		    opacity -= a_change_rate;
+  	    } else {
+  		    opacity += a_change_rate;
+  	    }
+
+  	    // morphs height
+  	    if (height <= height_min) {
+  		    fat_height = false;
+  	    } else if (height >= height_max) {
+  		    fat_height = true;
+  	    }
+  	    // fattens or shrinks y_pos
+  	    if (fat_height) {
+  		    height -= h_change_rate;
+  	    } else {
+  		    height += h_change_rate;
+  	    }
+
+  	    // morphs y_pos
+  	    if (y_pos <= y_pos_min) {
+  		    fat_y_pos = false;
+  	    } else if (y_pos >= y_pos_max) {
+  		    fat_y_pos = true;
+  	    }
+  	    // fattens or shrinks y_pos
+  	    if (fat_y_pos) {
+  		    y_pos -= y_change_rate;
+  	    } else {
+  		    y_pos += y_change_rate;
+  	    }
+
+        target.css({
+          'background' : "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")",
+          'opacity' : opacity,
+          'height' : height + "%",
+          'top' : y_pos + "%"
+        });
+      }, change_speed);
+    }
+
+    if (!bands_fader_<%= target + "_" + target_id.to_s  + ((defined?(reds) and reds) ? '_reds' : '')%>_started) {
+      bands_fader_<%= target + "_" + target_id.to_s  + ((defined?(reds) and reds) ? '_reds' : '')%>();
+      var bands_fader_<%= target + "_" + target_id.to_s  + ((defined?(reds) and reds) ? '_reds' : '')%>_started = true;
+    }
+  });
+</script>

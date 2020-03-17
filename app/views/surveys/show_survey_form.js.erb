@@ -1,0 +1,7 @@
+var show_survey_card = $("#show_survey_form_link_card");
+
+show_survey_card.after("<%=j render 'form' %>");
+
+show_survey_card.remove();
+
+window.navigator.vibrate(1);

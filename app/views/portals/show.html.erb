@@ -1,0 +1,9 @@
+<%= render "portals/card", portal: @portal %>
+
+<div class="card" align="center">
+  <p>
+    <%= link_to 'See all portals <i class="fa fa-opera"></i>'.html_safe, portals_path %>
+    <%= middle_dot %>
+    <%= link_to 'Back to admin <i class="fa fa-cog"></i>'.html_safe, dsa_admin_path %>
+  </p>
+</div>

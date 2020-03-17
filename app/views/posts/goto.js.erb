@@ -1,0 +1,5 @@
+var mini_menu = $("#post_mini_menu_<%= @post.id %>");
+
+mini_menu.append("<%=j render 'posts/goto_link', post: @post %>");
+
+window.navigator.vibrate(1);

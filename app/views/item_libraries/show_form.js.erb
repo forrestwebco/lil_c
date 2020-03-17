@@ -1,0 +1,7 @@
+var show_item_library_card = $("#show_item_library_form_link_card");
+
+show_item_library_card.after("<%=j render 'form' %>");
+
+show_item_library_card.remove();
+
+window.navigator.vibrate(1);

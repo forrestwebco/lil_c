@@ -1,0 +1,40 @@
+<% if @forrest_web_co or forrest_wilkins? %>
+  <!-- For Google -->
+  <meta name="description" content="Web development services by Forrest Wilkins"/>
+  <meta name="keywords"
+    content="web development, hosting, mobile optimization, seo, open source, free software, ruby on rails, linux"/>
+  <meta name="author" content="Forrest Wilkins"/>
+  <meta name="application-name" content="Forrest Web Co." />
+
+  <!-- For Facebook -->
+  <meta property="og:title" content="Forrest Web Co." />
+  <meta property="og:type" content="web development services" />
+  <meta property="og:image" content="https://forrestwebco.com/assets/favicons/me-5e80cd17becf5db627f406cfe5c20c0dbc9e433d085b8139df8977a202f90887.ico" />
+  <meta property="og:url" content="https://forrestwebco.com" />
+  <meta property="og:description" content="Web development services by Forrest Wilkins" />
+
+<% elsif anrcho? %>
+  <!-- For Google -->
+  <meta name="description" content="Organize, resist, and build consensus"/>
+  <meta name="keywords"
+    content="social network, philosophy, anarchism, voting platform, model of consensus, open source, free software, ruby on rails, linux"/>
+  <meta name="author" content="Forrest Wilkins"/>
+  <meta name="application-name" content="Anrcho" />
+
+  <!-- For Facebook -->
+  <meta property="og:title" content="Anrcho" />
+  <meta property="og:type" content="voting platform" />
+  <meta property="og:image" content="https://anrcho.com/assets/favicons/anrcho-dfba3746ea59fc8911d530a066bd08d5334e49a1cbf66d4462a17a14fe0bf171.ico" />
+  <meta property="og:url" content="https://anrcho.com/" />
+  <meta property="og:description" content="A model of consensus voting platform" />
+
+<% elsif raleigh_dsa? %>
+  <!-- For Google -->
+  <meta name="application-name" content="Raleigh DSA" />
+
+  <!-- For Facebook -->
+  <meta property="og:title" content="Raleigh DSA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://raleighdsa.com/assets/favicons/dsa-5dee87f1696bb4b05123509d8c6335a721f605a52c7acaa652607712b3c7cd45.ico" />
+  <meta property="og:url" content="https://raleighdsa.com" />
+<% end %>

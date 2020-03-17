@@ -1,0 +1,10 @@
+<div class="card" align="center">
+  <%= form_tag create_message_folder_path, method: :post do |f| %>
+    <%= text_field_tag :users, nil,
+      placeholder: "List recipients here (separated by ', ')", class: :folder_recipients_text_field %>
+    <%= text_area_tag :body, nil, placeholder: "Send a message...", class: :standard_text_area %>
+    <button type="submit" name="commit" class="standard_form_button">
+      <b>Send <i class="fa fa-send"></i></b>
+    </button>
+  <% end %>
+</div>

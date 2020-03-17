@@ -1,0 +1,47 @@
+<% if @post and @successfully_created %>
+  <% if @from_mini_form %>
+    $("#mini_post_comments_container_<%= @post.id %>").remove();
+    $("#post_comments_anchor_<%= @post.id %>").after("<%=j render 'comments/mini_index' %>");
+  <% else %>
+    var form = $("#comment_form_card");
+
+    form.after("<%=j render 'form' %>");
+    form.remove();
+
+    $("#comment_form_card").before("<%=j render 'card', comment: @comment_just_created %>");
+  <% end %>
+<% elsif @shared_item and @successfully_created %>
+  <% if @from_mini_form %>
+    $("#mini_shared_item_comments_container_<%= @shared_item.id %>").remove();
+    $("#shared_item_comments_anchor_<%= @shared_item.id %>").after("<%=j render 'comments/mini_index' %>");
+  <% else %>
+    var form = $("#comment_form_card");
+
+    form.after("<%=j render 'form' %>");
+    form.remove();
+
+    $("#comment_form_card").before("<%=j render 'card', comment: @comment_just_created %>");
+  <% end %>
+<% elsif @survey and @successfully_created %>
+  <% if @from_mini_form %>
+    $("#mini_survey_comments_container_<%= @survey.id %>").remove();
+    $("#survey_comments_anchor_<%= @survey.id %>").after("<%=j render 'comments/mini_index' %>");
+  <% else %>
+    var form = $("#comment_form_card");
+
+    form.after("<%=j render 'form' %>");
+    form.remove();
+
+    $("#comment_form_card").before("<%=j render 'card', comment: @comment_just_created %>");
+  <% end %>
+<% elsif @proposal %>
+  $("#mini_proposal_comments_container_<%= @proposal.id %>").remove();
+  $("#proposal_comments_anchor_<%= @proposal.id %>").after("<%=j render 'comments/mini_index' %>");
+<% elsif @vote %>
+  $("#mini_vote_comments_container_<%= @vote.id %>").remove();
+  $("#vote_comments_anchor_<%= @vote.id %>").after("<%=j render 'comments/mini_index' %>");
+<% end %>
+
+$("#post_interface_sound")[0].currentTime = 0;
+$("#post_interface_sound")[0].play();
+window.navigator.vibrate(1);

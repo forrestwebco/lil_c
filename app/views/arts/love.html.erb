@@ -1,0 +1,108 @@
+<div class="love_modal" id="love_modal" align="center">
+
+  <%= render "arts/bands", hidden: true, reds: true, slow: true %>
+
+  <div class="heart_container love_message_card_glow" id="heart_container">
+    <div class="heart" id="heart"></div>
+  </div>
+
+  <% if in_dev? or dev? or (currently_kristin? and not Date.new(2018, 2, 14).future?); img_size = 2 %>
+    <div class="love_message_carousel_card love_message_card_glow" id="carousel_card" hidden>
+      <% img_size.times do |i| %>
+        <%= image_tag "love/#{i}.jpg",
+          class: :love_message_carousel_img, id: "love_message_carousel_img_#{i}", hidden: !i.zero? %>
+      <% end %>
+    </div>
+
+    <div class="love_message_card love_message_card_glow" id="happy_valentines" align="center" hidden>
+      <p class="love_txt" style="width:95%;">
+        Happy Valentines Day!
+      </p>
+    </div>
+
+    <div class="love_message_card love_message_card_glow" id="get_distance" align="center" hidden>
+      <p class="love_txt" align="left">
+        Click to see how close you are to
+        </br>
+        <%= currently_kristin? ? 'Forrest' \
+          : 'Kristin' %><span id="static_ellipsis">...</span><%= render "app/ellipsis", hidden: true %>
+      </p>
+    </div>
+
+    <script>
+      var heart = $("#heart_container");
+      var valentines = $("#happy_valentines");
+      var carousel = $("#carousel_card");
+      var get_distance = $("#get_distance");
+      var bands = $("#color_bands");
+      var img_id = 0;
+
+      carousel.click(function() {
+        var current_img = $("#love_message_carousel_img_" + img_id);
+        current_img.toggle();
+
+        if (img_id < <%= img_size %>-1) {
+          img_id++;
+        } else {
+          img_id = 0;
+          valentines.fadeIn();
+          scroll_down();
+        }
+
+        current_img = $("#love_message_carousel_img_" + img_id);
+        current_img.toggle();
+        // haptic
+        window.navigator.vibrate(1);
+      });
+
+      heart.click(function() {
+        carousel.fadeIn();
+        // haptic
+        window.navigator.vibrate(1);
+        bands.fadeOut();
+        heart.toggleClass('love_message_card_glow', true); // toggle on
+      });
+
+      valentines.click(function() {
+        get_distance.fadeIn();
+        scroll_down();
+        // haptic
+        window.navigator.vibrate(1);
+      });
+
+      get_distance.click(function() {
+        var static_ellipsis = $("#static_ellipsis");
+        var ellipsis = $("#ellipsis");
+        var latitude, longitude;
+
+        static_ellipsis.toggle();
+        ellipsis.fadeIn();
+        scroll_down();
+
+        // checks for gps support
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            // sends lat and long for user distance
+            $.ajax({
+              type: "GET",
+              url: "/get_distance",
+              data: $.param({
+                lat: latitude,
+                long: longitude,
+              })
+            });
+          });
+        } else {
+          alert("Geolocation is not supported by this browser.");
+        }
+        // haptic
+        window.navigator.vibrate(1);
+      });
+      function scroll_down() {
+        $("#love_modal").animate({ scrollTop: $(document).height() }, 500);
+      }
+    </script>
+  <% end %>
+</div>

@@ -1,0 +1,19 @@
+function copy_invite_link() {
+  var copyTextareaBtn = $('#copy_invite_link');
+
+  copyTextareaBtn.on('click', function () {
+    var copyTextarea = $('#invite_link_field');
+    copyTextarea.select();
+
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      console.log('Copying text command was ' + msg);
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+  });
+  
+}
+
+copy_invite_link();

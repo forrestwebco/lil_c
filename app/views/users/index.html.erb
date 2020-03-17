@@ -1,0 +1,15 @@
+<div class="card" align="center">
+  <h2 class="standard_page_header">
+    Listing all users <i class="fa fa-users"></i>
+  </h2>
+</div>
+
+<% for user in @users %>
+  <%= render "users/card", user: user %>
+<% end %>
+
+<div class="card" align="center">
+  <p>
+    <%= link_to 'Back to admin <i class="fa fa-cog"></i>'.html_safe, dsa_admin_path %>
+  </p>
+</div>

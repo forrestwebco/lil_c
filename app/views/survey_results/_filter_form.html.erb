@@ -1,0 +1,35 @@
+<%= form_tag filter_survey_results_path(id: @survey.id), method: :get, remote: true, class: :survey_results_filter_form, id: :survey_results_filter_form do |f| %>
+
+  <div class="results_filter_form_section">
+    <div class="survey_results_filter_item">
+      <div class="add_filter_field_dropdown">
+        <%= select_tag :survey_question_id, options_for_select(survey_question_filter_options), id: :survey_question_field_select, class: :survey_question_field_select %>
+      </div>
+      <div class="add_filter_field_button">
+        <%= link_to '<i class="fa fa-plus"></i>'.html_safe, add_survey_question_filter_field_path(@survey.id),
+          remote: true, class: "survey_filter_form_link disabled_link", id: :add_filter_field_link %>
+      </div>
+      <script>
+        <%= render 'survey_results/set_filter_field.js' %>
+      </script>
+    </div>
+  </div>
+
+  <div class="results_filter_form_section" id="open_ended_section"></div>
+
+  <div class="results_filter_form_section" id="checkbox_section"></div>
+
+  <div class="results_filter_form_section" id="radio_button_section"></div>
+
+  <div class="results_filter_form_section" id="grid_question_section"></div>
+
+  <div class="results_filter_form_section">
+    <%= link_to '<i class="fa fa-refresh"></i>'.html_safe, reset_results_filter_path(@survey.id),
+      remote: true, class: "survey_results_filter_item survey_filter_form_link" %>
+    <%= render 'filter_form_button' %>
+  </div>
+
+  <%= render "filter_form_button_fade.js" %>
+<% end %>
+
+<%= render "app/link_sound.js", _class: true, link_id: :survey_filter_form_link, sound: :post_interface_sound %>

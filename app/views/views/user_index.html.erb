@@ -1,0 +1,15 @@
+<%= render "users/card", user: @user %>
+
+<div class="dark_card" align="center">
+  <p>
+    Total views (including clicks): <%= @user.views.size %>
+  </p>
+  <p>
+    <%= link_to "Total clicks: #{@user.views.clicks.size}",
+      user_click_index_path(@user.unique_token), class: :white_link %>
+  </p>
+</div>
+
+<% for view in @views %>
+  <%= render "card", view: view %>
+<% end %>

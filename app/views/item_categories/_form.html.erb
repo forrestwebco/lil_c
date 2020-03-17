@@ -1,0 +1,31 @@
+<div class="card" align="center">
+  <%= form_for(@item_category) do |f| %>
+    <% if @editing %>
+      <p>
+        Currently editing <%= link_to @item_category.name, item_category_path(@item_category) %>
+      </p>
+    <% end %>
+
+    <p>
+      <%= f.text_field :name, placeholder: "Name", class: :surveys_text_field %>
+    </p>
+
+    <p>
+      <%= f.text_area :body, placeholder: "Description", class: :surveys_text_area %>
+    </p>
+
+    <%= link_to add_post_image_path, remote: true, id: :add_image_icon_link, title: "Attach an image" do %>
+      <i class="fa fa-picture-o fa-2x dark_link"></i>
+    <% end %>
+
+    <div id="hidden_file_field" align="left" hidden>
+      <p>
+        <%= f.file_field :image %>
+      </p>
+    </div>
+
+    <button type="submit" name="commit" class="surveys_form_button">
+      <b><%= @editing ? "Save" : "Create" %> <i class="fa fa-pencil"></i></b>
+    </button>
+  <% end %>
+</div>

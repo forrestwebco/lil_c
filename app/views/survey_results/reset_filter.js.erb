@@ -1,0 +1,18 @@
+var filter_form = $("#survey_results_filter_form");
+var filter_form_anchor = $("#results_filter_form_anchor");
+
+filter_form_anchor.after("<%=j render 'filter_form' %>");
+filter_form.remove();
+
+// resets results as well
+var results = $("#results");
+
+var anchor = $("#results_anchor");
+
+results.remove();
+
+anchor.before("<%=j render 'stacked_results' %>");
+
+window.navigator.vibrate(1);
+
+<%= render 'set_filter_field.js.erb' %>

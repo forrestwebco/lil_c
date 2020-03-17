@@ -1,0 +1,4 @@
+<p id="question_<%= question.id %>_body" align="left">
+  <%= (survey.questions.to_a.find_index(question) + 1).to_s + ": " + ((!@read_more and !@showing) ? snip_survey_txt(question.body) : question.body) %>
+  <%= survey_question_read_more_link question, @read_more if !@showing %>
+</p>

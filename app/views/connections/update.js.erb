@@ -1,0 +1,8 @@
+<% if @group_request_accepted %>
+  var request = $("#group_request_accept_deny");
+  request.after("<%=j render 'connections/request_updated' %>");
+  request.remove();
+  window.navigator.vibrate(1);
+  $("#post_interface_sound")[0].currentTime = 0;
+  $("#post_interface_sound")[0].play();
+<% end %>

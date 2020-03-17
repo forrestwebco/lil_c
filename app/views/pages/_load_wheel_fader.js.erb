@@ -1,0 +1,61 @@
+function load_wheel_fader<%= "_" + token if defined?(token) and token.present? %>() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = [1, 1, 1]; // when it should go back up
+  var color_max = [255, 255, 255]; // when color should go back down
+  var change_rate = 10; // added/subbed each round
+  var change_speed = 100; // interval speed, higher == slower
+
+  // initializes rgb array
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+  
+  var outer_id = 0;
+  
+  var outer_circle = [0, 1, 2, 3, 7, 11, 15, 14, 13, 12, 8, 4];
+  var inner_circle = [5, 6, 9, 10];
+
+  setInterval(function() {
+	  var outer_pixel = $("#load_wheel_pixel_" + outer_circle[outer_id] + "<%= "_" + token \
+	    if defined?(token) and token.present? %>");
+	  var inner_pixels = $(".inner_buffer_pixel<%= '_' + token if defined?(token) and token.present? %>");
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min[i]) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max[i]) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+	  
+		<% if raleigh_dsa? %>
+			outer_pixel.css("background", "rgb(" + rgb[0] + ", " + 0 + ", " + 0 + ")");
+			inner_pixels.each(function() {
+				$(this).css("background", "rgb(" + rgb[0] + ", " + 0 + ", " + 0 + ")");
+			});
+		<% else %>
+			outer_pixel.css("background", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+			inner_pixels.each(function() {
+				$(this).css("background", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+			});
+		<% end %>
+	  
+	  // cycles through sections
+	  outer_id += 1;
+	  
+	  if (outer_id >= outer_circle.length) {
+	    outer_id = 0;
+	  }
+    
+  }, change_speed);
+}
+
+load_wheel_fader<%= "_" + token if defined?(token) and token.present? %>();

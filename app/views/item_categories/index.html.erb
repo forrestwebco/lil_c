@@ -1,0 +1,33 @@
+<div class="card" align="center">
+  <h2 class="surveys_page_header">
+    Raleigh DSA Lending Library <i class="fa fa-cubes"></i>
+  </h2>
+</div>
+
+<div class="card" align="center" id="show_item_category_form_link_card">
+  <%= link_to show_item_category_form_path, remote: true, class: "survey_interactive_link" do %>
+    <p>
+      Create new category <i class="fa fa-pencil"></i>
+    </p>
+  <% end %>
+</div>
+
+<% for item_category in @item_categories %>
+  <%= render "item_categories/card", item_category: item_category %>
+<% end %>
+
+<% if @item_categories.empty? %>
+  <div class="card" align="center">
+    <p>
+      You haven't created any item libraries yet.
+    </p>
+  </div>
+<% end %>
+
+<div class="card" align="center">
+  <p>
+    <%= link_to 'See Lending Library <i class="fa fa-book"></i>'.html_safe, show_item_library_path %>
+  </p>
+</div>
+
+<%= render "app/link_sound.js", _class: true, link_id: :survey_interactive_link, sound: :post_interface_sound %>

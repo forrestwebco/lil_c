@@ -1,0 +1,15 @@
+var post_form = $("#new_post_form");
+var proposal_form = $("#new_proposal_form");
+
+if (post_form.length) {
+  post_form.after("<%=j render 'proposals/new' %>");
+  post_form.remove();
+} else if (proposal_form.length) {
+  proposal_form.after("<%=j render 'posts/form' %>");
+  proposal_form.remove();
+}
+
+$("#post_interface_sound")[0].currentTime = 0;
+$("#post_interface_sound")[0].play();
+
+window.navigator.vibrate(1);

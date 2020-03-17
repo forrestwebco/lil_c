@@ -1,0 +1,5 @@
+var old_body_text = $("#results_answer_<%= @answer.id %>");
+old_body_text.after("<%=j render 'answer_td', answer: @answer, result_num: @result_num %>");
+old_body_text.remove();
+
+window.navigator.vibrate(1);

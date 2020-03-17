@@ -1,0 +1,63 @@
+<div class="card take_survey_card_border">
+  <h2 class="surveys_page_header" align="center">
+    Raleigh DSA Admin <i class="fa fa-cog"></i>
+  </h2>
+  <p align="center">
+    Welcome, <%= current_user.name.capitalize %>
+  </p>
+  <%= render "app/right_pane" %>
+</div>
+
+<div class="card" align="center">
+  <div class="admin_items_list_container">
+    <div class="admin_items_list">
+      <%= link_to users_path do %>
+        <p class="admin_items_label">Users <i class="fa fa-users"></i></p>
+      <% end %>
+      <% for user in @dsa_members %>
+        <p>
+          <%= link_to show_user_path(user.unique_token) do %>
+            <%= user.name %>
+            <%= user.dev ? " (dev)" : (user.admin ? " (admin)" : '') %>
+          <% end %>
+          <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_user_path(user) %>
+        </p>
+      <% end %>
+    </div>
+    <div class="admin_items_list">
+      <%= link_to portals_path do %>
+        <p class="admin_items_label">Portals <i class="fa fa-opera"></i></p>
+      <% end %>
+      <% for portal in @portals %>
+        <p>
+          <%= link_to portal.unique_token, show_portal_path(portal.unique_token) %>,
+          <%= portal.remaining_uses %> remaining use(s),
+          expires in <%= time_ago_in_words(portal.expires_at) + (portal.dev or portal.admin ? ',' : '') %>
+          <% if portal.dev or portal.admin %>
+            grants: <%= 'dev' if portal.dev %> <%= 'admin' if portal.admin %>
+          <% end %>
+          <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_portal_path(portal.unique_token) %>
+        </p>
+      <% end %>
+      <% if @portals.empty? %>
+        <p>
+          There are zero portals currently open.
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @portal %>
+  <div class="card">
+    <p>
+      <b id="invite_link_label"><%= link_to "Portal link - Copy and share:",
+        copy_invite_link_path, remote: true, id: :copy_invite_link %></b>
+    </p>
+    <p align="center">
+      <%= text_field_tag :invite_link, @portal_link, id: :invite_link_field %>
+    </p>
+  </div>
+<% end %>
+
+<%= render "admin/portals_form" %>

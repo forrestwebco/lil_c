@@ -1,0 +1,70 @@
+// pages
+
+function loading_glimmer() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = [1, 1, 1]; // when it should go back up
+  var color_max = [255, 255, 255]; // when color should go back down
+  var change_rate = 0.5; // added/subbed each round
+  var change_speed = 1; // interval speed, higher == slower
+
+  // initializes rgb array
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+
+  var chars = <%=j @char_codes.to_json %>;
+  var bits = <%=j @char_bits.to_json %>;
+  // counter for char codes
+  var num = 0;
+  // counter for bits
+  var b_num = 0;
+
+  setInterval(function() {
+	  var id = Math.round(Math.random() * 16);
+	  var r = Math.round(Math.random() * 255 * chars[num]);
+	  var g = Math.round(Math.random() * 255 * chars[num + 1]);
+	  var b = Math.round(Math.random() * 255 * chars[num + 2]);
+
+	  var pixel = $("#loading_grid_pixel_" + id);
+	  var pixels = $(".buffer_pixel");
+
+	  // morphs all of rgb back and forth
+	  for (var i=0; i < 3; i++) {
+		  // flips colors direction of change
+		  if (rgb[i] <= color_min[i]) {
+			  fat_rgb[i] = false;
+		  } else if (rgb[i] >= color_max[i]) {
+			  fat_rgb[i] = true;
+		  }
+		  // fattens or shrinks primaries
+		  if (fat_rgb[i]) {
+			  rgb[i] -= change_rate;
+		  } else {
+			  rgb[i] += change_rate;
+		  }
+	  }
+
+	  pixel.text(bits[b_num].toString());
+		<% if raleigh_dsa? %>
+			pixel.css("color", "rgb(" + b + ", " + 0 + ", " + 0 + ")");
+		<% else %>
+			pixel.css("color", "rgb(" + b + ", " + r + ", " + g + ")");
+		<% end %>
+
+	  pixels.each(function() {
+	    //$(this).css("background", "rgb(" + rgb[0] + ", " + rgb[1] + ", " + rgb[2] + ")");
+	  });
+
+	  num += 3;
+	  b_num += 1;
+	  if (num >= chars.length) {
+		  num = 0;
+	  }
+	  if (b_num >= bits.length) {
+		  b_num = 0;
+	  }
+  }, change_speed);
+}
+
+loading_glimmer();

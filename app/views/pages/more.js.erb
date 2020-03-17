@@ -1,0 +1,18 @@
+// pages
+
+var anchor = $("#more_content_anchor");
+var buffer_wheel = $("#buffer_wheel");
+
+if ( typeof last_item_id === 'undefined'
+  || last_item_id > <%= @items.first.id %>
+  || last_item_id !== <%= @items.last.id %> )
+{
+  var last_item_id = <%= @items.last.id %>;
+  anchor.after("<%=j render 'pages/more_content' %>");
+  anchor.remove();
+
+  $("#more_content_sound")[0].currentTime = 0;
+  $("#more_content_sound")[0].play();
+
+  window.navigator.vibrate(1);
+}

@@ -1,0 +1,5 @@
+<%= render "users/card", user: @user %>
+
+<% for click in @clicks %>
+  <%= render "card", view: click %>
+<% end %>

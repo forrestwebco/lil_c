@@ -1,0 +1,4 @@
+var link = $("#post_menu_link_<%= @post.id %>");
+$("#post_mini_menu_<%= @post.id %>").remove();
+link.after("<%=j render "posts/open_menu_link", post: @post %>");
+link.remove();

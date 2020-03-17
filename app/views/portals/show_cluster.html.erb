@@ -1,0 +1,5 @@
+<%= render "portals/cluster_card", cluster: @cluster %>
+
+<% for portal in @portals %>
+  <%= render "portals/card", portal: portal %>
+<% end %>

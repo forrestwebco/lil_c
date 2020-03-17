@@ -1,0 +1,13 @@
+<%= link_to "Close all", destroy_all_portals_path, method: :delete,
+    data: { confirm: "Are you sure you want to close every single portal?" }, class: :top_right_link %>
+
+<div align="center">
+  <p>
+    Create portals for mass exodus
+  </p>
+  <p>
+    Defaults to <%= Portal::DEFAULT_REMAINING_USES %> uses and expires in
+      <%= time_ago_in_words(Portal.expiration_date) %>
+  </p>
+  <%= render "connections/portal_link_form" %>
+</div>

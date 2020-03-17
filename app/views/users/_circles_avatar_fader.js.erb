@@ -1,0 +1,34 @@
+function circles_avatar_fader<%= "_" + token if defined?(token) and token.present? %>() {
+  var rgb = [0, 0, 0]; // the targets color values
+  var fat_rgb = [false, false, false]; // ensures pos/neg
+  var color_min = [1, 1, 1]; // when it should go back up
+  var color_max = [255, 255, 255]; // when color should go back down
+  var change_rate = 10; // added/subbed each round
+  var change_speed = 50; // interval speed, higher == slower
+
+  // initializes rgb array
+  for (var i=0; i < rgb.length; i++) {
+	  rgb[i] = Math.round(Math.random() * 255);
+  }
+
+  var id = 0;
+  var direction = true;
+
+  // gets dimensions of container div
+  var container = $("#circles_avatar_container");
+  var conW = container.width();
+  var conH = container.height();
+
+  var circles = $(".circles_avatar_section");
+  circles.each(function() {
+    // gets dimensions of circle
+    var circleW = $(this).width();
+    var circleH = $(this).height();
+
+    // centers circle by its respective center point
+    $(this).css("top", (conH / 2) - (circleH / 2) + "px");
+    $(this).css("left", (conW / 2) - (circleW / 2) + "px");
+  });
+}
+
+circles_avatar_fader<%= "_" + token if defined?(token) and token.present? %>();

@@ -1,0 +1,27 @@
+<div class="card">
+  <div align="center">
+    <%= link_to '<i class="fa fa-home"></i>'.html_safe, home_path %>
+    <b> > </b>
+    <% line.each do |key, val| %>
+      <% if val.present? %>
+        <% last_in_line = key.eql? line.to_a.last.first %>
+        <% case key %>
+        <% when :comment %>
+          <%= link_to "Comment", comment_path(val), id: (:last_in_line if last_in_line) %>
+        <% when :reply %>
+          <%= link_to "Reply", comment_path(val), id: (:last_in_line if last_in_line) %>
+        <% when :post %>
+          <%= link_to "Post", show_post_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :vote %>
+          <%= link_to "Vote", show_vote_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :proposal %>
+          <%= link_to "Proposal", show_proposal_path(val.unique_token), id: (:last_in_line if last_in_line) %>
+        <% when :group %>
+          <%= link_to "Group#{" (" + val.name + ")" unless anrcho?}",
+            group_path(val), id: (:last_in_line if last_in_line) %>
+        <% end %>
+        <%= '<b> > </b>'.html_safe unless last_in_line %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

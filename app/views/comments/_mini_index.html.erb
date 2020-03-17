@@ -1,0 +1,7 @@
+<div id="mini_<%= @item.model_name.singular_route_key %>_comments_container_<%= @item.id %>" align="left">
+  <% for comment in @comments %>
+    <%= render "comments/mini_card", comment: comment %>
+  <% end %>
+
+  <%= render "comments/mini_form" %>
+</div>

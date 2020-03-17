@@ -1,0 +1,63 @@
+<div class="menu_link_container">
+  <%= link_to non_link, class: "menu_link no_select" do %>
+    <div class="menu_icon bars_icon">
+      <div class="bars_icon_bar"></div>
+      <div class="bars_icon_bar"></div>
+      <div class="bars_icon_bar"></div>
+    </div>
+    <div class="menu_icon menu_link_hidden">
+      <%= image_tag "x.png", class: :x_icon %>
+    </div>
+  <% end %>
+</div>
+
+<div class="nav_links_container">
+  <div id="nav_links" class="nav_links">
+    <%= render "templates/clients/lil_c/nav_links" %>
+  </div>
+</div>
+
+<script>
+  function template_nav_menu() {
+    var menu_link_container = $(".menu_link_container");
+    var circle_link = $(".menu_link");
+    var menu_icon = $(".menu_icon");
+    // padding for nav_links, positioning
+    var nav_links_container = $(".nav_links_container")
+    var nav_links = $("#nav_links");
+    var page_hider = $(".page_hider");
+    // fix for nav_links
+    var toggle = false;
+    // toggles if circle_link clicked
+    circle_link.click(function() {
+      toggle_menu();
+    });
+    // closes circle_menu if user clicks outside of it
+    $(document).click(function(e) {
+      // if the target of the click isn't the container nor a descendant of the container
+      if (!circle_menu.is(e.target) && circle_menu.has(e.target).length === 0 && toggle) {
+        toggle_menu();
+      }
+    });
+    // closes circle_menu if esc pressed
+    $(document).keydown(function(e) {
+      if (e.key == 'Escape' && toggle) {
+        toggle_menu();
+      }
+    });
+    // closes menu if clicking album_link from menu
+    $(".album_link, .sign_up_link").click(function () {
+      if (toggle) {
+        toggle_menu();
+      }
+    });
+    function toggle_menu() {
+      toggle = !toggle;
+      menu_link_container.toggleClass('menu_link_container_open');
+      nav_links_container.toggleClass('nav_links_container_open');
+      circle_link.toggleClass('menu_link_open');
+      menu_icon.toggleClass('menu_link_hidden');
+      page_hider.toggleClass('hide_page');
+    }
+  } template_nav_menu();
+</script>

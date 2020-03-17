@@ -1,0 +1,8 @@
+var link = $("#<%= "like_#{@item.model_name.singular_route_key}_link_#{@item.id}" %>");
+var anchor = $("#<%= "like_#{@item.model_name.singular_route_key}_link_anchor_#{@item.id}" %>");
+
+link.remove();
+anchor.after("<%=j render "likes/link", item: @item, bottom_left: (!@item.is_a?(Post) and !@item.is_a?(Proposal) \
+  and !@item.is_a?(Vote) and !@item.is_a?(SharedItem) and !@item.is_a?(Survey)) %>");
+
+window.navigator.vibrate(1);

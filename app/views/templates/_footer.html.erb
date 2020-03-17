@@ -1,0 +1,55 @@
+<div class="vertical_spacer"></div>
+
+<div class="footer">
+  <div class="card footer_card" align="left">
+    <div class="footer_card_content">
+      <div class="footer_card_name link_soft">
+        Forrest Wilkins
+      </div>
+      <div>
+        <%= link_to "mailto:forrestwilkins@protonmail.com", class: "footer_card_email link_active" do %>
+         forrestwilkins@protonmail.com
+        <% end %>
+      </div>
+      <div class="footer_text">
+        I'm a web developer. I can help you expand your business and bring your online presence to the next level.
+      </div>
+    </div>
+
+    <div class="footer_menu">
+      <div class="footer_menu_label link_soft">
+        Menu
+      </div>
+      <%= link_to "About", root_url, class: "footer_menu_item footer_text" %>
+      <%= link_to "Blog", root_url, class: "footer_menu_item footer_text" %>
+      <%= link_to "Projects", root_url, class: "footer_menu_item footer_text" %>
+    </div>
+
+    <div class="footer_menu">
+      <div class="footer_menu_label link_soft">
+        Contact
+      </div>
+      <%= link_to "forrestwilkins@protonmail.com", "mailto:forrestwilkins@protonmail.com", class: "footer_menu_item footer_text" %>
+      <%= link_to "(919) 756-0830", non_link, class: "footer_menu_item footer_text" %>
+      <%= link_to "Skype", "skype:live:forrest_wilkins", class: "footer_menu_item footer_text" %>
+    </div>
+
+    <div class="footer_menu">
+      <div class="footer_menu_label link_soft">
+        Online
+      </div>
+      <%= link_to "GitHub", "https://github.com/ethanwilkins", class: "footer_menu_item footer_text" %>
+      <%= link_to "Stack Overflow", "https://stackoverflow.com/users/2034099/ethan-wilkins", class: "footer_menu_item footer_text" %>
+    </div>
+  </div>
+  <div class="card footer_card" align="left">
+    <div class="">
+      <div class="footer_text">
+        Copyright Forrest Wilkins 2020 © <%= link_to "More information", root_url, class: "footer_text link_underlined" %> —
+        <%= link_to "Changelog", "https://github.com/ethanwilkins/simplr", class: "footer_text footer_dark_link" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render "pages/scroll_to_top" %>

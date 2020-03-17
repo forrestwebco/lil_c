@@ -1,0 +1,30 @@
+<script>
+  function toggle_scroll_to_top_link() {
+    var link_shown = false;
+    $(window).bindWithDelay("scroll", function() {
+      var at_bottom = $(window).scrollTop() + $(window).height() > $(document).height() - 5;
+      // show link when scrolled to the bottom and hide when scrolled back to top
+      // if at bottom and link not shown, show link and bottom line fader
+      if (!link_shown && at_bottom) {
+        $("#scroll_to_top_link").fadeIn();
+        <% unless @forrest_web_co %>
+          // also toggles new_post_form_button for mobile so they don't overlap
+          $(".new_post_button_mobile").fadeOut();
+        <% end %>
+        link_shown = true;
+        // if at bottom but link already shown
+      } else if (at_bottom) {
+        // if scrolled back to the top
+      } else if (link_shown && $(window).scrollTop() < 10) {
+        $("#scroll_to_top_link").fadeOut();
+        <% unless @forrest_web_co %>
+          // also toggles new_post_form_button for mobile so they don't overlap
+          $(".new_post_button_mobile").fadeIn();
+        <% end %>
+        link_shown = false;
+      }
+    }, 5);
+  }
+
+  toggle_scroll_to_top_link();
+</script>

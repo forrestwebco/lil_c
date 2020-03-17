@@ -1,0 +1,5 @@
+<h2 class="standard_page_header">Comments <i class="fa fa-comments"></i></h2>
+
+<% for comment in @comments %>
+  <%= render "comments/card", comment: comment %>
+<% end %>

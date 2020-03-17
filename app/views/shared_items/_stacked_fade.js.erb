@@ -1,0 +1,13 @@
+<script>
+  var show_shared_item_modal_link_<%= shared_item.id %> = $(".show_shared_item_modal_link");
+  var stacked_shared_item_<%= shared_item.id %> = $("#stacked_shared_item_<%= shared_item.id %>");
+
+  show_shared_item_modal_link_<%= shared_item.id %>.click(function() {
+    plus_fade_<%= shared_item.id %>();
+    setTimeout(plus_fade, 1000);
+  });
+
+  function plus_fade_<%= shared_item.id %>() {
+    stacked_shared_item_<%= shared_item.id %>.toggleClass("plus_fade_box");
+  }
+</script>

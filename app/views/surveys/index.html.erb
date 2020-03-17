@@ -1,0 +1,30 @@
+<div class="surveys_card take_survey_card_border card_vertical_spacer">
+  <h2 class="surveys_page_header" align="center">
+     <i class="fa fa-check-square-o"></i> Raleigh DSA Surveys
+  </h2>
+  <%= render "app/side_panes" %>
+</div>
+
+<% if admin? %>
+  <div class="surveys_card" align="center" id="show_survey_form_link_card">
+    <%= link_to show_survey_form_path, remote: true, class: "survey_interactive_link" do %>
+      <p>
+        Create new survey <i class="fa fa-pencil"></i>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
+<% for survey in @surveys %>
+  <%= render "surveys/card", survey: survey %>
+<% end %>
+
+<% if @surveys.empty? %>
+  <div class="surveys_card" align="center">
+    <p>
+      You haven't created any surveys yet.
+    </p>
+  </div>
+<% end %>
+
+<%= render "app/link_sound.js", _class: true, link_id: :survey_interactive_link, sound: :post_interface_sound %>

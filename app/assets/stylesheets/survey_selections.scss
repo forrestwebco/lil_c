@@ -1,0 +1,206 @@
+// Place all the styles related to the survey_selections controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+// for take survey
+.surveys_other_text_area {
+  background: white;
+  color: black;
+  width: 60%;
+  margin-left: 2.5px;
+}
+
+// for new survey form
+.other_selection_text_area {
+  height: 15px;
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+.add_selection_edit_links {
+  text-align: left;
+  margin-left: 25px;
+}
+
+.add_selection_edit_link {
+  font-size: 13px;
+}
+
+.disabled_link {
+  pointer-events: none;
+  cursor: default;
+  color: rgb(175, 175, 175);
+}
+
+.selection_row_label {
+  color: rgb(175, 175, 175);
+  text-align: right;
+  margin: 5px 3.5px 2.5px 0px; // top, right, bottom, left
+  font-size: 13px;
+}
+
+.survey_selection_edit_form_body {
+  margin-left: 25px;
+  font-size: 13px;
+}
+
+.row_column_label {
+  margin-left: 25px;
+  margin-bottom: -5px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(175, 175, 175);
+}
+
+.grid_type_question_label {
+  margin: -10px 0px 5px 25px;
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(175, 175, 175);
+}
+
+.selection_label {
+  margin-top: -10px;
+}
+
+
+
+
+
+// custom checkbox --------------------------------------------------------------------------------------------------------------------------------
+
+/* Customize the label (the container) */
+.checkbox_container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkbox_checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 2px solid rgb(220,220,220);
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox_container:hover input ~ .checkbox_checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkbox_container input:checked ~ .checkbox_checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox_checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_container input:checked ~ .checkbox_checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_container .checkbox_checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+// custom radio_button --------------------------------------------------------------------------------------------------------------------------------
+/* Customize the label (the container) */
+.radio_button_container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.radio_button_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.radio_button_checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radio_button_container:hover input ~ .radio_button_checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio_button_container input:checked ~ .radio_button_checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radio_button_checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radio_button_container input:checked ~ .radio_button_checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radio_button_container .radio_button_checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}

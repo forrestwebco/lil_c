@@ -1,0 +1,16 @@
+function check_messages() {
+  setInterval(function() {
+	  if ($("#instant_messages_anchor").length) {
+		  $.ajax({
+			  type: "GET",
+			  url: "/messages/instant_messages",
+			  data: $.param({group_id: "<%= @group.id %>"})
+		  });
+	  }
+  }, 500);
+}
+
+if (!check_messages_started) {
+  check_messages();
+  var check_messages_started = true;
+}

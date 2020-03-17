@@ -1,0 +1,21 @@
+<div class="vertical_spacer"></div>
+<div class="card blog_form_card">
+  <%= form_for(@post) do |f| %>
+    <%= hidden_field_tag :blog, true %>
+    <p>
+      <%= f.text_field :title, placeholder: "Title", class: :standard_text_field %>
+    </p>
+
+    <p>
+      <%= f.rich_text_area :content, value: (@post.body.present? ? @post.body : ""), placeholder: "Post something awesome..." %>
+    </p>
+
+    <p>
+      <% form_button_id = rand 1000 %>
+      <button type="submit" name="commit" class="standard_form_button post_form_button" id="post_form_button_<%= form_button_id %>">
+        <b><%= @post.id.nil? ? "Post" : "Save" %> <i class="fa fa-pencil"></i></b>
+      </button>
+    </p>
+    <br/>
+  <% end %>
+</div>

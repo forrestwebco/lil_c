@@ -1,0 +1,13 @@
+<h2 class="standard_page_header">Views <i class="fa fa-eye"></i></h2>
+
+<% for view in @views %>
+  <%= render "card", view: view %>
+<% end %>
+
+<% unless @views.present? %>
+  <div class="dark_card" align="center">
+    <p>
+      There aren't any views to show right now. There may be a problem...
+    </p>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="post_mini_menu" id="shared_item_mini_menu_<%= shared_item.id %>">
+  <% if own_item? shared_item or dev? %>
+    <%= link_to 'Edit', edit_shared_item_path(shared_item), class: :post_mini_menu_link %>
+    <%= link_to "Delete", shared_item_path(@shared_item, ajax_req: !str_to_bool(@showing)),
+      method: :delete, remote: !str_to_bool(@showing), class: :post_mini_menu_link,
+      data: { confirm: "Are you sure you want to permanently delete this item?" } %>
+  <% end %>
+</div>

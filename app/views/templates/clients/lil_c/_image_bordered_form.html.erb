@@ -1,0 +1,37 @@
+<div class="image_border_main_container">
+  <div class="image_border_top_container">
+    <% 10.times do %>
+      <%= image_tag "clients/lil_c/lil_c.jpg", class: :lil_c_border_top_img %>
+    <% end %>
+  </div>
+
+  <div class="image_border_middle_container">
+    <div class="image_border_left_container">
+      <% 12.times do |i| %>
+        <%= image_tag "clients/lil_c/lil_c.jpg",
+          class: :"lil_c_border_side_img #{(i > 7) ? 'lil_c_border_side_img_mobile_sm' : \
+          ((i > 5) ? 'lil_c_border_side_img_mobile' : '')}" %>
+      <% end %>
+    </div>
+
+    <div class="lil_c_form">
+      <%= render "templates/clients/lil_c/sign_up_form" %>
+    </div>
+
+    <div class="image_border_right_container">
+      <% 12.times do |i| %>
+        <%= image_tag "clients/lil_c/lil_c.jpg",
+          class: :"lil_c_border_side_img #{(i > 7) ? 'lil_c_border_side_img_mobile_sm' : \
+          ((i > 5) ? 'lil_c_border_side_img_mobile' : '')}" %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="image_border_top_container">
+    <% 10.times do %>
+      <%= image_tag "clients/lil_c/lil_c.jpg", class: :lil_c_border_top_img %>
+    <% end %>
+  </div>
+</div>
+
+<div class="vertical_spacer"></div>

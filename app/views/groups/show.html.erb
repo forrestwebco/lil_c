@@ -1,0 +1,36 @@
+<%= render "groups/card", group: @group %>
+
+<% if group_auth @group and @group.requests.present? %>
+  <div class="card">
+    <div align="center">
+      <%= link_to "There are requests pending.", requests_path(@group) %>
+    </div>
+  </div>
+<% end %>
+
+<% if group_auth @group or group_member_auth @group %>
+  <div class="card" id="post_form_card">
+    <%= render "posts/form" %>
+  </div>
+
+  <% for item in @items %>
+    <%= render "#{item.class.to_s.downcase}s/card", (item.class.to_s.downcase.to_sym) => item %>
+  <% end %>
+
+  <%= render "load_more_link", group: @group %>
+
+  <%= render "pages/load_bar", items: [], all_items: [] %>
+<% end %>
+
+<% if @items.empty? %>
+  <div class="card">
+    <p align="center">
+      There aren't any posts yet.
+    </p>
+  </div>
+<% end %>
+
+<% if sound_turned_on? %>
+  <%= audio_tag "effects/magic.wav", id: "zen_sound" %>
+  <%= audio_tag "effects/bip.mp3", id: "post_interface_sound" %>
+<% end %>

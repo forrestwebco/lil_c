@@ -1,0 +1,14 @@
+<% if cookies[:question_num].present? %>
+  <% cookies[:question_num] = cookies[:question_num].to_i + 1 %>
+
+  var anchor = $("#survey_questions_anchor");
+  var question_num = <%= cookies[:question_num].to_i %>;
+
+  anchor.before("<%=j render 'question' %>");
+
+  for (i=1; i < question_num; i++) {
+    $("#remove_question_" + i + "_field_link").toggleClass('hidden_and_disabled_link', true);
+  }
+<% end %>
+
+window.navigator.vibrate(1);

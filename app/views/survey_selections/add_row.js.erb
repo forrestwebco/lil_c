@@ -1,0 +1,11 @@
+var anchor = $("#question_<%= @question_num %>_row_fields_anchor");
+
+anchor.before("<%=j render 'row' %>");
+
+var row_num = <%= cookies["question_#{@question_num}_row_num"].to_i %>;
+
+for (i=1; i < row_num; i++) {
+  $("#remove_question_<%= @question_num %>_row_" + i + "_field_link").toggleClass('hidden_and_disabled_link', true);
+}
+
+window.navigator.vibrate(1);

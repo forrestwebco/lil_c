@@ -1,0 +1,6 @@
+<% if survey.body.present? %>
+  <p class="<%= 'justified_body_text' if survey.body.size > 150 %>" id="survey_body_<%= survey.id %>">
+    <%= render "app/body", body: ((!@read_more and !@showing) ? snip_txt(survey.body) : survey.body) %>
+    <%= survey_read_more_link survey, @read_more if !@showing %>
+  </p>
+<% end %>

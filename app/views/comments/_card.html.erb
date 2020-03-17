@@ -1,0 +1,31 @@
+<div class="card">
+  <%= render "users/avatar_card_link", user: comment.user, token: comment.anon_token %>
+
+  <div align="center">
+    <% if comment.image_url %>
+      <p>
+        <% unless @comment_shown %>
+          <%= link_to comment do %>
+            <%= image_tag comment.image_url, class: :standard_post_image %>
+          <% end %>
+        <% else %>
+          <%= image_tag comment.image_url, class: :standard_post_image %>
+        <% end %>
+      </p>
+    <% end %>
+    <% if comment.body.present? %>
+	    <p class="comment_body <%= justified_body comment %>">
+        <%= render "app/body", item: comment %>
+		  </p>
+		<% end %>
+  </div>
+
+  <%= render "app/time_ago", item: comment %>
+
+  <% unless anrcho? %>
+    <span id="like_comment_link_anchor_<%= comment.id %>"></span>
+    <%= render "likes/link", item: comment, bottom_left: true %>
+  <% end %>
+
+  <%= link_to "Edit", edit_comment_path(comment), class: :bottom_right_link unless comment.proposal or not (own_item?(comment) or admin? )%>
+</div>

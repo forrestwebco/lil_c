@@ -1,0 +1,44 @@
+<% if current_user %>
+  <div class="right_pane">
+    <% unless my_active_groups.empty? and Tag.trending.empty? %>
+      <div class="right_pane_sub take_survey_card_border">
+        <% unless my_active_groups.empty? %>
+          <div class="side_pane_label right_pane_label">Group activity</div>
+          <% for group in my_active_groups %>
+            <div>
+              <%= link_to group, class: "group_activity" do %>
+                <% group_name = if group.name.size > 15 then group.name[0..9] + "..." else group.name end %>
+                <%= image_tag group.image_url, class: :user_avatar_image if group.image_url %>
+                <%= group_name + " +#{group.total_items_unseen(current_user)}" %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+        <% unless Tag.trending.empty? %>
+          <div class="side_pane_label right_pane_label side_pane_label_successive">Trending tags</div>
+          <% for tag in Tag.trending %>
+            <div>
+              <%= link_to tag.tag, search_path(query: tag.tag), class: "group_activity" %>
+            </div>
+          <% end %>
+        <% end %>
+        <br/>
+      </div>
+    <% end %>
+
+    <% unless current_notes.empty? %>
+      <div class="right_pane_sub take_survey_card_border">
+        <div class="side_pane_label right_pane_label">Notes</div>
+        <% for note in current_notes.last(5).reverse %>
+          <div class="notes_side_pane_message">
+            <%= render "notes/message", note: note, dark: true %>
+          </div>
+        <% end %>
+        <div class="notes_side_pane_message">
+          <%= link_to "See all", notes_path %>
+        </div>
+        <br/>
+      </div>
+    <% end %>
+  </div>
+<% end %>

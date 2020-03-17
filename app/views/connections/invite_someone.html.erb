@@ -1,0 +1,5 @@
+<% for portal in current_user.portals.last(10).reverse %>
+  <%= render "portals/card", portal: portal %>
+<% end %>
+
+<%= render "settings/dev_inviting" %>

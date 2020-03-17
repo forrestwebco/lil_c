@@ -1,0 +1,62 @@
+<script>
+  $(document).ready(function () {
+    $(".album_link").click(function () {
+      $('html, body').animate({
+        scrollTop: $(".album_section").offset().top + 1
+      }, 220);
+    });
+    $(".sign_up_link").click(function () {
+      $('html, body').animate({
+        scrollTop: $(".sign_up_section").offset().top + 1
+      }, 220);
+    });
+    <% if @lil_c_home %>
+      <% if params[:scroll_to_album] %>
+        $('html, body').animate({
+          scrollTop: $(".album_section").offset().top + 1
+        }, 220);
+      <% elsif params[:scroll_to_sign_up] %>
+        $('html, body').animate({
+          scrollTop: $(".sign_up_section").offset().top + 1
+        }, 220);
+      <% end %>
+    <% end %>
+  });
+</script>
+
+<div class="page_hider"></div>
+
+<div class="header">
+  <div class="header_bar">
+    <div class="header_links_container hide_header_links_container">
+      <div class="header_links">
+        <%= link_to "HOME", lil_c_path, class: "header_link spaced" %>
+        <%= link_to "ALBUM", (@lil_c_home ? non_link : lil_c_path(scroll_to_album: true)), class: "header_link spaced album_link" %>
+        <%= link_to "SIGN UP", (@lil_c_home ? non_link : lil_c_path(scroll_to_sign_up: true)), class: "header_link spaced sign_up_link" %>
+      </div>
+    </div>
+    <div class="header_links_container header_avatar_container">
+      <%= link_to lil_c_path do %>
+        <div class="avatar">
+          <div class="header_link avatar_name">
+            LIL' C.
+          </div>
+          <%= image_tag "clients/lil_c/lil_c.jpg", class: "header_link avatar_img" %>
+          <div class="header_link avatar_name avatar_name_right">
+            CORLEONE
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="header_links_container hide_header_links_container">
+      <div class="header_links header_links_right">
+        <%= link_to fa_icon("facebook"), get_lil_c_link[:facebook], target: :_blank, class: :header_icon_link %>
+        <%= link_to fa_icon("instagram"), get_lil_c_link[:instagram], target: :_blank, class: :header_icon_link %>
+        <%= link_to fa_icon("apple"), get_lil_c_link[:apple], target: :_blank, class: :header_icon_link %>
+        <%= link_to fa_icon("youtube-play"), get_lil_c_link[:youtube], target: :_blank, class: :header_icon_link %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "templates/clients/lil_c/nav_menu" %>
+</div>

@@ -1,0 +1,5 @@
+function post_txt_color_<%= post.id %>() {
+  $("#post_card_<%= post.id %>").css("color", "<%= settings(post.user)[:post_txt_color] %>");
+}
+
+post_txt_color_<%= post.id %>();

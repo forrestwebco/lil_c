@@ -1,0 +1,7 @@
+<div id="color_cascade">
+  <% 20.times do |n| %>
+    <div class="color_cascade_bar" id="color_cascade_bar_<%= n %>"
+      style="background:rgb(<%= random_color :as_str %>);">
+    </div>
+  <% end %>
+</div>

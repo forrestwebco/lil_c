@@ -1,0 +1,127 @@
+// Place all the styles related to the shared_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// top, right, bottom, left
+
+@mixin add_filter_field_element {
+  float: left;
+}
+
+.add_filter_field_dropdown {
+  @include add_filter_field_element;
+}
+
+.add_filter_field_button {
+  @include add_filter_field_element;
+  margin: 0px 5px 0px 10px;
+}
+
+.shared_item_card_header {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.shared_item_name {
+  font-size: 18px;
+}
+
+.shared_item_feed_img {
+	width: 30px;
+	height: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.standard_shared_item_image {
+  width: 97.5%;
+}
+
+.shared_item_filter_text_field {
+  background: rgb(240, 240, 240);
+  color: black;
+  outline: 0;
+  border-width: 0 0 0.5px;
+  border-color: rgb(220, 220, 220);
+}
+
+.shared_item_card_fields_container {
+  margin-bottom: 15px;
+  margin-left: 2.5%;
+}
+
+.shared_item_card_fields_row {
+  background: rgb(250, 250, 250);
+  display: flex;
+  width: 97.5%;
+}
+
+.shared_item_index_field_row {
+  width: 100%;
+}
+
+.shared_item_card_field {
+  background: white;
+  margin: 0.15%; // top, right, bottom, left
+  padding: 2.5px 2.5px 2.5px 2.5px;
+  width: 49%;
+  text-align: left;
+}
+
+.stacked_shared_item {
+  margin-bottom: 30px;
+  border: 1px solid rgb(250, 250, 250);
+}
+
+.stacked_shared_item_horizontal {
+  margin-bottom: 0px;
+}
+
+.stacked_shared_item:hover {
+  border: 1px solid rgb(220, 220, 220);
+}
+
+.stacked_shared_item:active {
+  border: 1px solid rgb(76, 175, 248);
+}
+
+.stacked_shared_item_img {
+  width: 15px;
+}
+
+.stacked_shared_item_edit_link {
+  font-size: 13px;
+}
+
+.show_shared_item_modal_link {
+  font-weight: normal;
+  font-size: 13px;
+  cursor: default;
+}
+
+.shared_item_modal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 15;
+  // to stop margins from collapsing
+  overflow: auto;
+  background: rgb(255,234,234);
+}
+
+.toggle_stacked_shared_items_layout_img {
+  display: block;
+  float: left;
+  width: 15px;
+  margin: 0px 0px 0px 2px; // top, right, bottom, left
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  .shared_item_card_header {
+    margin-left: 12.5px;
+  }
+}

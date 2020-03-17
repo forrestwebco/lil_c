@@ -1,0 +1,9 @@
+var results = $("#results");
+
+var anchor = $("#results_anchor");
+
+results.remove();
+
+anchor.before("<%=j render 'stacked_results' %>");
+
+window.navigator.vibrate(1);

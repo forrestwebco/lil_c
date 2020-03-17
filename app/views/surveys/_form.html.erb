@@ -1,0 +1,80 @@
+<div class="surveys_card" align="center">
+  <% if @editing %>
+    <div class="survey_card_corner_cut_out"></div>
+    <%= link_to @survey, class: "group_avatar_link surveys_image_link" do %>
+      <% if @survey.image.url %>
+        <%= image_tag @survey.image_url, class: :group_avatar_image %>
+      <% else %>
+        <%= fa_icon "users fa-2x group_placeholder_icon" %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= form_for(@survey) do |f| %>
+    <% if @editing %>
+      <p>
+        Currently editing <%= link_to @survey.title, survey_path(@survey) %>
+      </p>
+    <% end %>
+
+    <%= f.text_field :title, placeholder: "Title", class: :surveys_text_field %>
+    <%= f.text_area :body, placeholder: "Description", class: :surveys_text_area %>
+
+    <% if @editing and @survey.image_url %>
+      <div>
+        Current icon: <%= image_tag @survey.image_url, style: "width:5%;" %>
+      </div>
+    <% end %>
+	  <p>Choose an icon: <%= f.file_field :image %></p>
+
+    <% unless @editing %>
+      <%= render "survey_questions/question" %>
+
+      <div id="survey_questions_anchor"></div>
+
+      <p>
+        <%= link_to '<i class="fa fa-plus"></i> Add another question'.html_safe,
+          add_survey_question_path, remote: true, id: :add_another_question_link %>
+      </p>
+      <%= render "app/link_sound.js", link_id: :add_another_question_link, sound: :post_interface_sound %>
+    <% else %>
+      <% for question in @survey.questions %>
+        <p id="question_<%= question.get_num %>" align="left">
+          <%= question.get_num.to_s + ": #{question.body} · " %>
+
+          <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_survey_question_path(question) %>
+
+          <%= link_to '<i class="fa fa-times"></i>'.html_safe, delete_survey_question_path(question),
+            method: :delete, remote: true, title: "Click here to permanently delete this question and any associated answers...",
+            data: { confirm: "Are you sure you want to permanently delete this question and any associated answers?" }, class: "edit_survey_form_link" %>
+        </p>
+
+        <!-- list selections and or rows -->
+        <% unless question.open_ended? %>
+          <% unless question.grid %>
+            <%= render "survey_selections/edit_list", question: question, selections: question.selections, label: "S" %>
+          <!-- outputs rows and columns for grid questions -->
+          <% else %>
+            <%= render "survey_selections/edit_list", question: question, selections: question.rows, label: "R" %>
+            <%= render "survey_selections/edit_list", question: question, selections: question.columns, label: "C" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <div id="survey_questions_anchor"></div>
+
+      <br/>
+      <p>
+        <%= link_to '<i class="fa fa-plus"></i> Add another question'.html_safe,
+          add_survey_question_path(editing: true, survey_id: question.survey.id), remote: true, class: "edit_survey_form_link", id: :add_another_question_link %>
+      </p>
+    <% end %>
+
+    <button type="submit" name="commit" class="surveys_form_button">
+      <b><%= @editing ? "Save" : "Create" %> <i class="fa fa-group"></i></b>
+    </button>
+
+
+    <%= render "app/link_sound.js", _class: true, link_id: :edit_survey_form_link, sound: :post_interface_sound %>
+  <% end %>
+</div>

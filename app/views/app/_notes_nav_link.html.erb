@@ -1,0 +1,7 @@
+<% if currently_unseen_notes.present? %>
+  <script>
+    <%= render "app/fader.js", target: "notes_nav_link", target_id: "" %>
+  </script>
+  <%= link_to '<i class="fa fa-bell fa-lg"></i>'.html_safe, notes_path, id: :notes_nav_link %>
+<% end %>
+

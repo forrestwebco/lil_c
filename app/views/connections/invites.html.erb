@@ -1,0 +1,13 @@
+<h2 class="standard_page_header">Invites <i class="fa fa-users"></i></h2>
+
+<% for invite in @invites %>
+  <%= render "connections/card", connection: invite %>
+<% end %>
+
+<% if @invites.empty? %>
+  <div class="card">
+    <div align="center">
+      There are zero pending invites.
+    </div>
+  </div>
+<% end %>

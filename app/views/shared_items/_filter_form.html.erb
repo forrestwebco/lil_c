@@ -1,0 +1,47 @@
+<%= form_tag filter_shared_items_path(id: @item_library.id), method: :get, remote: true, class: :survey_results_filter_form, id: :shared_items_filter_form do |f| %>
+
+  <div class="results_filter_form_section">
+    <%= link_to "<i class=\"fa fa-#{stacked_vertically? ? 'bars' : 'th-list'}\"></i>".html_safe, reset_shared_items_filter_path(@item_library.id, toggle_stacked: true),
+      remote: true, class: "survey_results_filter_item survey_filter_form_link", title: 'Toggle between horizontal and vertical index' %>
+
+      <div class="survey_results_filter_item">
+        <div class="add_filter_field_dropdown">
+          <%= select_tag :shared_item_field, options_for_select(shared_item_filter_options(:sort)), id: :set_sort_by_links_select, class: :shared_item_field_select %>
+        </div>
+        <div class="add_filter_field_button">
+          <%= link_to '<i class="fa fa-caret-up"></i>'.html_safe, sort_shared_items_by_path(id: @item_library.id,
+            order: 'up'), remote: true, class: "sort_by_link disabled_link", id: :set_sort_by_to_up_link %>
+          <%= link_to '<i class="fa fa-caret-down"></i>'.html_safe, sort_shared_items_by_path(id: @item_library.id,
+            order: 'down'), remote: true, class: "sort_by_link disabled_link", id: :set_sort_by_to_down_link %>
+        </div>
+        <script>
+          <%= render 'shared_items/set_sort_by_links.js' %>
+        </script>
+      </div>
+    </div>
+
+    <div class="survey_results_filter_item">
+      <div class="add_filter_field_dropdown">
+        <%= select_tag :shared_item_field, options_for_select(shared_item_filter_options), id: :shared_item_field_select, class: :shared_item_field_select %>
+      </div>
+      <div class="add_filter_field_button">
+        <%= link_to '<i class="fa fa-plus"></i>'.html_safe, add_shared_item_filter_field_path(@item_library.id),
+          remote: true, class: "survey_filter_form_link disabled_link", id: :add_filter_field_link %>
+      </div>
+      <!-- script tags used here instead of partial since set_filter_field.js is used in aother js file as a partial -->
+      <script>
+        <%= render 'shared_items/set_filter_field.js' %>
+      </script>
+    </div>
+
+  <div class="results_filter_form_section" id="open_ended_section"></div>
+  <div class="results_filter_form_section" id="dropdown_section"></div>
+
+  <div class="results_filter_form_section">
+    <%= link_to '<i class="fa fa-refresh"></i>'.html_safe, reset_shared_items_filter_path(@item_library.id),
+      remote: true, class: "survey_results_filter_item survey_filter_form_link" %>
+    <%= render 'survey_results/filter_form_button' %>
+  </div>
+
+  <%= render "survey_results/filter_form_button_fade.js" %>
+<% end %>

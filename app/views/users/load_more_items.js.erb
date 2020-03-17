@@ -1,0 +1,17 @@
+var load_more_items_link = $("#load_more_items_link")
+var anchor = $("#load_more_items_anchor");
+
+anchor.after("<%=j render "users/more_items", items: @items %>");
+anchor.remove();
+
+load_more_items_link.toggle();
+$("#load_bar").toggle();
+
+$("#more_content_sound")[0].currentTime = 0;
+$("#more_content_sound")[0].play();
+
+<% if @items.empty? or @items.size < page_size %>
+  load_more_items_link.remove();
+<% end %>
+
+window.navigator.vibrate(1);

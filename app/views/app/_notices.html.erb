@@ -1,0 +1,12 @@
+<script>
+  <%= render "app/fader.js", target: "notice_msg_txt", target_id: "", slow: true %>
+</script>
+
+<% if notice %>
+  <% if raleigh_dsa? %>
+    <br/>
+  <% end %>
+  <div class="<%= get_card_type %>">
+    <div align="center" id="notice_msg_txt"><%= notice %></div>
+  </div>
+<% end %>

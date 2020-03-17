@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Error</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+	  body {
+		  background: black;
+	  }
+  </style>
+</head>
+
+<body>
+	<!-- This file lives in public/404.html -->
+	<div align="center">
+		<img src="whoops.gif" alt="404" style="width:95%; max-width: 500px; padding-top: 75px;" id="error_gif">
+
+    <script>
+      var gif_bool = ~~(Math.random() * 2) + 1;
+      var gif_str; gif_str = gif_bool > 1 ? "whoops.gif" : "error.gif";
+      document.getElementById("error_gif").src = gif_str;
+    </script>
+	</div>
+</body>
+</html>

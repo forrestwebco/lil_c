@@ -1,0 +1,16 @@
+<%= render "app/goto" %>
+
+<%= render "posts/show_form_modal_button" if invited? or current_user %>
+
+<%= render "pages/scroll_to_top" %>
+
+<%= render "app/color_settings" %>
+
+<div id="footer_spacing_container"></div>
+
+<% if sound_turned_on? %>
+  <%= audio_tag "effects/bip.mp3", id: "post_interface_sound" %>
+  <%= audio_tag "effects/bumerang.wav", id: "more_content_sound" %>
+  <%= audio_tag "interface/interface_9.mp3", id: "user_interface_sound" %>
+  <%= render "app/link_sound.js", _class: true, link_id: :interactive_link, sound: :post_interface_sound %>
+<% end %>

@@ -1,0 +1,9 @@
+<% if @item_request %>
+  var request_item_link = $("#request_item_link_<%= @shared_item.id %>");
+  var request_item_link_anchor = $("#request_item_link_anchor_<%= @shared_item.id %>");
+
+  request_item_link.remove();
+  request_item_link_anchor.after("<%=j render 'link', shared_item: @shared_item %>");
+
+  window.navigator.vibrate(1);
+<% end %>

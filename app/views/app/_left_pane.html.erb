@@ -1,0 +1,14 @@
+<div class="left_pane">
+  <div class="right_pane_sub take_survey_card_border">
+    <%= render "app/left_pane_nav" %>
+    <br />
+  </div>
+
+  <%= link_to show_new_post_form_modal_path, remote: true do %>
+    <div class="new_post_button" align="center">
+      <p class="new_post_button_txt">
+        Post
+      </p>
+    </div>
+  <% end %>
+</div>

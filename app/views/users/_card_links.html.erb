@@ -1,0 +1,23 @@
+<% if current_user and not this_user_current? user %>
+  <div class="user_card_links_containor" id="user_<%= user.id %>_card_links">
+    <% unless current_user and current_user.following? user %>
+      <%= link_to 'Follow <i class="fa fa-user-plus"></i>'.html_safe,
+        follow_path(user.id), method: :post, remote: true %>
+    <% else %>
+      <%= link_to 'Unfollow <i class="fa fa-user-times"></i>'.html_safe,
+        unfollow_path(user.id), method: :delete, remote: true %>
+    <% end %>
+    <%= " | " %>
+    <%= link_to 'Invite <i class="fa fa-cubes"></i>'.html_safe, invite_path(user) %>
+    <%= " | " %>
+    <% if current_user.folder_between(user).present? %>
+      <%= link_to 'Message <i class="fa fa-envelope"></i>'.html_safe,
+        show_message_folder_path(current_user.folder_between(user)) %>
+    <% else %>
+      <%= link_to 'Message <i class="fa fa-envelope"></i>'.html_safe,
+        create_message_folder_path(user_id: user), method: :post %>
+    <% end %>
+  </div>
+
+  <%= audio_tag "interface/interface_9.mp3", id: "user_interface_sound" %>
+<% end %>

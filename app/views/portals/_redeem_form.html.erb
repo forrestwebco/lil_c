@@ -1,0 +1,14 @@
+<div class="dark_card" align="center">
+  <%= form_tag redeem_portal_path, method: :post do %>
+    <p>
+      <%= text_field_tag :token, nil, placeholder: "Enter your portal code here...",
+        class: :dark_text_field, id: :portal_redeem_field %>
+    </p>
+    
+    <p>
+      <button type="submit" name="commit" id="redeem_portal_button" class="dark_form_button">
+        <b>Redeem portal code <i class="fa fa-opera"></i></b>
+      </button>
+    </p>
+  <% end %>
+</div>

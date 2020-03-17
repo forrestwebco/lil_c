@@ -1,0 +1,11 @@
+<% if defined? selection_num %>
+  <% if selection_num.to_i > 2 %>
+    <%= link_to '· <i class="fa fa-times"></i>'.html_safe, remove_selection_field_path(question_num: @question_num, selection_num: selection_num),
+      remote: true, class: "survey_form_link surveys_link", id: "remove_question_#{@question_num}_selection_#{selection_num}_field_link" %>
+  <% end %>
+<% else %>
+  <% if row_num.to_i > 2 %>
+    <%= link_to '· <i class="fa fa-times"></i>'.html_safe, remove_selection_row_field_path(question_num: @question_num, row_num: row_num),
+      remote: true, class: "survey_form_link surveys_link", id: "remove_question_#{@question_num}_row_#{row_num}_field_link" %>
+  <% end %>
+<% end %>

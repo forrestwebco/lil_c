@@ -1,0 +1,19 @@
+<% proposal_link_path = defined?(proposing) ? '/#' : new_proposal_path(group_id: group.id) %>
+
+<div id="nav_table_anchor"></div>
+<table id="group_nav_table">
+	<tr>
+		<td>
+			<%= link_to "Parley", proposal_link_path,
+			  remote: true, id: :new_group_proposal_link %>
+		</td>
+		<td>·</td>
+		<td>
+			<%= link_to "Chat", group_chat_path(group), id: :group_chat_link %>
+		</td>
+		<td>·</td>
+		<td>
+			<%= link_to "About", "/#", id: :group_manifesto_link %>
+		</td>
+	</tr>
+</table>

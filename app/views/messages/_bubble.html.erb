@@ -1,0 +1,30 @@
+<div class="message_bubble">
+  <%= render "users/mini_avatar", item: message,
+    position: (own_item?(message) ? :right_mini_avatar : :left_mini_avatar) %>
+  
+  <% if message.body.present? %>
+    <div class="<%= own_item?(message) ? 'right' : 'left' %>_message_body_text"
+      title="Sent <%= time_ago(time_ago_in_words(message.created_at)) %>">
+      <div id="bub_txt_<%= message.unique_token %>" style="<%= 'float:right;' if own_item?(message) %>">
+        <%= render "app/body", item: message %>
+      </div>
+    </div>
+  <% end %>
+  
+  <!-- to stop float from cascading to lower elements -->
+  <div style="clear:both;"></div>
+  
+  <% if message.image_url %>
+    <div align="center">
+      <%= link_to message_path(message.id) do %>
+        <%= image_tag message.image_url, class: :message_image %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if message.user_id.eql? 34 %>
+  <script>
+    <%= render "app/fader.js", target: "bub_txt", target_id: message.unique_token, slow: true %>
+  </script>
+<% end %>

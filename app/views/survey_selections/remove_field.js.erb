@@ -1,0 +1,17 @@
+<% if @other %>
+  $("#question_<%= @question_num %>_selection_other_field").remove();
+
+  <% unless @editing %>
+    $("#question_<%= @question_num %>_add_other_link").toggleClass("surveys_link", true);
+  <% end %>
+
+  $("#question_<%= @question_num %>_add_other_link").toggleClass("disabled_link", false);
+<% else %>
+  $("#question_<%= @question_num %>_selection_<%= @selection_num %>_field").remove();
+
+  var selection_num = <%= @selection_num.to_i %> - 1;
+
+  $("#remove_question_<%= @question_num %>_selection_" + selection_num + "_field_link").toggleClass('hidden_and_disabled_link', false);
+<% end %>
+
+window.navigator.vibrate(1);

@@ -1,0 +1,206 @@
+// Place all the styles related to the surveys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+@mixin card {
+  transition: all .4s ease-in-out;
+  position: relative;
+  padding: 15px 32.5px;
+  background: white;
+  max-width: 590px;
+  margin: 0 auto;
+  margin-bottom: 12.5px;
+  width: 94.5%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+@mixin standard_form_element {
+  width: 55%;
+  max-width: 275px;
+}
+
+.surveys_page_header {
+  color: black;
+}
+
+.survey_card_corner_cut_out {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	height: 55px;
+	width: 55px;
+}
+
+.surveys_card {
+  @include card;
+}
+
+.surveys_card_links {
+  margin-top: 22.5px;
+}
+
+.surveys_link {
+  color: rgb(118, 118, 118);
+}
+
+.surveys_text_field {
+  margin-bottom: 7.5px;
+  padding: 2.5px;
+  display: block;
+  background: white;
+  color: black;
+  border-width: 0.5px;
+  border-color: rgb(115,115,115);
+  width: 97.5%;
+}
+
+.surveys_text_area {
+  background: white;
+  color: black;
+  width: 97.5%;
+}
+
+.surveys_form_button {
+  @include standard_form_element;
+  height: 35px;
+  background: rgb(250, 250, 250);
+  color: rgb(70, 70, 70);
+  border-color: rgb(205, 205, 205);
+  border-radius: 3px;
+}
+
+.surveys_image_link {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	color: rgb(50, 50, 50);
+}
+
+.take_survey_page_header {
+  font-size: 35px;
+  padding: 15px 0;
+}
+
+.take_survey_card {
+  overflow: hidden;
+}
+
+.take_survey_card_border {
+  border-top: 7.5px solid #ff6b66;
+}
+
+.take_survey_banner {
+  position: relative;
+  background: rgb(255, 10, 28);
+  width: 100%;
+  height: 278px;
+  margin-bottom: -92.5px;
+  z-index: -2;
+}
+
+.take_survey_banner_img {
+  width: 220px;
+  margin-top: 32.5px;
+  z-index: 0;
+}
+
+.take_survey_next_link {
+  display: block;
+  width: 100px;
+  height: 35px;
+  background: rgb(238,238,238);
+  border-radius: 3px;
+  margin-right: 10px;
+  margin-bottom: 7.5px;
+  float: left;
+}
+
+.take_survey_submit {
+  background: rgb(0,119,228);
+}
+
+.take_survey_back_link_txt {
+  margin-top: 8.5px;
+}
+
+.take_survey_color_bands {
+  transition: all 1s ease-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: -1;
+}
+
+.surveys_scroll_to_top_link_container {
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+}
+
+#surveys_card {
+  animation: surveys_header_card_glow 7.5s infinite alternate;
+}
+
+#surveys_header {
+  animation: surveys_header_shadow 7.5s infinite alternate;
+}
+
+@keyframes surveys_header_card_glow {
+  0% {
+    background: red;
+    box-shadow: -5.5px -5.5px 5.5px rgb(167, 88, 88);
+  }
+  100% {
+    background: white;
+    box-shadow: 5.5px 5.5px 5.5px red;
+  }
+}
+
+@keyframes surveys_header_shadow {
+  0% {
+    color: white;
+    text-shadow: 2.25px 2.25px 2.25px rgb(167, 88, 88);
+  }
+  100% {
+    color: red;
+    text-shadow: 0.1px 0.1px 0.1px white;
+  }
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  .surveys_page_header {
+    font-size: 20px;
+  }
+  .surveys_card {
+    padding: 15px 7.5px;
+    width: 92.5%;
+  }
+  .dsa_card {
+    padding: 15px 7.5px;
+    width: 92.5%;
+  }
+  .take_survey_page_header {
+    font-size: 25px;
+  }
+  .take_survey_card {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 82.5%;
+  }
+  .take_survey_banner {
+    height: 122.5px;
+    margin-bottom: -55px;
+  }
+  .take_survey_banner_img {
+    width: 65px;
+    margin-top: 22.5px;
+  }
+  .survey_form_link_mobile {
+    font-size: 12px;
+  }
+}

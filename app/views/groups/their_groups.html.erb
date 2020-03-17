@@ -1,0 +1,7 @@
+<%= link_to @user do %>
+  <h2 class="standard_page_header"><%= @user.name + "'s groups " %><i class="fa fa-cubes"></i></h2>
+<% end %>
+
+<% @groups.each do |group| %>
+  <%= render "groups/card", group: group %>
+<% end %>

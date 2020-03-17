@@ -1,0 +1,35 @@
+// proposal_id is actually declared/defined in new_abstain
+// and still accessible here from there
+
+function remove_abstain_form() {
+  var vote_dropdown_table = $("#vote_dropdown_proposal_table_" + proposal_id);
+  var vote_dropdown_link = $("#vote_dropdown_proposal_link_" + proposal_id);
+  var vote_dropdown_link_anchor = $("#vote_dropdown_proposal_link_anchor_" + proposal_id);
+  var new_abstain_form = $("#new_abstain_form_" + proposal_id);
+
+  new_abstain_form.remove();
+  vote_dropdown_table.remove();
+  vote_dropdown_link.remove();
+
+  vote_dropdown_link_anchor.after("<%=j render 'votes/dropdown_link', item: @proposal %>");
+}
+
+remove_abstain_form();
+var vote_dropdown_proposal_<%= @proposal.id %>_shown = false;
+
+<% if @vote_cast_successful %>
+  // resets voter links
+  var voter_links = $("#voter_links_container");
+  var voter_links_anchor = $("#voter_links_container_anchor");
+  voter_links_anchor.after("<%=j render 'proposals/voter_links' %>");
+  voter_links.remove();
+  // resets votes feed
+  var votes = $("#votes_stream");
+  votes.after("<%=j render 'votes/feed', votes: @votes %>");
+  votes.remove();
+<% end %>
+
+// sound and haptic feedback
+$("#post_interface_sound")[0].currentTime = 0;
+$("#post_interface_sound")[0].play();
+window.navigator.vibrate(1);

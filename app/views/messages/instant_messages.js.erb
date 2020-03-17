@@ -1,0 +1,41 @@
+<% if @instant_messages.present? %>
+  var anchor = $("#instant_messages_anchor");
+  var seen_anchor = $("#last_message_views_anchor");
+  var seen_views = $("#last_message_views_<%= (@folder ? @folder : @group).id %>");
+  var container = $("#messages_container");
+
+  if ( typeof last_message_id === 'undefined'
+    || last_message_id < <%= @instant_messages.first.id %>
+    || last_message_id !== <%= @instant_messages.last.id %> )
+  {
+    var last_message_id = <%= @instant_messages.last.id %>;
+
+    // refreshes messages
+    container.remove();
+    anchor.after("<%=j render 'messages/instant_messages' %>");
+    $("#last_loaded_message_anchor").scrollView();
+
+    // play audio for IM received
+    $("#audio_play")[0].currentTime = 0;
+    $("#audio_play")[0].play();
+
+    window.navigator.vibrate(100);
+  }
+
+  // updates last message views list
+  seen_views.remove();
+  seen_anchor.after("<%=j render 'messages/seen', message: @instant_messages.last %>");
+<% end %>
+
+<% if @actively_typing_member %>
+  if (!$("#actively_typing").length) {
+    $("#actively_typing_member_anchor").after("<%=j render 'messages/actively_typing', member: @actively_typing_member %>");
+    // plays sound of a typewriter being typed on when other user is typing
+    $("#typewriter_audio")[0].currentTime = 0;
+    $("#typewriter_audio")[0].play();
+  }
+<% else %>
+  if ($("#actively_typing").length) {
+    $("#actively_typing").remove();
+  }
+<% end %>

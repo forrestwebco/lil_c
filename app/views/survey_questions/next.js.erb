@@ -1,0 +1,21 @@
+$("#take_survey_page_<%= @page_num.to_i - 1 %>").hide();
+$("#take_survey_page_<%= @page_num.to_i %>").show();
+$(document).scrollTop(0);
+
+<% if @show_back %>
+  $(".back_link").show();
+<% end %>
+
+<% if @show_next %>
+  $(".next_link").show();
+<% end %>
+
+<% if @show_submit %>
+  $("#survey_submit").show();
+<% end %>
+
+<% if @hide_next %>
+  $(".next_link").hide();
+<% end %>
+
+window.navigator.vibrate(1);

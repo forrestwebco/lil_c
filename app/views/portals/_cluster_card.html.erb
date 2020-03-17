@@ -1,0 +1,21 @@
+<div class="card">
+  <%= render "app/time_ago", item: cluster %>
+  <%= link_to "Close", close_portal_path(cluster.unique_token), method: :delete,
+    data: { confirm: "Are you sure you want to destroy this cluster?" }, class: :top_left_link %>
+  
+  <%= link_to "Flier", cluster_flier_path(cluster.unique_token), class: :bottom_right_link %>
+  
+  <div align="center">
+    <p>
+      Cluster <%= cluster.unique_token %>
+    </p>
+    <%= link_to show_cluster_path(cluster.unique_token) do %>
+      <p>
+        <b>There are <%= cluster.portals.size %> portals in this cluster.</b>
+      </p>
+    <% end %>
+    <p>
+      Expires in <%= time_ago_in_words cluster.expires_at %>
+    </p>
+  </div>
+</div>

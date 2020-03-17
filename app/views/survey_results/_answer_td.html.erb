@@ -1,0 +1,4 @@
+<div class="stacked_result_question stacked_result_answer <%= 'stacked_result_question_even' if result_num.to_i.even? %>" id="results_answer_<%= answer.id %>" align="left">
+  <%= snip_survey_txt answer.result_txt, @read_more %>
+  <%= survey_result_read_more_link answer, @read_more, result_num %>
+</div>

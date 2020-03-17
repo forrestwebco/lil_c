@@ -1,0 +1,26 @@
+<div class="card" align="center">
+  <h2 class="standard_page_header">
+    Listing all open portals <i class="fa fa-opera"></i>
+  </h2>
+</div>
+
+<%= render "admin/portals_form" %>
+
+<% for portal in @portals %>
+  <%= render "portals/card", portal: portal %>
+<% end %>
+
+<% if @portals.empty? %>
+  <div class="card" align="center">
+    <p>
+      No portals are currently open.
+    </p>
+  </div>
+<% end %>
+
+
+<div class="card" align="center">
+  <p>
+    <%= link_to 'Back to admin <i class="fa fa-cog"></i>'.html_safe, dsa_admin_path %>
+  </p>
+</div>

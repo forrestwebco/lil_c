@@ -1,0 +1,7 @@
+$("#new_post_form").change(function(e) {
+	var option_selected = $(e.target).find("option:selected");
+	if (typeof option_selected.val() === 'string') {
+    $("#post_interface_sound")[0].currentTime = 0;
+    $("#post_interface_sound")[0].play();
+	}
+});

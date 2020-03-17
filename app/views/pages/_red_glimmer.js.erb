@@ -1,0 +1,48 @@
+// pages
+
+$(function() {
+  function red_loading_glimmer() {
+    var red_min = 0; // when it should go back up
+    var red_max = 255; // when color should go back down
+    var change_rate = 0.75; // added/subbed each round
+    var change_speed = 1; // interval speed, higher == slower
+
+    var chars = <%=j @char_codes.to_json %>;
+    var bits = <%=j @char_bits.to_json %>;
+    // counter for char codes
+    var num = 0;
+
+    // initializes and builds array of pixels
+    var pixels = new Array(16);
+    for (var i=0; i < 16; i++) {
+  	  var r = Math.round(Math.random() * 255 * chars[num]);
+      var fat_r = false; // ensures pos/neg
+      pixels[i] = [r, fat_r];
+    }
+
+    setInterval(function() {
+
+      for (var pixel_id=0; pixel_id < 16; pixel_id++) {
+    	  var pixel_div = $("#loading_grid_pixel_" + pixel_id);
+        var pixel = pixels[pixel_id];
+
+        // flips color direction of change
+        if (pixel[0] <= red_min) {
+          pixel[1] = false; // fat_r becomes false
+        } else if (pixel[0] >= red_max) {
+          pixel[1] = true; // fat_r becomes true
+        }
+        // fattens or shrinks red
+        if (pixel[1]) {
+          pixel[0] -= change_rate;
+        } else {
+          pixel[0] += change_rate;
+        }
+
+    		pixel_div.css("background", "rgb(" + pixel[0] + ", 0, 0)");
+      }
+    }, change_speed);
+  }
+
+  red_loading_glimmer();
+});

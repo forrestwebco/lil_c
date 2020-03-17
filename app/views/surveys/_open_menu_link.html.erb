@@ -1,0 +1,4 @@
+<% link_id = "survey_menu_link_#{survey.id}" %>
+
+<%= link_to ellipsis_dots.html_safe, open_survey_menu_path(survey, showing: @showing),
+  remote: true, class: "mini_menu_ellipsis", id: link_id %>

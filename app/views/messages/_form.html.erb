@@ -1,0 +1,41 @@
+<div class="dark_card message_form_card" id="new_message_form">
+	<div align="center">
+		<%= form_for @new_message, url: messages_path, method: :post, remote: true do |f| %>
+			<%= hidden_field_tag :folder_id, @folder.id if @folder %>
+			<%= hidden_field_tag :group_id, @group.id if @group %>
+
+			<!-- level 1 start -->
+			<div class="message_form_container">
+		    <!-- level 2 left start -->
+			  <div class="message_form_left_sub_container">
+					<%= f.text_area :body, placeholder: "Send a message...",
+					  class: "dark_text_area message_text_area", id: :instant_message_text_area %>
+
+					  <script>
+					    <%= render "messages/typing_listen.js" if @folder %>
+					  </script>
+			  </div>
+		    <!-- level 2 left end -->
+
+		    <!-- level 2 right start -->
+			  <div class="message_form_right_sub_container">
+			    <div class="message_button_container">
+			      <button type="submit" name="commit">
+			        <i class="fa fa-send"></i>
+			      </button>
+			    </div>
+
+			    <div class="message_img_link_container">
+					  <%= link_to add_message_image_path, remote: true do %>
+						  <i class="fa fa-picture-o dark_link"></i>
+					  <% end %>
+			    </div>
+			  </div>
+		    <!-- level 2 right end -->
+			</div>
+			<!-- level 1 end -->
+
+			<div id="hidden_file_field" hidden><%= f.file_field :image %></div>
+		<% end %>
+	</div>
+</div>

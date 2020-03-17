@@ -1,0 +1,4 @@
+var link = $("#shared_item_menu_link_<%= @shared_item.id %>");
+link.after("<%=j render "shared_items/mini_menu", shared_item: @shared_item %>");
+link.after("<%=j render "shared_items/close_menu_link", shared_item: @shared_item %>");
+link.remove();

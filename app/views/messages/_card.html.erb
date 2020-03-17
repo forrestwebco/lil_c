@@ -1,0 +1,14 @@
+<div class="dark_card">
+  <%= render "users/avatar_card_link", user: message.user if message.user %>
+  <%= render "app/time_ago", item: message %>
+  <div align="center">
+    <% if message.image_url %>
+      <p><%= image_tag message.image_url, class: :message_image %></p>
+    <% end %>
+    <% if message.body.present? %>
+      <div class="message_body_text <%= justified_body message %>">
+        <%= render "app/body", item: message %>
+      </div>
+    <% end %>
+  </div>
+</div>

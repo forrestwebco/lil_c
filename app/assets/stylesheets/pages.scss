@@ -1,0 +1,483 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+$main_red: #ff6b66;
+
+$darkred: rgb(190, 0, 0);
+
+.circle_menu_nav_links {
+  padding-top: 17.5px;
+  padding-left: 7.5px;
+}
+
+.circle_menu_container {
+  transition: all .4s ease-in-out;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+.circle_menu_open {
+	background: white;
+  width: auto;
+  height: auto;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  z-index: 15;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  border-bottom-right-radius: 5px;
+}
+
+.circle_menu_link {
+  transition: all .4s ease-out;
+  position: relative;
+  top: 10px;
+  left: 10px;
+  display: block;
+  height: 20px;
+  width: 20px;
+  background: yellow; // ends/closes at this color
+  border-radius: 50%;
+  box-shadow: 0 0 5px black;
+}
+
+.circle_menu_rotate {
+  transform-origin: 10px 10px;
+  transform: rotate(225deg);
+  //box-shadow: -1.25px -1.25px 1.25px rgb(255,192,203);
+  background: yellow;
+  box-shadow: 0 0 15px red;
+}
+
+@mixin circle_menu_section {
+  transition: all .6s ease-in-out .4s;
+  display: block;
+  width: 50%;
+  height: 50%;
+  float: left;
+}
+
+.circle_menu_section_top_left {
+  @include circle_menu_section;
+  border-top-left-radius: 100%;
+  background: black;
+}
+
+.circle_menu_section_top_right {
+  @include circle_menu_section;
+  border-top-right-radius: 100%;
+  background: $darkred;
+}
+
+.circle_menu_section_bottom_left {
+  @include circle_menu_section;
+  border-bottom-left-radius: 100%;
+  background: $darkred;
+}
+
+.circle_menu_section_bottom_right {
+  @include circle_menu_section;
+  border-bottom-right-radius: 100%;
+  background: black;
+}
+
+.circle_top_left_shift {
+  transform: translate(-2.5px, -2.5px);
+  background: red;
+  //box-shadow: -1.5px -1.5px 1.5px lightblue;
+}
+
+.circle_top_right_shift {
+  transform: translate(2.5px, -2.5px);
+  background: black;
+  //box-shadow: 1.5px -1.5px 1.5px pink;
+}
+
+.circle_bottom_left_shift {
+  transform: translate(2.5px, 2.5px);
+  background: red;
+  //box-shadow: 1.5px 1.5px 1.5px lightblue;
+}
+
+.circle_bottom_right_shift {
+  transform: translate(-2.5px, 2.5px);
+  background: black;
+  //box-shadow: -1.5px 1.5px 1.5px pink;
+}
+
+.loading_gif {
+  width: 40%;
+  margin-top: 50px;
+}
+
+.side_pane_activity {
+  text-align: left;
+  padding-left: 10px;
+  margin-top: -7.5px;
+  width: 100%;
+}
+
+.right_pane_sub {
+  position: relative;
+  width: 100%;
+  min-height: 80px;
+  margin-bottom: 12.5px;
+  padding: 12.5px 5px 0px 5px; // top, right, bottom, left
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+.right_pane {
+  position: absolute;
+  right: -262.5px;
+  top: -7.5px;
+  width: 250px;
+}
+
+.left_pane {
+  position: absolute;
+  left: -272.5px;
+  top: -7.5px;
+  width: 250px;
+}
+
+.side_pane_label {
+  font-size: 12px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.right_pane_label {
+  margin-left: 5px;
+}
+
+.side_pane_label_successive {
+  padding-top: 10px;
+}
+
+.side_pane_item {
+  text-align: left;
+  padding-left: 10px;
+  margin-top: -7.5px;
+  width: 100%;
+}
+
+.active_nav_link {
+  color: $main_red;
+}
+
+.buffer_pixel {
+	width: 25%;
+	height: 25%;
+	float: right;
+  font-size: 10px;
+  text-align: center;
+}
+
+.buffer_wheel_grid_containor {
+	width: 50px;
+	height: 50px;
+}
+
+.load_wheel_pixel {
+	width: 25%;
+	height: 25%;
+	float: right;
+}
+
+.load_wheel_container {
+	width: 50px;
+	height: 50px;
+}
+
+.load_wheel {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 5;
+}
+
+.load_circle {
+  position: fixed;
+  bottom: 12.5px;
+  left: 15px;
+  z-index: 5;
+}
+
+.load_bar_containor {
+  width: 150px;
+  height: 25px;
+}
+
+.load_bar_section {
+  width: 6%;
+  height: 100%;
+  float: left;
+  font-size: 10px;
+  text-align: center;
+}
+
+.load_band_containor {
+  width: 25px;
+  height: 25px;
+}
+
+.load_band_section {
+  width: 2%;
+  height: 100%;
+  float: left;
+  font-size: 10px;
+  text-align: center;
+}
+
+.load_circle_containor {
+  margin-top: 25px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.load_circle_section {
+	border-radius: 50%;
+  width: 5%;
+  height: 5%;
+  position: absolute;
+}
+
+.load_fib_bar {
+  width: 100%;
+}
+
+#vertical_load_screen {
+  position: relative;
+}
+
+#loading_label {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 17.25px;
+  color: white;
+}
+
+#still_loading_label {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 25px;
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  right: 15px
+}
+
+.fibonacci_loading {
+  position: relative;
+  max-width: 565px;
+  margin: 0 auto;
+  margin-bottom: 12.5px;
+  width: 98.65%;
+}
+
+.fib_loading_label {
+  font-size: 40px;
+}
+
+.nav_bar {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 45px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  z-index: 5;
+}
+
+#standard_nav_menu {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background: white;
+  margin-bottom: 15px;
+  z-index: 5;
+}
+
+.standard_nav_menu_link {
+	font-size: 26px;
+	display: block;
+	padding: 5px 5px;
+  background: white;
+}
+
+#menu_link_container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 47.5px;
+  height: 40.5px;
+  background: white;
+  z-index: 1;
+}
+
+.slide_menu_container {
+  transition: all .4s ease-in-out;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  z-index: 10;
+}
+
+.slide_menu_toggle_link {
+  transition: all .4s ease-in-out;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.slide_menu_open {
+	background: white;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  position: fixed;
+}
+
+.slide_menu_toggle_link_span {
+  transform: translateX(320px);
+}
+
+.plus_sign {
+  transition: all .4s ease-in-out;
+  font-weight: bolder;
+  font-size: 35px;
+  width: 100%;
+  height: 100%;
+	color: rgb(175, 175, 175);
+	position: relative;
+}
+
+.plus_rotate {
+  transform-origin: 20px 20px;
+  transform: rotate(225deg);
+}
+
+.plus_fade {
+  text-shadow: 1.5px 1.5px 1.5px red;
+}
+
+#toggle_menu_link {
+	position: relative;
+	top: 7.5px;
+	left: 12.5px;
+	font-size: 13px;
+	color: rgb(175, 175, 175);
+}
+
+.return_home_link {
+  position: absolute;
+  top: 12.5px;
+  left: 65.5px;
+  color: black;
+}
+
+.scroll_to_top_link_icon {
+  position: absolute;
+  top: -4px;
+  left: 11.5px;
+  font-size: 40px;
+}
+
+.scroll_to_top_link_container {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 47.5px;
+  height: 40.5px;
+  z-index: 5;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  background: white;
+}
+
+.scroll_to_top_link {
+  display: none;
+}
+
+@mixin line_fader {
+  transition: all 0.3s ease-out;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background: white;
+  width: 100%;
+  height: 0px;
+  z-index: 15;
+}
+
+.top_line_fader {
+  @include line_fader;
+}
+
+.bottom_line_fader {
+  transition: all 0.3s ease-out;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background: white;
+  width: 100%;
+  height: 0px;
+  z-index: 15;
+}
+
+.top_line_faded {
+  box-shadow: 0px 3.5px 1.25px 1.5px pink;
+  background: lightblue;
+  height: 3.5px;
+}
+
+.bottom_line_faded {
+  box-shadow: 0px -3.5px 1.25px 1.5px pink;
+  background: lightblue;
+  height: 3.5px;
+  bottom: 3.5px;
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+  .right_pane {
+    visibility: hidden;
+    width: 0px;
+    left: 0px;
+  }
+  .left_pane {
+    visibility: hidden;
+    width: 0px;
+    left: 0px;
+  }
+  .circle_menu_open {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// for desktop
+@media screen and (min-width: 975px) {
+  .hidden_nav_menu_link {
+    visibility: hidden;
+    height: 0px;
+    margin: 0px;
+    padding: 0px;
+  }
+}

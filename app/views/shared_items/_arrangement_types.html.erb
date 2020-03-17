@@ -1,0 +1,30 @@
+<% unless cookies[:hide_arrangement_types_card].present? %>
+  <div class="card" id="arrangement_types_card">
+    <%= link_to '<i class="fa fa-times"></i>'.html_safe, hide_arrangement_types_card_path, remote: true, class: "survey_interactive_link top_right_link" %>
+    <p>
+      <b>3 Types of Arrangements</b>
+    </p>
+    <p>
+      1. Borrow: These items are fully communalized and placed in a common storage location to be checked out and returned to that location. Donate surplus items or items you rarely use to the pot for all. Keep an eye out for free items and collect them.
+    </p>
+    <p>
+      2. Peer-to-Peer: The items are personal property of someone who wants to contribute to the Lending Library by providing access. These items may be required by the holder more often, making it logistically tedious for the holder to donate the item, or the common storage location may not have space. The item user borrows directly from the holder and returns it back to the holder.
+    </p>
+    <p>
+      3. On-site: These items are the personal property of someone and are made available for use at the location of the holder. Items in this category may pose an injury risk, may be difficult to move or expensive, or may benefit from some on-site training or expertise of the holder.
+    </p>
+
+    <p>
+      <b>Goals</b>
+    </p>
+    <p>
+      1. Build the "Borrow" stock over time, particularly according to common needs and requests.
+    </p>
+    <p>
+      2. Expand the definition of items to include appliances, electronic devices, and miscellaneous other items that benefit from sharing.
+    </p>
+    <p>
+      3. Integrate the Lending Library with other streams of action.
+    </p>
+  </div>
+<% end %>

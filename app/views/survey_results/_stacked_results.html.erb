@@ -1,0 +1,49 @@
+<div class="stacked_results" id="results">
+  <table class="survey_results_table">
+    <tr class="sort_results_tr">
+      <% for question in @survey.questions %>
+        <th>
+          <%= snip_survey_txt question.body %>
+          <%= link_to '<i class="fa fa-caret-up"></i>'.html_safe, sort_results_by_path(id: @survey.id,
+            question_body: question.body, order: 'up'), remote: true, class: "sort_by_link" %>
+          <%= link_to '<i class="fa fa-caret-down"></i>'.html_safe, sort_results_by_path(id: @survey.id,
+            question_body: question.body, order: 'down'), remote: true, class: "sort_by_link" %>
+        </th>
+      <% end %>
+    </tr>
+  </table>
+
+  <% result_num=0; for result in @results %>
+    <div class="stacked_result" id="stacked_result_<%= result.id %>">
+      <div class="stacked_result_questions_container">
+        <div class="stacked_result_question <%= 'stacked_result_question_even' if result_num.even? %>">
+          <b>Date completed</b>
+        </div>
+        <div class="stacked_result_question stacked_result_answer <%= 'stacked_result_question_even' if result_num.even? %>">
+          <b><%= result.created_at.strftime("%d %b. %Y, %H:%M:%S") %></b>
+        </div>
+      </div>
+      <% for answer in result.survey_answers %>
+        <% unless answer.body.blank? or answer.body.eql? "[]" %>
+          <div class="stacked_result_questions_container">
+            <div class="stacked_result_question <%= 'stacked_result_question_even' if result_num.even? %>" align="left">
+              <%= snip_survey_txt answer.question.body %>
+            </div>
+            <%= render 'answer_td', answer: answer, result_num: result_num %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="stacked_result_questions_container">
+        <div class="stacked_result_question <%= 'stacked_result_question_even' if result_num.even? %>">
+          <%= link_to 'Delete <i class="fa fa-trash"></i>'.html_safe, survey_result_path(result), method: :delete, remote: true,
+            data: { confirm: "Are you sure you want to permanently delete this result?" }, class: "sort_by_link stacked_shared_item_edit_link"  %>
+        </div>
+        <div class="stacked_result_question stacked_result_answer <%= 'stacked_result_question_even' if result_num.even? %>">
+
+        </div>
+      </div>
+    </div>
+  <% result_num+=1; end %>
+</div>
+
+<%= render "app/link_sound.js", _class: true, link_id: :sort_by_link, sound: :post_interface_sound %>

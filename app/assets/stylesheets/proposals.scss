@@ -1,0 +1,140 @@
+// Place all the styles related to the Proposals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+@mixin section {
+  transition: all .4s ease-in-out;
+	background: white;
+	text-align: center;
+	float: left;
+	height: 100%;
+}
+
+#new_proposal_form {
+  padding-bottom: 35px;
+}
+
+#add_proposal_form_link {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 11px;
+}
+
+.views_count_icon {
+  position: absolute;
+  bottom: 2.5px;
+  left: 5px;
+}
+
+.views_count_size {
+  font-size: 11px;
+}
+
+.old_versions_count_icon {
+  position: absolute;
+  bottom: 2.5px;
+  left: 37.5px;
+}
+
+.top_right_glimmer {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}
+
+.bottom_left_glimmer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}
+
+.bottom_right_glimmer {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	width: 5.5px;
+	height: 5.5px;
+}
+
+.proposal_body_text {
+  font-size: 14px;
+	margin-bottom: 15px;
+	width: 85%;
+}
+
+.proposal_title_text {
+  font-size: 16.5px;
+}
+
+#proposal_image {
+	width: 98.5%;
+	padding-top: 10px;
+}
+
+#proposal_card_spacer {
+  height: 7.5px;
+}
+
+#hidden_file_field {
+	width: 200px;
+}
+
+.proposal_link_table {
+  padding-bottom: 5px;
+}
+
+.proposal_sections {
+	position: relative;
+  max-width: 655px;
+	margin: 0 auto;
+  width: 94.5%;
+	height: 50px;
+	margin-bottom: 12.5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.35);
+  border-radius: 5px;
+}
+
+.action_type_label {
+  position: absolute;
+  bottom: 8px;
+  right: 5px;
+  font-size: 11px;
+}
+
+.section_text {
+	margin: 17.5px 0px;
+}
+
+.voting_section {
+	@include section;
+}
+
+.proposal_sub_section {
+  @include section;
+	width: 50%;
+}
+
+.proposal_sub_tri_section {
+	@include section;
+	width: 33.33333%;
+}
+
+.proposal_section_active {
+  background: #ff6b66;
+  color: white;
+}
+
+// for mobile
+@media screen and (max-width: 975px) {
+	.proposal_sections {
+		max-width: 605px;
+		width: 95.5%;
+	}
+}

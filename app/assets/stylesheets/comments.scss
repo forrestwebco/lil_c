@@ -1,0 +1,37 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// top, right, bottom, left
+
+.comment_body {
+  padding: 5px 0px;
+}
+
+.mini_comment_image {
+  width: 97.5%;
+}
+
+.mini_comment_card {
+  padding: 5px 0px;
+  overflow: hidden;
+}
+
+.mini_comment_body {
+  font-size: 13px;
+}
+
+.mini_comment_avatar {
+  float: left;
+  padding-right: 5px;
+}
+
+.mini_comment_form {
+  padding-top: 7.5px;
+  padding-bottom: 10px;
+}
+
+.mini_form_field {
+  margin-left: 2.5px;
+  width: 75%;
+}

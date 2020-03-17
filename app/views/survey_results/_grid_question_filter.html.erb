@@ -1,0 +1,34 @@
+<div class="survey_results_filter_item" id="grid_question_<%= question.id %>_filter">
+  <%= link_to '<i class="fa fa-times"></i>'.html_safe, remove_grid_question_filter_path(question), remote: true, class: "top_right_link survey_form_link" %>
+
+  <p>
+    <b><%= snip_survey_txt(question.body.squish, nil, :small) %></b>
+  </p>
+  <table class="survey_results_table">
+    <th></th>
+    <% for column in question.columns %>
+      <th class="survey_results_th">
+        <%= snip_survey_txt column.body, nil, :small %>
+      </th>
+    <% end %>
+    <% row_num=1; for row in question.rows %>
+      <tr class="survey_results_tr">
+        <td class="survey_results_td <%= 'stacked_result_question_even' if row_num.odd? %>">
+          <%= snip_survey_txt row.body, nil, :small %>
+        </td>
+        <% col_num=1; for column in question.columns %>
+          <td class="survey_results_td <%= 'stacked_result_question_even' if row_num.odd? %>">
+            <% if question.question_type.eql? 'checkbox' %>
+              <%= check_box_tag "grid_question_#{question.id}_row_#{row_num}_selection_#{col_num}", true %>
+            <% else %>
+              <!-- no column number for parameter name, gets sent as value -->
+              <%= radio_button_tag "grid_question_#{question.id}_row_#{row_num}_selection", col_num %>
+            <% end %>
+          </td>
+        <% col_num+=1; end %>
+      </tr>
+    <% row_num+=1; end %>
+  </table>
+
+  <%= render "app/link_sound.js", _class: true, link_id: :survey_form_link, sound: :post_interface_sound %>
+</div>
