@@ -1,5 +1,5 @@
 class TemplatesController < ApplicationController
-  before_action :set_lil_c, only: [:lil_c, :lil_c_sign_up]
+  before_action :set_lil_c, only: [:lil_c, :lil_c_sign_up, :verify]
   before_action :set_fwc
 
   layout :get_layout
