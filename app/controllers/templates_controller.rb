@@ -4,6 +4,10 @@ class TemplatesController < ApplicationController
 
   layout :get_layout
 
+  def verify
+    @g_verify = true
+  end
+
   def co
     @fwc_home = true
   end

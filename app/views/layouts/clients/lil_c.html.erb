@@ -2,10 +2,11 @@
 <html>
   <head>
     <title>Lil' C. Corleone</title>
-
-    <%= stylesheet_link_tag    'clients/lil_c', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_pack_tag 'application' %>
+    <% unless @g_verify %>
+      <%= stylesheet_link_tag    'clients/lil_c', media: 'all', 'data-turbolinks-track' => true %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+      <%= javascript_pack_tag 'application' %>
+    <% end %>
 
     <%= csrf_meta_tags %>
 
@@ -32,8 +33,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="#000000">
   </head>
   <body>
-    <%= render "templates/clients/lil_c/header" %>
+    <%= render "templates/clients/lil_c/header" unless @g_verify %>
     <%= yield %>
-    <%= render "templates/clients/lil_c/footer" %>
+    <%= render "templates/clients/lil_c/footer" unless @g_verify %>
   </body>
 </html>
