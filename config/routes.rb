@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   use_doorkeeper
 
+  # google verify
+  get 'google4b57882e82b3b0a2.html', to: 'templates#verify'
+
   # templates
   get 'sign_up', to: 'templates#lil_c_sign_up', as: 'lil_c_sign_up'
 
