@@ -9,7 +9,7 @@ $main_font_size: 16px;
 $card_max_midth: 950px;
 
 @mixin card {
-  transition: all .4s ease-in-out;
+  transition: all 0.4s ease-in-out;
   position: relative;
   padding: 0px 7.5px;
   font-size: $main_font_size;
@@ -55,8 +55,8 @@ $card_max_midth: 950px;
 }
 
 html {
-	font-family: "Proxima Nova";
-	background: black;
+  font-family: "Proxima Nova";
+  background: black;
   font-weight: 400;
 }
 
@@ -65,10 +65,10 @@ body {
 }
 
 a {
-	text-decoration: none;
-	font-weight: bold;
-	font-size: $main_font_size;
-	color: black;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: $main_font_size;
+  color: black;
 }
 
 ::selection {
@@ -96,7 +96,7 @@ a {
 }
 
 .page_hider {
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .hide_page {
@@ -129,12 +129,14 @@ a {
   float: left;
 }
 
-.header_links, .avatar {
+.header_links,
+.avatar {
   margin: 0 auto;
   width: 250px;
 }
 
-.header_link, .header_icon_link {
+.header_link,
+.header_icon_link {
   display: block;
   float: left;
   width: 33.333333%;
@@ -146,7 +148,7 @@ a {
 }
 
 .header_icon_link {
-  width: 25%;
+  width: 20%;
   font-size: 25px;
 }
 
@@ -206,19 +208,19 @@ a {
 }
 
 .nav_links {
-  transition: all .25s ease-in;
+  transition: all 0.25s ease-in;
   padding-top: 30px;
   padding-left: 15px;
 }
 
 .nav_links_container {
-  transition: all .35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   position: fixed;
   top: 0;
   left: -100%;
   width: calc(100% - 60px);
   height: 100%;
-	background: rgb(250, 250, 250);
+  background: rgb(250, 250, 250);
   z-index: 15;
 }
 
@@ -228,9 +230,9 @@ a {
 
 .nav_menu_link {
   font-family: "Futura PT";
-	font-size: 16px;
-	display: block;
-	padding: 12.5px 22.5px;
+  font-size: 16px;
+  display: block;
+  padding: 12.5px 22.5px;
   letter-spacing: 4px;
   color: rgb(100, 100, 100);
 }
@@ -251,7 +253,7 @@ a {
 }
 
 .light_section {
-  background:rgb(220, 220, 220);
+  background: rgb(220, 220, 220);
 }
 
 .sign_up_section {
@@ -275,9 +277,8 @@ a {
 
 .sign_up_section_bg {
   @include section_bg;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.9),
-                    rgba(0, 0, 0, 0.95)),
-                    image-url("clients/lil_c/lil_c_bw.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95)),
+    image-url("clients/lil_c/lil_c_bw.png");
   background-position: right top;
 }
 
@@ -300,7 +301,7 @@ a {
 .sign_up_card {
   @include card;
   width: 40%;
-  box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   background: white;
 }
 
@@ -345,7 +346,7 @@ a {
 
 .album_cover {
   width: 100%;
-  box-shadow: 0 0 10px rgba(0,0,0,1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   margin-top: 20vh;
   float: left;
 }
@@ -475,8 +476,10 @@ $desktop_card_max_width: 1225px;
 }
 
 // for desktop, small
-@media screen and (max-width: $desktop_large) { // SMALL
-  .header_links, .header_links_right {
+@media screen and (max-width: $desktop_large) {
+  // SMALL
+  .header_links,
+  .header_links_right {
     margin: initial;
     float: left;
     width: 200px;
@@ -617,7 +620,8 @@ $desktop_card_max_width: 1225px;
   .album_name {
     font-size: 32.5px;
   }
-  .album_available, .album_available_button {
+  .album_available,
+  .album_available_button {
     font-size: 14px;
   }
   .album_available_button {
